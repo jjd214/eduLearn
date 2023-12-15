@@ -1,0 +1,13 @@
+{
+    "name": "gtpnd/edu-learn",
+    "description": "Advanced Learning Management System for Information Technology & Computer Science Students",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Leinah, jjd214"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}

@@ -1,0 +1,48 @@
+
+
+------------------------------------------------------- Frontend -----------------------------------------------------------------
+
+******************************************************** Task 1 ******************************************************************
+- Login form
+- Student registration form
+    * forgot password
+    * reset password
+
+- OTP verification form
+
+- Instructor application form
+    * forgot password
+    * reset password
+
+yung sa student registration form pag na fillupan na lahat ng fields 
+then click button, mag sesend muna ng otp yung edulearn (duon sa gmail na nilagay ni user
+registration form) then mag reredirect sya sa OTP verification form if tama
+yung otp nya tska palang sya magiging registered.
+
+Nathan = gawin nalang yung OTP kapag patapos na kasi ang need muna is mag add ng notif sa email
+
+yung design lang need ko ako na bahala sa functionality.
+
+***********************************************************************************************************************************
+
+
+******************************************************** Task 2 *******************************************************************
+
+* Landing Page
+
+***********************************************************************************************************************************
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+------------------------------------------------------- Backend -----------------------------------------------------------------
+
+
+
+* waiting *
