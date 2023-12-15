@@ -23,7 +23,7 @@ include('../controllers/header_landing.php');
     <div class="content">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 contents">
+          <div class="col-md-6 contents" data-aos="fade-down">
             <div class="row justify-content-start">
               <div class="col-md-12">
                 <div class="mb-4">
@@ -91,7 +91,7 @@ include('../controllers/header_landing.php');
             </div>
           </div>
           <div class="col-md-6">
-            <img src="../../public/assets/img/instructor.svg" alt="Image" class="img-fluid">
+            <img src="../../public/assets/img/instructor.svg" alt="Image" class="img-fluid" data-aos="fade-down">
           </div>
         </div>
       </div>

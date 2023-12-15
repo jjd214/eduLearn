@@ -9,7 +9,11 @@ eduLearn
 │  │  ├─ footer_landing.php
 │  │  └─ header_landing.php
 │  ├─ models // store PHP classes that connects, interacts within the database
+│  │  ├─ config.php
+│  │  └─ init.php
 │  └─ views // store PHP files that has HTML content for the end-user
+│     ├─ error
+│     │  └─ page404.php
 │     ├─ inner-page.php
 │     ├─ instructor_application.php
 │     ├─ landing.php
@@ -40,5 +44,4 @@ eduLearn
 │        └─ main.js
 ├─ README.md
 └─ reminder.txt
-
 ```

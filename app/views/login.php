@@ -23,10 +23,10 @@ include('../controllers/header_landing.php');
     <div class="content">
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-6" data-aos="fade-down">
             <img src="../../public/assets/img/login.svg" alt="Image" class="img-fluid">
           </div>
-          <div class="col-md-6 contents">
+          <div class="col-md-6 contents" data-aos="fade-down">
             <div class="row justify-content-end">
               <div class="col-md-8">
                 <div class="mb-4">
