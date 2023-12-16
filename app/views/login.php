@@ -44,13 +44,13 @@ include('../controllers/header_landing.php');
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                     <label for="floatingPassword">Password</label>
                   </div>
-
+                  <!-- Forgot Password -->
                   <div class="d-flex mt-2 align-items-center">
                     <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
                   </div>
-
+                  <!-- Log in btn -->
                   <input type="submit" value="Log In" class="mt-4 btn btn-block btn-primary col-md-12">
-
+                  <!-- Sign Up -->
                   <p class="mt-5">Don't have an account? <a href="register_student.php" class="">Sign Up here</a></p>
 
                 </form>
