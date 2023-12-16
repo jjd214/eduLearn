@@ -88,7 +88,7 @@ class Registration extends Config {
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>';
                       
-                // header("Location: otp_input.php?email=" . urlencode($email));
+                // header("Location: otp-input.php?email=" . urlencode($email));
                 // exit();    
 
             } else {

@@ -1,4 +1,3 @@
-
 <?php include('../components/navbar.php'); ?>
 
 <main id="main">
@@ -10,7 +9,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <h2>Student Registration</h2>
         <ol>
-          <li><a href="landing.php">Home</a></li>
+          <li><a href="index.php">Home</a></li>
           <li>Student Registration</li>
         </ol>
       </div>
@@ -70,12 +69,16 @@
                   <div>
                     <h3>Gender</h3>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="male" required>
+                      <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male" required>
                       <label class="form-check-label" for="inlineRadio1">Male</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="female" required>
+                      <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female" required>
                       <label class="form-check-label" for="inlineRadio2">Female</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="gender" id="inlineRadio3" value="none" required>
+                      <label class="form-check-label" for="inlineRadio3">Prefer not to say</label>
                     </div>
                   </div>
 

@@ -75,6 +75,7 @@
                       <option value="" selected disabled></option>
                       <option value="frontend">Frontend</option>
                       <option value="backend">Backend</option>
+                      <option value="mobile">Mobile</option>
                       <option value="fullstack">Full Stack</option>
                     </select>
                     <label for="position">Position Applying For</label>

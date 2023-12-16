@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="col-lg-6 d-lg-flex flex-lg-column align-items-stretch order-1 order-lg-2 hero-img" data-aos="fade-up">
-        <img src="/eduLearn/images/hero-img.png" class="img-fluid" alt="" />
+        <img src="/eduLearn/images/hero-img.svg" class="img-fluid" alt="" />
       </div>
     </div>
   </div>

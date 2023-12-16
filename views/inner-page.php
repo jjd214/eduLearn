@@ -9,13 +9,14 @@
       <div class="d-flex justify-content-between align-items-center">
         <h2>Inner Page - This page must be copied and not deleted.</h2>
         <ol>
-          <li><a href="landing.php">Home</a></li>
+          <li><a href="index.php">Home</a></li>
           <li>Inner Page</li>
         </ol>
       </div>
 
     </div>
-  </section><!-- End Breadcrumbs Section -->
+  </section>
+  <!-- End Breadcrumbs Section -->
 
   <section class="inner-page">
     <div class="container">
@@ -24,6 +25,7 @@
       </p>
     </div>
   </section>
-</main><!-- End #main -->
+</main>
+<!-- End #main -->
 
 <?php include('../components/footer.php'); ?>

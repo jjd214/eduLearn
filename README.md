@@ -10,10 +10,7 @@ eduLearn
 │  │  └─ header_landing.php
 │  ├─ models // store PHP classes that connects, interacts within the database
 │  │  ├─ config.php
-│  │  └─ init.php
 │  └─ views // store PHP files that has HTML content for the end-user
-│     ├─ error
-│     │  └─ page404.php
 │     ├─ inner-page.php
 │     ├─ instructor_application.php
 │     ├─ landing.php
@@ -21,27 +18,56 @@ eduLearn
 │     └─ register_student.php
 ├─ composer.json
 ├─ composer.lock
-├─ middleware
 ├─ public
 │  └─ assets
 │     ├─ css
 │     │  └─ style.css
 │     ├─ img
-│     │  ├─ details-1.png
-│     │  ├─ details-2.png
-│     │  ├─ details-3.png
-│     │  ├─ details-4.png
-│     │  ├─ features.svg
-│     │  ├─ hero-img.png
-│     │  ├─ instructor.svg
-│     │  ├─ login.svg
 │     │  ├─ LogoLight.png
 │     │  ├─ LogoLight.svg
 │     │  ├─ LogoNormal.png
 │     │  ├─ LogoNormal.svg
-│     │  └─ register.svg
 │     └─ js
 │        └─ main.js
 ├─ README.md
 └─ reminder.txt
 ```
+
+eduLearn
+├─ components
+│  ├─ footer.php
+│  └─ navbar.php
+├─ composer.json
+├─ composer.lock
+├─ controllers
+│  └─ functions.php
+├─ css
+│  └─ style.css
+├─ images
+│  └─ LogoNormal.svg
+├─ javascript
+│  ├─ main.js
+│  └─ validate.js
+├─ models
+│  ├─ Config.php
+│  └─ Registration.php
+├─ partials
+│  ├─ __footer.php
+│  └─ __header.php
+├─ php
+│  └─ init.php
+├─ README.md
+├─ reminder.txt
+├─ src
+│  ├─ controll
+│  │  ├─ process
+│  │  └─ routes
+│  └─ domain
+└─ views
+   ├─ admin
+   │  └─ index.php
+   ├─ index.php
+   ├─ inner-page.php
+   ├─ instructor_application.php
+   ├─ login.php
+   └─ register_student.php

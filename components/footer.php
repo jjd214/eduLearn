@@ -1,6 +1,3 @@
-<?php include('../partials/__header.php'); ?>
-
-
 <!-- ======= Footer ======= -->
 <footer id="footer">
   <div class="footer-top">
