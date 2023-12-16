@@ -4,17 +4,20 @@ Advanced Learning Management System
 # Creating PR(Pull Request) in git
 
 - Create a new branch
-   git checkout -b branch-name
+   ``git checkout -b branch-name``
 
 -Commit Changes
+```
    git add ./
    git commit -m "Your commit message"
+```
 
 -Push Changes
-   git push origin branch-name
+   ``git push origin branch-name``
 
 -Create PR
-   Wait for review
+   ![image](https://github.com/jjd214/eduLearn/assets/53577436/856ade97-7c96-4ba0-9902-66357b9333b7)
+   Then, wait for review
 
 # Folder Strcuture
 ```
