@@ -4,36 +4,6 @@ Advanced Learning Management System
 # Folder Strcuture
 ```
 eduLearn
-├─ app
-│  ├─ controllers // store PHP files that handles user requests and updating the model and view accordingly
-│  │  ├─ footer_landing.php
-│  │  └─ header_landing.php
-│  ├─ models // store PHP classes that connects, interacts within the database
-│  │  ├─ config.php
-│  └─ views // store PHP files that has HTML content for the end-user
-│     ├─ inner-page.php
-│     ├─ instructor_application.php
-│     ├─ landing.php
-│     ├─ login.php
-│     └─ register_student.php
-├─ composer.json
-├─ composer.lock
-├─ public
-│  └─ assets
-│     ├─ css
-│     │  └─ style.css
-│     ├─ img
-│     │  ├─ LogoLight.png
-│     │  ├─ LogoLight.svg
-│     │  ├─ LogoNormal.png
-│     │  ├─ LogoNormal.svg
-│     └─ js
-│        └─ main.js
-├─ README.md
-└─ reminder.txt
-```
-
-eduLearn
 ├─ components
 │  ├─ footer.php
 │  └─ navbar.php
@@ -44,7 +14,27 @@ eduLearn
 ├─ css
 │  └─ style.css
 ├─ images
-│  └─ LogoNormal.svg
+│  ├─ 13984578_5376136.ai
+│  ├─ 5F56B002.png
+│  ├─ 5F56B003.png
+│  ├─ 5F56B004.png
+│  ├─ 5F56B005.png
+│  ├─ details-1.png
+│  ├─ details-2.png
+│  ├─ details-3.png
+│  ├─ details-4.png
+│  ├─ features.svg
+│  ├─ ft.svg
+│  ├─ hero-img.png
+│  ├─ hero-img.svg
+│  ├─ hero.svg
+│  ├─ instructor.svg
+│  ├─ login.svg
+│  ├─ LogoLight.png
+│  ├─ LogoLight.svg
+│  ├─ LogoNormal.png
+│  ├─ LogoNormal.svg
+│  └─ register.svg
 ├─ javascript
 │  ├─ main.js
 │  └─ validate.js
@@ -68,6 +58,8 @@ eduLearn
    │  └─ index.php
    ├─ index.php
    ├─ inner-page.php
-   ├─ instructor_application.php
+   ├─ instructor-application.php
    ├─ login.php
-   └─ register_student.php
+   ├─ otp-input.php
+   └─ register-student.php
+```
