@@ -9,5 +9,7 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {
+        "swiftmailer/swiftmailer": "^6.3"
+    }
 }
