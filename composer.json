@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "name": "gtpnd/edu-learn",
     "description": "Advanced Learning Management System for Information Technology & Computer Science Students",
     "type": "project",
@@ -10,4 +11,9 @@
     ],
     "minimum-stability": "stable",
     "require": {}
+=======
+    "require": {
+        "swiftmailer/swiftmailer": "^6.3"
+    }
+>>>>>>> 7fb7755 (Second commit)
 }
