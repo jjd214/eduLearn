@@ -1,25 +1,28 @@
 # EduLearn
+
 Advanced Learning Management System
 
 # Creating PR(Pull Request) in git
 
 - Create a new branch
-   ``git checkout -b branch-name``
+  `git checkout -b branch-name`
 
 -Commit Changes
+
 ```
    git add ./
    git commit -m "Your commit message"
 ```
 
 -Push Changes
-   ``git push origin branch-name``
+`git push origin branch-name`
 
 -Create PR
-   ![image](https://github.com/jjd214/eduLearn/assets/53577436/856ade97-7c96-4ba0-9902-66357b9333b7)
-   Then, wait for review
+![image](https://github.com/jjd214/eduLearn/assets/53577436/856ade97-7c96-4ba0-9902-66357b9333b7)
+Then, wait for review
 
 # Folder Strcuture
+
 ```
 eduLearn
 ├─ components
@@ -80,4 +83,28 @@ eduLearn
    ├─ login.php
    ├─ otp-input.php
    └─ register-student.php
+```
+
+# The code that causes a `Warning: session_start(): Session cannot be started after headers`
+
+```
+<li class="dropdown">
+   <a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+   <ul>
+      <li><a href="#">Drop Down 1</a></li>
+      <li class="dropdown">
+            <a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+            <ul>
+               <li><a href="#">Deep Drop Down 1</a></li>
+               <li><a href="#">Deep Drop Down 2</a></li>
+               <li><a href="#">Deep Drop Down 3</a></li>
+               <li><a href="#">Deep Drop Down 4</a></li>
+               <li><a href="#">Deep Drop Down 5</a></li>
+            </ul>
+      </li>
+      <li><a href="#">Drop Down 2</a></li>
+      <li><a href="#">Drop Down 3</a></li>
+      <li><a href="#">Drop Down 4</a></li>
+   </ul>
+</li>
 ```
