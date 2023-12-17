@@ -1,4 +1,6 @@
-<?php include('../components/navbar.php'); ?>
+<?php include('../partials/__header.php'); ?>
+<!-- include('../components/navbar.php'); -->
+<!-- inalis ko muna yung sya yung cause ng problem. -->
 
 <main id="main">
 
