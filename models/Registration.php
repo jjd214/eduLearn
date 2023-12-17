@@ -17,14 +17,15 @@ class Registration extends Config {
 
             $otp = $this->generateOTP();
             
-            if($this->emailExists($email) > 0) {
+            // if($this->emailExists($email) > 0) {
 
-                echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
-                        Email already exists.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>';
+            //     echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+            //             Email already exists.
+            //         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            //         </div>';
 
-            } else if (!$this->validatePassword($_POST['password'])) {
+            // } 
+            if (!$this->validatePassword($_POST['password'])) {
 
                 echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
                         Password must be at least 8 characters long.
@@ -246,14 +247,14 @@ class Registration extends Config {
         return $password === $confirmPassword;
     }
 
-    public function emailExists($email) {
-        $connection = $this->openConnection();
-        $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `email` = ?");
-        $stmt->execute([$email]);
-        $result = $stmt->fetch();
+    // public function emailExists($email) {
+    //     $connection = $this->openConnection();
+    //     $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `email` = ?");
+    //     $stmt->execute([$email]);
+    //     $result = $stmt->fetch();
 
-        return $result;
-    }
+    //     return $result;
+    // }
 }
 
 ?>
