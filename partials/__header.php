@@ -24,6 +24,7 @@
     <link href="/eduLearn/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
     <link href="/eduLearn/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
     <link href="/eduLearn/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="/eduLearn/vendor/fontawesome/css/all.min.css" rel="stylesheet" />
 
 
     <!-- Template Main CSS File -->

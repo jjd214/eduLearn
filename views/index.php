@@ -84,7 +84,7 @@
           </div>
         </div>
         <div class="image col-xl-5 d-flex align-items-stretch justify-content-center order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-          <img src="/eduLearn/images/features.svg" class="img-fluid" alt="" />
+          <img src="/eduLearn/images/programs.svg" class="img-fluid" alt="" />
         </div>
       </div>
     </div>

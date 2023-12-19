@@ -27,7 +27,7 @@
           <a class="nav-link scrollto <?php echo (basename($_SERVER['PHP_SELF']) == 'instructor-application.php') ? 'active' : ''; ?>" href="instructor-application.php">Become an Instructor</a>
         </li>
         <li>
-          <a class="nav-link scrollto <?php echo (basename($_SERVER['PHP_SELF']) == 'login.php') ? 'active' : ''; ?>" id="login" href="login.php">Login</a>
+          <a class="nav-link scrollto <?php echo (basename($_SERVER['PHP_SELF']) == 'login.php') ? 'active' : ''; ?>" id="login" href="login.php">Log in</a>
         </li>
         <li>
           <a class="getstarted scrollto" href="register-student.php">Join Now</a>
