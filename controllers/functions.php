@@ -24,4 +24,29 @@ function verifyOTP() {
         $verifyOTP->verifyOTP($otp1,$otp2,$otp3,$otp4,$otp5,$otp6);
     }
 }
+
+function forgotPassword() {
+    $forgotPassword = new Forgot_password();
+
+    if (isset($_POST['submit'])) {
+        $email = $_POST['email'];
+
+        $forgotPassword->validateEmail($email);
+    }
+}
+
+function resetPassword() {
+
+    if (!isset($_GET['token'])) {
+
+        header("Location: signin.php");
+        exit(); 
+        
+    } else {
+
+        $resetPassword = new Forgot_password();
+        $resetPassword->resetPassword();
+
+    }
+}
 ?>

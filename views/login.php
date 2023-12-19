@@ -44,7 +44,7 @@
                   </div>
                   <!-- Forgot Password -->
                   <div class="d-flex mt-2 align-items-center">
-                    <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
+                    <span class="ml-auto"><a href="forgot-password.php" class="forgot-pass">Forgot Password</a></span>
                   </div>
                   <!-- Log in btn -->
                   <input type="submit" value="Log In" class="mt-4 btn btn-block btn-primary col-md-12">
