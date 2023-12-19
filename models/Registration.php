@@ -9,23 +9,23 @@ class Registration extends Config {
         if(isset($_POST['submit'])) { 
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
+            $gender = $_POST['gender'];
             $email = $_POST['email'];
             $password = md5($_POST['password']);
             $confirmPassword = md5($_POST['confirmPassword']);
-            $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
+            
             $verifyToken = md5(rand()); 
 
             $otp = $this->generateOTP();
             
-            // if($this->emailExists($email) > 0) {
+            if($this->emailExists($email) > 0) {
 
-            //     echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
-            //             Email already exists.
-            //         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            //         </div>';
+                echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                        Email already exists.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
 
-            // } 
-            if (!$this->validatePassword($_POST['password'])) {
+            } else if (!$this->validatePassword($_POST['password'])) {
 
                 echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
                         Password must be at least 8 characters long.
@@ -56,29 +56,6 @@ class Registration extends Config {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function sendOTP($userData) {
 
@@ -132,16 +109,10 @@ class Registration extends Config {
         $newOTP = isset($_SESSION['newOTP']) ? $_SESSION['newOTP'] : '';
 
         $userEnteredOTP = $otp1 . $otp2 . $otp3 . $otp4 . $otp5 . $otp6;
-
-
-        // echo 'Stored OTP: ';
-        // var_dump($storedOTP);
-        // echo 'User Entered OTP: ';
-        // var_dump($userEnteredOTP);
         
         if($userEnteredOTP == $storedOTP || $userEnteredOTP == $newOTP) {
 
-            // $this->insertUserIntoDatabase();
+            $this->insertUserIntoDatabase();
 
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                     Email verification successfull.
@@ -212,20 +183,8 @@ class Registration extends Config {
         $_SESSION['newOTP'] = $newOTP;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     public function generateOTP($length = 6) {
-        // Generate a random numeric OTP
+
         $otp = '';
         for ($i = 0; $i < $length; $i++) {
             $otp .= mt_rand(0, 9);
@@ -247,14 +206,43 @@ class Registration extends Config {
         return $password === $confirmPassword;
     }
 
-    // public function emailExists($email) {
-    //     $connection = $this->openConnection();
-    //     $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `email` = ?");
-    //     $stmt->execute([$email]);
-    //     $result = $stmt->fetch();
+    public function emailExists($email) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `email` = ?");
+        $stmt->execute([$email]);
+        $result = $stmt->fetch();
 
-    //     return $result;
-    // }
+        return $result;
+    }
+
+    public function insertUserIntoDatabase() {
+
+        $userData = $_SESSION['signup_data'];
+    
+        $firstname = $userData['firstname'];
+        $lastname = $userData['lastname'];
+        $gender = $userData['gender'];
+        $email = $userData['email'];
+        $password = $userData['password'];
+        $verify_token = $userData['verify_token'];
+    
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("INSERT INTO `user_tbl` (`firstname`,`lastname`,`gender`,`email`,`password`,`verify_token`) VALUES(?,?,?,?,?,?)");
+        $stmt->execute([$firstname, $lastname, $gender, $email, $password, $verify_token]);
+        $result = $stmt->rowCount();
+    
+        if ($result > 0) {
+            // echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            //         User successfully registered.
+            //         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            //       </div>';
+        } else {
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Failed to register user.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        }
+    }
 }
 
 ?>
