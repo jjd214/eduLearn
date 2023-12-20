@@ -2,9 +2,10 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/eduLearn/vendor/autoload.php';
 
-class Registration extends Config {
+class Application extends Config {
 
-    public function studentRegistration() {
+
+    public function instructorRegistration() {
         
         if(isset($_POST['submit'])) { 
             $firstname = $_POST['firstname'];
@@ -13,12 +14,14 @@ class Registration extends Config {
             $email = $_POST['email'];
             $password = md5($_POST['password']);
             $confirmPassword = md5($_POST['confirmPassword']);
+            $age = $_POST['age'];
+            $position = $_POST['position'];
             
             $verifyToken = md5(rand()); 
 
             $otp = $this->generateOTP();
             
-            if($this->emailExists($email) > 0) {
+            if($this->emailExistsApplication($email) > 0) {
 
                 echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
                         Email already exists.
@@ -40,18 +43,20 @@ class Registration extends Config {
                       </div>';
 
             } else {
-                
-                $_SESSION['signup_data'] = [
+
+                $_SESSION['application_data'] = [
                     'firstname' => $firstname,
                     'lastname' => $lastname,
                     'gender' => $gender,
                     'email' => $email,
                     'password' => $password,
                     'verify_token' => $verifyToken, 
+                    'age' => $age,
+                    'position' => $position,
                     'otp' => $otp
                 ];
     
-                $this->sendOTP($_SESSION['signup_data']);
+                $this->sendOTP($_SESSION['application_data']);
 
             }
         }
@@ -88,7 +93,7 @@ class Registration extends Config {
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>';
                       
-                header("Location: otp-inputStudent.php?token=" . $userData['verify_token']);
+                header("Location: otp-inputInstructor.php?token=" . $userData['verify_token']);
 
                
             } else {
@@ -105,22 +110,19 @@ class Registration extends Config {
 
     public function verifyOTP($otp1,$otp2,$otp3,$otp4,$otp5,$otp6) {
 
-        $storedOTP = $_SESSION['signup_data']['otp'];
+        $storedOTP = $_SESSION['application_data']['otp'];
         $newOTP = isset($_SESSION['newOTP']) ? $_SESSION['newOTP'] : '';
 
         $userEnteredOTP = $otp1 . $otp2 . $otp3 . $otp4 . $otp5 . $otp6;
         
         if($userEnteredOTP == $storedOTP || $userEnteredOTP == $newOTP) {
 
-            $this->insertUserIntoDatabase();
-
-            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                    Email verification successfull.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>';
+            $this->insertIntoDatabase();
         
             unset($_SESSION['newOTP']);
-            unset($_SESSION['signup_data']);
+            unset($_SESSION['application_data']);
+
+            header("Location: check-mail.php");
             
         } else {
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -134,7 +136,7 @@ class Registration extends Config {
 
         if(isset($_POST['resendOTP'])) {
 
-            $storedEmail = $_SESSION['signup_data']['email'];
+            $storedEmail = $_SESSION['application_data']['email'];
 
             $newOTP = $this->generateOTP();
             
@@ -206,29 +208,31 @@ class Registration extends Config {
         return $password === $confirmPassword;
     }
 
-    public function emailExists($email) {
+    public function emailExistsApplication($email) {
         $connection = $this->openConnection();
-        $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `email` = ?");
+        $stmt = $connection->prepare("SELECT * FROM `application-form_tbl` WHERE `email` = ?");
         $stmt->execute([$email]);
         $result = $stmt->fetch();
 
         return $result;
     }
 
-    public function insertUserIntoDatabase() {
+    public function insertIntoDatabase() {
 
-        $userData = $_SESSION['signup_data'];
+        $userData = $_SESSION['application_data'];
     
         $firstname = $userData['firstname'];
         $lastname = $userData['lastname'];
         $gender = $userData['gender'];
         $email = $userData['email'];
         $password = $userData['password'];
+        $age = $userData['age'];
+        $position = $userData['position'];
         $verify_token = $userData['verify_token'];
     
         $connection = $this->openConnection();
-        $stmt = $connection->prepare("INSERT INTO `user_tbl` (`firstname`,`lastname`,`gender`,`email`,`password`,`verify_token`) VALUES(?,?,?,?,?,?)");
-        $stmt->execute([$firstname, $lastname, $gender, $email, $password, $verify_token]);
+        $stmt = $connection->prepare("INSERT INTO `application-form_tbl` (`firstname`,`lastname`,`gender`,`email`,`password`,`age`,`position`,`verify_token`) VALUES(?,?,?,?,?,?,?,?)");
+        $stmt->execute([$firstname, $lastname, $gender, $email, $password,$age, $position, $verify_token]);
         $result = $stmt->rowCount();
     
         if ($result == 0) {
@@ -238,6 +242,109 @@ class Registration extends Config {
                   </div>';
         } 
     }
+
+    public function acceptApplication($id) {
+
+        if(isset($_POST['submit'])) {
+
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT * FROM `application-form_tbl` WHERE `id` = ?");
+            $stmt->execute([$id]);
+            $data = $stmt->fetch();
+
+
+            $userid = $data['id'];
+            $firstname = $data['firstname'];
+            $lastname = $data['lastname'];
+            $gender = $data['gender'];
+            $email = $data['email'];
+            $password = $data['password'];
+            $age = $data['age'];
+            $position = $data['position'];
+            $verify_token = $data['verify_token'];
+
+            
+            $this->sendMessageToMail($email);
+            $this->changeTableLocation($firstname, $lastname, $gender, $email, $password, $verify_token, $age, $position);
+            $this->deleteOldData($userid);
+        }
+    }
+
+    public function sendMessageToMail($email) {
+        // Swift Mailer configuration
+        $transport = new \Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'); 
+        $transport->setUsername('edulearn.smtp@gmail.com');
+        $transport->setPassword('lyiw zlem zfdx vper');
+        $transport->setStreamOptions(['ssl' => ['allow_self_signed' => true, 'verify_peer' => false]]);
+        
+        $mailer = new \Swift_Mailer($transport);
+    
+        // Compose the email message
+        $subject = 'Welcome to EduLearn!';
+        $body = "
+            <h2>Congratulations!</h2>
+            <p>You are now accepted as an instructor on EduLearn.</p>
+            <p>You may log in and start uploading your courses.</p>
+        ";
+    
+        $message = new \Swift_Message($subject);
+        $message->setFrom(['edulearn.smtp@gmail.com' => 'EduLearn Mailer']);
+        $message->addTo($email);
+        $message->setBody($body, 'text/html');
+    
+        try {
+            // Send the email
+            $result = $mailer->send($message);
+    
+            if ($result) {
+                $_SESSION['status'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Applicant accepted.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>';
+                header("Location: index.php");
+            } else {
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Failed to send the acceptance email. Please try again.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>';
+            }
+        } catch (\Swift_TransportException $e) {
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    An error occurred while sending the acceptance email. Please contact support.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        }
+    }
+
+    public function changeTableLocation($firstname, $lastname, $gender, $email, $password, $verify_token, $age, $position) {
+    
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("INSERT INTO `instructor_tbl` (`firstname`,`lastname`,`gender`,`email`,`password`,`verify_token`,`age`,`position`) VALUES(?,?,?,?,?,?,?,?)");
+        $stmt->execute([$firstname, $lastname, $gender, $email, $password, $verify_token, $age, $position]);
+        $result = $stmt->rowCount();
+    
+        if ($result == 0) {
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Failed to change location.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        } 
+    }
+
+    public function deleteOldData($id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("DELETE FROM `application-form_tbl` WHERE `id` = ?");
+        $stmt->execute([$id]);
+        $result = $stmt->rowCount();
+    
+        if ($result == 0) {
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Failed to delete data.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        } 
+    }
+    
 }
 
 ?>

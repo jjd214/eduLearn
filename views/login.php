@@ -31,15 +31,16 @@
                   <h3>Log In</h3>
                   <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
                 </div>
-                <form action="#" method="post">
+                <?php login(); ?>
+                <form method="post">
                   <!-- Email -->
                   <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                    <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                     <label for="floatingInput">Email address</label>
                   </div>
                   <!-- Password -->
                   <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                     <label for="floatingPassword">Password</label>
                   </div>
                   <!-- Forgot Password -->
@@ -47,7 +48,7 @@
                     <span class="ml-auto"><a href="forgot-password.php" class="forgot-pass">Forgot Password</a></span>
                   </div>
                   <!-- Log in btn -->
-                  <input type="submit" value="Log In" class="mt-4 btn btn-block btn-primary col-md-12">
+                  <input type="submit" name="submit" value="Log In" class="mt-4 btn btn-block btn-primary col-md-12">
                   <!-- Sign Up -->
                   <p class="mt-5">Don't have an account? <a href="register-student.php" class="">Sign Up here</a></p>
 

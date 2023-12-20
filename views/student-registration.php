@@ -53,7 +53,6 @@ include('../components/navbar.php'); ?>
                       </div>
                     </div>
                   </div>
-
                   <!-- Email -->
                   <div class="form-floating mb-3">
                     <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com" required>
@@ -81,10 +80,6 @@ include('../components/navbar.php'); ?>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female" required>
                       <label class="form-check-label" for="inlineRadio2">Female</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="gender" id="inlineRadio3" value="none" required>
-                      <label class="form-check-label" for="inlineRadio3">Prefer not to say</label>
                     </div>
                   </div>
 

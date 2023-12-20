@@ -28,44 +28,44 @@
                   <h3>Instructor Application</h3>
                   <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
                 </div>
-                <form action="#" method="post">
+                <?php sendApplication(); ?>
+                <form method="post">
                   <div class="row">
                     <!-- First Name -->
                     <div class="col-md-6">
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="fname" required>
+                        <input type="text" name="firstname" class="form-control" id="floatingInput" placeholder="fname" required>
                         <label for="floatingInput">First Name</label>
                       </div>
                     </div>
                     <!-- Last Name -->
                     <div class="col-md-6">
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="lname" required>
+                        <input type="text" name="lastname" class="form-control" id="floatingInput" placeholder="lname" required>
                         <label for="floatingInput">Last Name</label>
                       </div>
                     </div>
                   </div>
-
                   <!-- Email -->
                   <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                    <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                     <label for="floatingInput">Email address</label>
                   </div>
                   <!-- Password -->
                   <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                     <label for="floatingPassword">Password</label>
                   </div>
 
                   <!-- Repeat Password -->
                   <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="repeatPassword" required>
+                    <input type="password" name="confirmPassword" class="form-control" id="floatingPassword" placeholder="repeatPassword" required>
                     <label for="floatingPassword">Repeat your Password</label>
                   </div>
 
                   <!-- Age -->
                   <div class="form-floating mb-3">
-                    <input type="number" class="form-control" id="age" name="age" placeholder="Your Age" required>
+                    <input type="number" name="age" class="form-control" id="age" name="age" placeholder="Your Age" required>
                     <label for="age">Your Age</label>
                   </div>
 
@@ -85,20 +85,16 @@
                   <div>
                     <h3>Gender</h3>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="male" required>
+                      <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male" required>
                       <label class="form-check-label" for="inlineRadio1">Male</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="female" required>
+                      <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female" required>
                       <label class="form-check-label" for="inlineRadio2">Female</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="none" required>
-                      <label class="form-check-label" for="inlineRadio3">Prefer not to say</label>
                     </div>
                   </div>
 
-                  <input type="submit" value="Send Application" class="mt-4 btn btn-block btn-primary col-md-12">
+                  <input type="submit" name="submit" value="Send Application" class="mt-4 btn btn-block btn-primary col-md-12">
 
                   <p class="mt-5">Already have an account? <a href="login.php" class="">Log in here</a></p>
 

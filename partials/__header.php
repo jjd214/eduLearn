@@ -1,4 +1,5 @@
-<?php require_once('../php/init.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/edulearn/php/init.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

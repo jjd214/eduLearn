@@ -1,12 +1,6 @@
 <?php
-/* include('../partials/__header.php'); */
 include('../components/navbar.php');
 ?>
-<!-- 
-  inalis ko muna yung sya yung cause ng problem.
-  Binalik ko kasi 'to talaga nagko-cause ng problem kahit naka comment pa 
-  Look for README.MD
--->
 
 <link href="./css/style.css" rel="stylesheet" />
 <main id="main">
@@ -27,8 +21,8 @@ include('../components/navbar.php');
               <span>g****n@gmail.com</span>
             </div>
             <div class="otp_input text-start mb-2">
-              <?php verifyOTP(); ?>
-              <?php resendOTP(); ?>
+              <?php verifyOTPApplication(); ?>
+              <?php resendOTPApplication(); ?>
               <label for="digit">Type your 6 digit security code</label>
               <div class="d-flex align-items-center justify-content-between mt-2">
                 <input type="text" name="otp1" class="form-control" placeholder="#" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value.length) this.nextElementSibling.focus();" autofocus>

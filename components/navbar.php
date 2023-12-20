@@ -30,7 +30,7 @@
           <a class="nav-link scrollto <?php echo (basename($_SERVER['PHP_SELF']) == 'login.php') ? 'active' : ''; ?>" id="login" href="login.php">Login</a>
         </li>
         <li>
-          <a class="getstarted scrollto" href="register-student.php">Join Now</a>
+          <a class="getstarted scrollto" href="student-registration.php">Join Now</a>
         </li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
