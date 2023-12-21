@@ -1,5 +1,5 @@
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/edulearn/partials/__header.php'); ?>
-<?php access(); ?>
+
 <style>
   .table {
     zoom: 80%;

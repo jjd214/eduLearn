@@ -2,8 +2,7 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/eduLearn/vendor/autoload.php';
 
-class Application extends Config {
-
+class InstructorRegistration extends Config {
 
     public function instructorRegistration() {
         
@@ -18,8 +17,6 @@ class Application extends Config {
             $position = $_POST['position'];
             
             $verifyToken = md5(rand()); 
-
-            $otp = $this->generateOTP();
             
             if($this->emailExistsApplication($email) > 0) {
 
@@ -44,154 +41,24 @@ class Application extends Config {
 
             } else {
 
-                $_SESSION['application_data'] = [
-                    'firstname' => $firstname,
-                    'lastname' => $lastname,
-                    'gender' => $gender,
-                    'email' => $email,
-                    'password' => $password,
-                    'verify_token' => $verifyToken, 
-                    'age' => $age,
-                    'position' => $position,
-                    'otp' => $otp
-                ];
-    
-                $this->sendOTP($_SESSION['application_data']);
-
-            }
-        }
-    }
-
-    public function sendOTP($userData) {
-
-        $email = $userData['email'];
-        $otp = $userData['otp']; 
-
-        $transport = new \Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'); 
-        $transport->setUsername('edulearn.smtp@gmail.com');
-        $transport->setPassword('lyiw zlem zfdx vper');
-
-        $transport->setStreamOptions(['ssl' => ['allow_self_signed' => true, 'verify_peer' => false]]);
-
-        $mailer = new \Swift_Mailer($transport);
-
-        $message = new \Swift_Message('OTP for Signup');
-        $message->setFrom(['edulearn.smtp@gmail.com' => 'Mailer']);
-        $message->addTo($email);
-        $message->setBody("
-            <h2>You have Registered with EduLearn</h2>
-            <h5>Use the following OTP to complete your signup:</h5>
-            <br></br>
-            <strong>{$otp}</strong>
-        ", 'text/html');
-
-        try {
-            $result = $mailer->send($message);
-            if ($result) {
-                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                        OTP has been sent to your email address.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>';
-                      
-                header("Location: otp-inputInstructor.php?token=" . $userData['verify_token']);
-
-               
-            } else {
-                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Failed to send the OTP.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>';
-            }
-        } catch (\Swift_TransportException $e) {
-            echo "Message could not be sent. Mailer Error: {$e->getMessage()}";
-        }
-        
-    }
-
-    public function verifyOTP($otp1,$otp2,$otp3,$otp4,$otp5,$otp6) {
-
-        $storedOTP = $_SESSION['application_data']['otp'];
-        $newOTP = isset($_SESSION['newOTP']) ? $_SESSION['newOTP'] : '';
-
-        $userEnteredOTP = $otp1 . $otp2 . $otp3 . $otp4 . $otp5 . $otp6;
-        
-        if($userEnteredOTP == $storedOTP || $userEnteredOTP == $newOTP) {
-
-            $this->insertIntoDatabase();
-        
-            unset($_SESSION['newOTP']);
-            unset($_SESSION['application_data']);
-
-            header("Location: check-mail.php");
+                $connection = $this->openConnection();
+                $stmt = $connection->prepare("INSERT INTO `application-form_tbl` (`firstname`,`lastname`,`gender`,`email`,`password`,`age`,`position`,`verify_token`) VALUES(?,?,?,?,?,?,?,?)");
+                $stmt->execute([$firstname, $lastname, $gender, $email, $password,$age, $position, $verifyToken]);
+                $result = $stmt->rowCount();
             
-        } else {
-            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Incorrect OTP. Please try again.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>';
-        }
-    }
-
-    public function resendOTP() {   
-
-        if(isset($_POST['resendOTP'])) {
-
-            $storedEmail = $_SESSION['application_data']['email'];
-
-            $newOTP = $this->generateOTP();
-            
-            $this->newOTPGenerator($storedEmail,$newOTP);
-
-        }
-    }
-
-    public function newOTPGenerator($email,$newOTP) {
-
-        $transport = new \Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'); 
-        $transport->setUsername('edulearn.smtp@gmail.com');
-        $transport->setPassword('lyiw zlem zfdx vper');
-
-        $transport->setStreamOptions(['ssl' => ['allow_self_signed' => true, 'verify_peer' => false]]);
-
-        $mailer = new \Swift_Mailer($transport);
-
-        $message = new \Swift_Message('OTP for Signup');
-        $message->setFrom(['edulearn.smtp@gmail.com' => 'Mailer']);
-        $message->addTo($email);
-        $message->setBody("
-            <h2>You have Registered with eduLearn</h2>
-            <h5>Use the following OTP to complete your signup:</h5>
-            <br></br>
-            <strong>{$newOTP}</strong>
-        ", 'text/html');
-
-        try {
-            $result = $mailer->send($message);
-            if ($result) {
-                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                        OTP resent successfull.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>';
-            } else {
-                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Failed to send the OTP.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>';
+                if ($result > 0) {
+                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Application sent wait for admins approval.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                } else {
+                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Application failed
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                }
             }
-        } catch (\Swift_TransportException $e) {
-            echo "Message could not be sent. Mailer Error: {$e->getMessage()}";
         }
-
-        $_SESSION['newOTP'] = $newOTP;
-    }
-
-    public function generateOTP($length = 6) {
-
-        $otp = '';
-        for ($i = 0; $i < $length; $i++) {
-            $otp .= mt_rand(0, 9);
-        }
-        return $otp;
     }
 
     public function validatePassword($password) {
@@ -217,32 +84,6 @@ class Application extends Config {
         return $result;
     }
 
-    public function insertIntoDatabase() {
-
-        $userData = $_SESSION['application_data'];
-    
-        $firstname = $userData['firstname'];
-        $lastname = $userData['lastname'];
-        $gender = $userData['gender'];
-        $email = $userData['email'];
-        $password = $userData['password'];
-        $age = $userData['age'];
-        $position = $userData['position'];
-        $verify_token = $userData['verify_token'];
-    
-        $connection = $this->openConnection();
-        $stmt = $connection->prepare("INSERT INTO `application-form_tbl` (`firstname`,`lastname`,`gender`,`email`,`password`,`age`,`position`,`verify_token`) VALUES(?,?,?,?,?,?,?,?)");
-        $stmt->execute([$firstname, $lastname, $gender, $email, $password,$age, $position, $verify_token]);
-        $result = $stmt->rowCount();
-    
-        if ($result == 0) {
-            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Failed to register user.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>';
-        } 
-    }
-
     public function acceptApplication($id) {
 
         if(isset($_POST['submit'])) {
@@ -251,7 +92,6 @@ class Application extends Config {
             $stmt = $connection->prepare("SELECT * FROM `application-form_tbl` WHERE `id` = ?");
             $stmt->execute([$id]);
             $data = $stmt->fetch();
-
 
             $userid = $data['id'];
             $firstname = $data['firstname'];

@@ -2,7 +2,7 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/eduLearn/vendor/autoload.php';
 
-class Registration extends Config {
+class StudentRegistration extends Config {
 
     public function studentRegistration() {
         
@@ -88,7 +88,7 @@ class Registration extends Config {
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>';
                       
-                header("Location: otp-inputStudent.php?token=" . $userData['verify_token']);
+                header("Location: otp-input.php?token=" . $userData['verify_token']);
 
                
             } else {

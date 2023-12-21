@@ -1,23 +1,24 @@
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/edulearn/partials/__header.php'); ?>
 
 <?php
-// accept-application.php
+// //accept-application.php
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Print the values received from the form
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     // Print the values received from the form
+//     echo '<pre>';
+//     print_r($_POST);
+//     echo '</pre>';
 
-    // Further processing based on your requirements
-    $id = $_POST['id'];
+//     // Further processing based on your requirements
+//     $id = $_POST['id'];
 
-    // Perform any additional logic here...
-}
-
-$accept = new Application();
+//     // Perform any additional logic here...
+// }
+$id = $_POST['id'];
+$accept = new InstructorRegistration();
 $accept->acceptApplication($id);
 
 ?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/edulearn/partials/__footer.php'); ?>
+
