@@ -17,12 +17,9 @@ then click button, mag sesend muna ng otp yung edulearn (duon sa gmail na nilaga
 registration form) then mag reredirect sya sa OTP verification form if tama
 yung otp nya tska palang sya magiging registered.
 
-Nathan = gawin nalang yung OTP kapag patapos na kasi ang need muna is mag add ng notif sa email
-
 yung design lang need ko ako na bahala sa functionality.
 
 ***********************************************************************************************************************************
-
 
 ******************************************************** Task 2 *******************************************************************
 
@@ -30,6 +27,19 @@ yung design lang need ko ako na bahala sa functionality.
 
 ***********************************************************************************************************************************
 
+******************************************************** Task 3 *******************************************************************
+
+* Student & Instructor Page
+
+* Student Dashboard Page
+    - Input profile picture
+    - Can change Fname & Lname
+    - Can change Bio
+
+* Instructor Profile settings
+
+
+***********************************************************************************************************************************
 -----------------------------------------------------------------------------------------------------------------------------------
 
 

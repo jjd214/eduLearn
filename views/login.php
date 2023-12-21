@@ -39,10 +39,28 @@
                     <label for="floatingInput">Email address</label>
                   </div>
                   <!-- Password -->
-                  <div class="form-floating">
+                  <div class="form-floating mb-3">
                     <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                     <label for="floatingPassword">Password</label>
                   </div>
+
+                  <!-- Log in as -->
+                  <div class="mb-3">
+                    <h3>Log in as</h3>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="student" required>
+                      <label class="form-check-label" for="inlineRadio1">Student</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="instructor" required>
+                      <label class="form-check-label" for="inlineRadio2">Instructor</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="admin" required>
+                      <label class="form-check-label" for="inlineRadio2">Admin</label>
+                    </div>
+                  </div>
+
                   <!-- Forgot Password -->
                   <div class="d-flex mt-2 align-items-center">
                     <span class="ml-auto"><a href="forgot-password.php" class="forgot-pass">Forgot Password</a></span>
