@@ -1,7 +1,7 @@
 <?php
 class Login extends Config {
 
-    public function login() {
+    public function studentLogin() {
         if(isset($_POST['submit'])) {
 
             $email = $_POST['email'];
@@ -16,6 +16,7 @@ class Login extends Config {
             if ($count == 1) {
                 $this->set_session($data);
                 header("Location: home-page.php");
+                exit();
             } else {
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
             Incorrect email or password
@@ -24,6 +25,57 @@ class Login extends Config {
             }
         }
     }
+
+    public function instructorLogin() {
+        if(isset($_POST['submit'])) {
+
+            $email = $_POST['email'];
+            $password = md5($_POST['password']);
+
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT * FROM `instructor_tbl` WHERE `email` = ? AND `password` = ? ");
+            $stmt->execute([$email,$password]);
+            $data = $stmt->fetch();
+            $count = $stmt->rowCount();
+
+            if ($count == 1) {
+                $this->set_session($data);
+                header("Location: /edulearn/views/instructor/index.php");
+                exit();
+            } else {
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Incorrect email or password instructor
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+            }
+        }
+    }
+
+    public function adminLogin() {
+        if(isset($_POST['submit'])) {
+
+            $email = $_POST['email'];
+            $password = md5($_POST['password']);
+
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT * FROM `admin_tbl` WHERE `email` = ? AND `password` = ? ");
+            $stmt->execute([$email,$password]);
+            $data = $stmt->fetch();
+            $count = $stmt->rowCount();
+
+            if ($count == 1) {
+                $this->set_session($data);
+                header("Location: /edulearn/views/admin/index.php");
+                exit();
+            } else {
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Incorrect email or password
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+            }
+        }
+    }
+
     public function set_session($array){
 
         if (!isset($_SESSION)) {

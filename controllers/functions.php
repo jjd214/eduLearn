@@ -1,7 +1,23 @@
 <?php
 function login() {
-    $login = new Login();
-    $login->login();
+
+    if(isset($_POST['submit'])) {
+
+        $role = $_POST['role'];
+
+        if($role == 'student') {
+            $login = new Login();
+            $login->studentLogin();
+        } 
+        else if($role == 'instructor') {
+            $login = new Login();
+            $login->instructorLogin();
+        }
+        else {
+            $login = new Login();
+            $login->adminLogin();
+        }
+    }
 }
 function access() {
     $login = new Login();
@@ -19,17 +35,17 @@ function access() {
 }
 
 function sendOTP() {
-    $student = new Registration();
+    $student = new StudentRegistration();
     $student->studentRegistration();
 }
 function resendOTP() {
 
-    $resendOTP = new Registration();
+    $resendOTP = new StudentRegistration();
     $resendOTP->resendOTP();
 }
 function verifyOTP() {
 
-    $verifyOTP = new Registration();
+    $verifyOTP = new StudentRegistration();
 
     if(isset($_POST['submit'])) {
 
@@ -70,30 +86,8 @@ function resetPassword() {
 }
 
 function sendApplication() {
-    $application = new Application();
+    $application = new InstructorRegistration();
     $application->instructorRegistration();
-}
-
-function resendOTPApplication() {
-
-    $resendOTP = new Application();
-    $resendOTP->resendOTP();
-}
-function verifyOTPApplication() {
-
-    $verifyOTP = new Application();
-
-    if(isset($_POST['submit'])) {
-
-        $otp1 = $_POST['otp1'];
-        $otp2 = $_POST['otp2'];
-        $otp3 = $_POST['otp3'];
-        $otp4 = $_POST['otp4'];
-        $otp5 = $_POST['otp5'];
-        $otp6 = $_POST['otp6'];
-
-        $verifyOTP->verifyOTP($otp1,$otp2,$otp3,$otp4,$otp5,$otp6);
-    }
 }
 
 function applicants() {

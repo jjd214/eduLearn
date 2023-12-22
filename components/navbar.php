@@ -24,13 +24,13 @@
           <a class="nav-link scrollto" href="index.php#contact">Contact Us</a>
         </li>
         <li>
-          <a class="nav-link scrollto <?php echo (basename($_SERVER['PHP_SELF']) == 'instructor-application.php') ? 'active' : ''; ?>" href="instructor-application.php">Become an Instructor</a>
+          <a class="nav-link scrollto <?php echo (basename($_SERVER['PHP_SELF']) == 'instructor-application.php') ? 'active' : ''; ?>" href="registration-instructor.php">Become an Instructor</a>
         </li>
         <li>
           <a class="nav-link scrollto <?php echo (basename($_SERVER['PHP_SELF']) == 'login.php') ? 'active' : ''; ?>" id="login" href="login.php">Login</a>
         </li>
         <li>
-          <a class="getstarted scrollto" href="student-registration.php">Join Now</a>
+          <a class="getstarted scrollto" href="registration-student.php">Join Now</a>
         </li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
