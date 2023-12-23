@@ -4,8 +4,6 @@
 <header id="header" class="fixed-top header-transparent">
   <div class="container d-flex align-items-center justify-content-between">
     <div class="logo">
-      <!-- <h1><a href="#">EduLearn</a></h1> -->
-      <!-- Uncomment below if you prefer to use an image logo -->
       <a href="index.php"><img src="/eduLearn/images/LogoNormal.png" class="img-fluid"></a>
     </div>
 

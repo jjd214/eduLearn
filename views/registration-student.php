@@ -1,13 +1,8 @@
 <?php
+include('../components/navbar.php');
 /* include('../partials/__header.php'); */
-include('../components/navbar.php'); ?>
-<!-- 
-  inalis ko muna yung sya yung cause ng problem.
-  Binalik ko kasi 'to talaga nagko-cause ng problem kahit naka comment pa 
-  Look for README.MD
--->
+?>
 <main id="main">
-
   <!-- ======= Breadcrumbs Section ======= -->
   <section class="breadcrumbs">
     <div class="container">
