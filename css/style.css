@@ -42,6 +42,12 @@
 .text-primary:hover {
   color: var(--chelsea-300) !important;
 }
+.nav-link{
+  color: var(--chelsea-600) !important;
+}
+.nav-link:hover{
+  color: var(--chelsea-300) !important;
+}
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/

@@ -1,4 +1,7 @@
-<?php include('../components/navbar.php'); ?>
+<?php
+include('../components/navbar.php');
+/* include('../partials/__header.php'); */
+?>
 
 <main id="main">
 
@@ -100,7 +103,7 @@
 
                 </form>
               </div>
-            </div>  
+            </div>
           </div>
           <div class="col-md-6">
             <img src="/eduLearn/images/instructor.svg" alt="Image" class="img-fluid" data-aos="fade-down">

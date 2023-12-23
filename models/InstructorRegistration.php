@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/eduLearn/vendor/autoload.php';
+ob_start();
 
 class InstructorRegistration extends Config {
 

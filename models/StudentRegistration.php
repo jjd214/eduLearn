@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/eduLearn/vendor/autoload.php';
+ob_start();
 
 class StudentRegistration extends Config {
 
@@ -114,13 +115,15 @@ class StudentRegistration extends Config {
 
             $this->insertUserIntoDatabase();
 
-            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+           /*  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                     Email verification successfull.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>';
+                </div>'; */
         
             unset($_SESSION['newOTP']);
             unset($_SESSION['signup_data']);
+
+            header("Location: login.php");
             
         } else {
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -239,5 +242,4 @@ class StudentRegistration extends Config {
         } 
     }
 }
-
 ?>
