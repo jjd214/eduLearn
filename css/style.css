@@ -183,7 +183,7 @@ input[type="number"] {
 
 .navbar a,
 .navbar a:focus {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: space-between;
   padding: 10px 0 10px 30px;
@@ -289,6 +289,7 @@ input[type="number"] {
   .navbar .dropdown .dropdown:hover > ul {
     left: -100%;
   }
+  
 }
 
 /**
@@ -340,7 +341,7 @@ input[type="number"] {
   position: absolute;
   top: 55px;
   right: 15px;
-  /* bottom: 15px; */
+  bottom: 15px;
   left: 15px;
   padding: 10px 0;
   border-radius: 6px;
@@ -1270,7 +1271,6 @@ section {
 }
 .resend-button:hover {
   color: var(--chelsea-300);
-
 }
 .wrapper {
   padding: 150px 0 100px;
@@ -1319,3 +1319,7 @@ section {
     height: 40px;
   }
 }
+/*--------------------------------------------------------------
+  # home-page
+  --------------------------------------------------------------*/
+

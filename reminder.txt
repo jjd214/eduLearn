@@ -37,6 +37,9 @@ yung design lang need ko ako na bahala sa functionality.
     - Can change Bio
 
 * Instructor Profile settings
+    - Input profile picture
+    - Can change Fname & Lname
+    - Can change Bio
 
 
 ***********************************************************************************************************************************
