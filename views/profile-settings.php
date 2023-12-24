@@ -1,14 +1,13 @@
+<?php include('../components/navbar-home-page.php'); ?>
 <?php
-/* include($_SERVER['DOCUMENT_ROOT'] . '/edulearn/partials/__header.php'); */
-include('../components/navbar-home-page.php');
-?>
-<?php
-if(isset($_GET['id'])) {
 
-    $userid = $_GET['id'];
+ob_start();
 
+if(isset($userid)) {
+    
     $fetch = new AccountSettings();
     $userData = $fetch->getData($userid);
+
 }
 ?>
 <main id="main">
@@ -41,8 +40,9 @@ if(isset($_GET['id'])) {
                     <div class="card mb-4 mb-xl-0">
                         <div class="card-header">Profile Picture</div>
                         <div class="card-body text-center">
-                        <?php $image_url = viewProfilePicture($userData['id']); ?>
-                            <img class="img-account-profile rounded-circle mb-2" height="200" width="200" src="/eduLearn/uploads/<?= $image_url; ?>" alt />
+                        <?php $image_url = viewProfilePicture($userid); ?>
+                        <?php $defaultImage = 'default-user-male.svg'?>
+                            <img class="img-account-profile rounded-circle mb-2" height="200" width="200" src="/eduLearn/uploads/<?= $image_url ? $image_url : $defaultImage; ?>" alt />
 
                             <div class="small font-italic text-muted mb-4">
                                 JPG or PNG no larger than 5 MB
@@ -55,7 +55,7 @@ if(isset($_GET['id'])) {
                             }
                             ?>
                             <form method="post" enctype="multipart/form-data">
-                                <input type="hidden" class="form-control" name="id" value="<?= $userData['id']; ?>" required>
+                                <input type="hidden" class="form-control" name="id" value="<?= $userid ?>" required>
                                 <input type="file" name="my_image">
 
                                 <input type="submit" name="upload">

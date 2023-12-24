@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 class Login extends Config {
 
     public function studentLogin() {
@@ -16,7 +16,8 @@ class Login extends Config {
 
             if ($count == 1) {
                 $this->set_session($data);
-                header("Location: home-page.php?id=".$data['id']);
+                $_SESSION['userid'] = $data['id'];
+                header("Location: home-page.php");
                 exit();
             } else {
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">

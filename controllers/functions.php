@@ -113,4 +113,11 @@ function viewProfilePicture($userid) {
 
     return $image_url;
 }
+
+function viewFullName($userid) {
+    $profile = new AccountSettings();
+    $fullname = $profile->viewFullName($userid);
+
+    return $fullname;
+}
 ?>

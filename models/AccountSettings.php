@@ -32,7 +32,7 @@ class AccountSettings extends Config {
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>';
 
-                      header("refresh:0;url=profile-settings.php?id=".$userid);
+                      header("refresh:0;url=profile-settings.php");
                       exit();
                     
                 }
@@ -96,7 +96,7 @@ class AccountSettings extends Config {
                                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                                 </div>';
 
-                            header("refresh:0;url=profile-settings.php?id=".$userid);
+                            header("refresh:0;url=profile-settings.php");
                             exit();
                         } else {
                             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -129,6 +129,15 @@ class AccountSettings extends Config {
         $data = $stmt->fetch();
 
         return $data['profile'];
+    }
+
+    public function viewFullName($id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `id` = ?");
+        $stmt->execute([$id]);
+        $data = $stmt->fetch();
+
+        return $data['firstname']. " ".$data['lastname'];
     }
 
 }

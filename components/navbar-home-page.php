@@ -1,14 +1,10 @@
 <?php include('../partials/__header.php'); ?>
 <?php
-$login = new Login();
-$data = $login->get_session();
+session_start();
+ob_start();
 
-if(isset($_GET['id'])) {
-
-    $userid = $_GET['id'];
-
-    $fetch = new AccountSettings();
-    $userData = $fetch->getData($userid);
+if(isset($_SESSION['userid'])) {
+    $userid = $_SESSION['userid'];
 }
 
 ?>  
@@ -223,12 +219,15 @@ if(isset($_GET['id'])) {
             <!-- Dropdown for profile-settings.php only -->
             <div class="nav-item dropdown">
               <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action">
-                <?php $profile = viewProfilePicture($userData['id']); ?>
-                <img src="/eduLearn/uploads/<?= $profile ?>" class="avatar" alt="Avatar"> <?= $data['fullname']; ?> <b class="caret"></b>
+                <?php $profile = viewProfilePicture($userid); ?>
+                <?php $defaultImage = 'default-user-male.svg'?>
+                <?php $fullname = viewFullName($userid) ?>
+                
+                <img src="/eduLearn/uploads/<?= $profile ? $profile : $defaultImage ?>" class="avatar" alt="Avatar"> <?= $fullname ?> <b class="caret"></b>
               </a>
               <div class="dropdown-menu">
                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
-                <a href="profile-settings.php?id=<?= $data['id']; ?>"  class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+                <a href="profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
                 <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
               </div>
@@ -261,12 +260,14 @@ if(isset($_GET['id'])) {
             <!-- Dropdown for profile-settings.php only -->
             <div class="nav-item dropdown">
               <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action">
-              <?php $profile = viewProfilePicture($userData['id']); ?>
-                <img src="/eduLearn/uploads/<?= $profile ?>" class="avatar" alt="Avatar"> <?= $data['fullname']; ?> <b class="caret"></b>
+              <?php $profile = viewProfilePicture($userid); ?>
+              <?php $defaultImage = 'default-user-male.svg'?>
+              <?php $fullname = viewFullName($userid) ?>
+                <img src="/eduLearn/uploads/<?= $profile ? $profile : $defaultImage ?>" class="avatar" alt="Avatar"> <?= $fullname ?> <b class="caret"></b>
               </a>
               <div class="dropdown-menu">
                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
-                <a href="profile-settings.php?id=<?= $data['id']; ?>" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+                <a href="profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
                 <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
               </div>
