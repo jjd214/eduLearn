@@ -120,4 +120,9 @@ function viewFullName($userid) {
 
     return $fullname;
 }
+
+function profileSettingsSecurity($userid) {
+    $profile = new AccountSettings();
+    $profile->changePassword($userid);
+}
 ?>

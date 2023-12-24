@@ -27,10 +27,10 @@ if(isset($userid)) {
         <div class="container">
             <!-- Profile and security -->
             <nav class="nav nav-borders">
-                <a class="nav-link ms-0" href="profile-settings.php?id=<?= $userData['id']; ?>">
+                <a class="nav-link ms-0" href="profile-settings.php">
                     Profile
                 </a>
-                <a class="nav-link" href="profile-settings-security.php?id=<?= $userData['id']; ?>">
+                <a class="nav-link" href="profile-settings-security.php">
                     Security
                 </a>
             </nav>
@@ -39,7 +39,7 @@ if(isset($userid)) {
                 <div class="col-xl-4">
                     <div class="card mb-4 mb-xl-0">
                         <div class="card-header">Profile Picture</div>
-                        <div class="card-body text-center">
+                        <div class="card-body text-center"> 
                         <?php $image_url = viewProfilePicture($userid); ?>
                         <?php $defaultImage = 'default-user-male.svg'?>
                             <img class="img-account-profile rounded-circle mb-2" height="200" width="200" src="/eduLearn/uploads/<?= $image_url ? $image_url : $defaultImage; ?>" alt />

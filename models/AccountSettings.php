@@ -137,7 +137,61 @@ class AccountSettings extends Config {
         $stmt->execute([$id]);
         $data = $stmt->fetch();
 
-        return $data['firstname']. " ".$data['lastname'];
+        return $data['firstname']. " " .$data['lastname'];
+    }
+
+    public function changePassword($userid) {
+
+        if(isset($_POST['submit'])) {
+
+            $oldPassword = md5($_POST['oldPassword']);
+            $newPassword = md5($_POST['newPassword']);
+            $confirmPassword = md5($_POST['confirmPassword']);
+
+            if ($newPassword != $confirmPassword) {
+                
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Password do not match.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>';
+                return; 
+
+            }
+
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT `password` FROM `user_tbl` WHERE `id` = ?");
+            $stmt->execute([$userid]);
+            $data = $stmt->fetch();
+            $result = $stmt->rowCount();
+
+            if ($result > 0) {
+                
+                if ($oldPassword == $data['password']) {
+
+                    $connection = $this->openConnection();
+                    $stmt = $connection->prepare("UPDATE `user_tbl` SET `password` = ? WHERE `id` = ?");
+                    $stmt->execute([$confirmPassword,$userid]);
+                    $count = $stmt->rowCount();
+
+                    if ($count > 0) {
+                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Password updated successfully.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                    }
+                }
+
+                else {
+                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Incorrect old password.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                }
+
+            }
+
+        }
+
     }
 
 }

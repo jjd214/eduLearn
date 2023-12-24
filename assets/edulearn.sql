@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2023 at 03:27 PM
+-- Generation Time: Dec 24, 2023 at 05:15 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -79,7 +79,8 @@ CREATE TABLE `instructor_tbl` (
 --
 
 INSERT INTO `instructor_tbl` (`id`, `firstname`, `lastname`, `gender`, `email`, `password`, `verify_token`, `age`, `position`, `profile`, `access`) VALUES
-(4, 'John Jacob', 'Dimaya', 'male', 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'ce5304001e36e1ef768aa1895d2e78bb', '20', 'backend', NULL, 'instructor');
+(4, 'John Jacob', 'Dimaya', 'male', 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'ce5304001e36e1ef768aa1895d2e78bb', '20', 'backend', NULL, 'instructor'),
+(5, 'John Jacob', 'Dimaya', 'male', 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'e3541a22912bf8afafe017a28ef5a29e', '21', 'fullstack', NULL, 'instructor');
 
 -- --------------------------------------------------------
 
@@ -92,6 +93,7 @@ CREATE TABLE `user_tbl` (
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `gender` varchar(255) DEFAULT NULL,
+  `biography` varchar(200) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `verify_token` varchar(255) NOT NULL,
@@ -103,8 +105,8 @@ CREATE TABLE `user_tbl` (
 -- Dumping data for table `user_tbl`
 --
 
-INSERT INTO `user_tbl` (`id`, `firstname`, `lastname`, `gender`, `email`, `password`, `verify_token`, `profile`, `access`) VALUES
-(5, 'John Jacob', 'Dimaya', 'male', 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', '520c7ebd384cc1b073859b163bb27d07', NULL, 'student');
+INSERT INTO `user_tbl` (`id`, `firstname`, `lastname`, `gender`, `biography`, `email`, `password`, `verify_token`, `profile`, `access`) VALUES
+(6, 'John Jacob', 'Dimaya', 'male', 'qwerty', 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', '2320b73c03c84615de1b1b492ce7dad09dfef02325fd30259ed1acff7821fe86', 'IMG-6587982a436230.81107798.jpg', 'student');
 
 --
 -- Indexes for dumped tables
@@ -148,19 +150,19 @@ ALTER TABLE `admin_tbl`
 -- AUTO_INCREMENT for table `application-form_tbl`
 --
 ALTER TABLE `application-form_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `instructor_tbl`
 --
 ALTER TABLE `instructor_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_tbl`
 --
 ALTER TABLE `user_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

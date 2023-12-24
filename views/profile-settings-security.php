@@ -1,8 +1,17 @@
+<?php include('../components/navbar-home-page.php'); ?>
+
 <?php
-/* include($_SERVER['DOCUMENT_ROOT'] . '/edulearn/partials/__header.php'); */
-include('../components/navbar-home-page.php');
+
+ob_start();
+
+// if (isset($userid)) {
+//     echo '<script>alert("session is set: ' . $userid . '")</script>';
+// }
+// else {
+//     echo '<script>alert("session not set")</script>';
+// }
+
 ?>
-<!-- Nilagay ko siya sa home folder para ma organize na nasa loob na siya -->
 
 <main id="main">
     <!-- ======= Breadcrumbs Section ======= -->
@@ -33,24 +42,27 @@ include('../components/navbar-home-page.php');
                     <div class="card mb-4">
                         <div class="card-header">Change Password</div>
                         <div class="card-body">
+                            <?= profileSettingsSecurity($userid); ?>
                             <form method="post">
                                 <!-- Old Password -->
                                 <div class="form-floating mb-3">
-                                    <input type="password" class="form-control" name="oldpassword" id="floatingPassword" placeholder="Password" required>
+                                    <input type="password" name="oldPassword" class="form-control" id="floatingPassword" placeholder="Password" required>
                                     <label for="floatingPassword">Old Password</label>
                                 </div>
 
                                 <!-- New Password -->
                                 <div class="form-floating mb-3">
-                                    <input type="password" class="form-control" name="newpassword" id="floatingPassword" placeholder="Password" required>
+                                    <input type="password" name="newPassword" class="form-control" id="floatingPassword" placeholder="Password" required>
                                     <label for="floatingPassword">New Password</label>
                                 </div>
 
                                 <!-- Repeat new Password -->
                                 <div class="form-floating mb-3">
-                                    <input type="password" class="form-control" name="confirmpassword" id="floatingPassword" placeholder="repeatPassword" required>
+                                    <input type="password" name="confirmPassword" class="form-control" id="floatingPassword" placeholder="repeatPassword" required>
                                     <label for="floatingPassword">Repeat new Password</label>
                                 </div>
+
+                                <input type="hidden" name="id" value="<?php $userid ?>">
 
                                 <input type="submit" value="Save New Password" name="submit" class="mt-4 btn btn-block btn-primary col-md-12">
                             </form>
