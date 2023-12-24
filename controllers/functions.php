@@ -107,16 +107,16 @@ function uploadProfilePicture() {
     $profile->uploadProfilePicture();
 }
 
-function viewProfilePicture($userid) {
+function viewProfilePicture($userid,$usertype) {
     $profile = new AccountSettings();
-    $image_url = $profile->viewProfilePicture($userid);
+    $image_url = $profile->viewProfilePicture($userid,$usertype);
 
     return $image_url;
 }
 
-function viewFullName($userid) {
+function viewFullName($userid,$usertype) {
     $profile = new AccountSettings();
-    $fullname = $profile->viewFullName($userid);
+    $fullname = $profile->viewFullName($userid,$usertype);
 
     return $fullname;
 }

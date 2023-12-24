@@ -6,7 +6,7 @@ ob_start();
 if(isset($userid)) {
     
     $fetch = new AccountSettings();
-    $userData = $fetch->getData($userid);
+    $userData = $fetch->getData($userid,$usertype);
 
 }
 ?>
@@ -40,12 +40,12 @@ if(isset($userid)) {
                     <div class="card mb-4 mb-xl-0">
                         <div class="card-header">Profile Picture</div>
                         <div class="card-body text-center"> 
-                        <?php $image_url = viewProfilePicture($userid); ?>
+                        <?php $image_url = viewProfilePicture($userid,$usertype); ?>
                         <?php $defaultImage = 'default-user-male.svg'?>
                             <img class="img-account-profile rounded-circle mb-2" height="200" width="200" src="/eduLearn/uploads/<?= $image_url ? $image_url : $defaultImage; ?>" alt />
 
                             <div class="small font-italic text-muted mb-4">
-                                JPG or PNG no larger than 5 MB
+                                
                             </div>
                             <?= uploadProfilePicture(); ?>
                             <?php

@@ -1,5 +1,10 @@
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/edulearn/partials/__header.php'); ?>
+<?php
+ob_start();
+?>  
 
-<h1>Welcome, Instructor</h1>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/eduLearn/components/navbar-instructor.php'); ?>
+
+<!-- Your HTML content goes here -->
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/edulearn/partials/__footer.php'); ?>
+

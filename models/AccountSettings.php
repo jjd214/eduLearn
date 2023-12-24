@@ -49,14 +49,34 @@ class AccountSettings extends Config {
         }
     }
 
-    public function getData($id) {
+    public function getData($id,$usertype) {
 
-        $connection = $this->openConnection();
-        $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `id` = ?");
-        $stmt->execute([$id]);
-        $data = $stmt->fetch();
+        if ($usertype == 'student') {
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `id` = ?");
+            $stmt->execute([$id]);
+            $data = $stmt->fetch();
+    
+            return $data;
+        }
+        else if ($usertype == 'instructor') {
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT * FROM `instructor_tbl` WHERE `id` = ?");
+            $stmt->execute([$id]);
+            $data = $stmt->fetch();
 
-        return $data;
+            return $data;
+        }
+        else {
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT * FROM `admin_tbl` WHERE `id` = ?");
+            $stmt->execute([$id]);
+            $data = $stmt->fetch();
+
+            return $data;
+        }
+
+        
     }
 
     public function uploadProfilePicture() {
@@ -121,23 +141,62 @@ class AccountSettings extends Config {
         }
     }
     
-    public function viewProfilePicture($id) {
+    public function viewProfilePicture($id,$usertype) {
 
-        $connection = $this->openConnection();
-        $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `id` = ?");
-        $stmt->execute([$id]);
-        $data = $stmt->fetch();
+        if($usertype == 'student') {
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `id` = ?");
+            $stmt->execute([$id]);
+            $data = $stmt->fetch();
 
-        return $data['profile'];
+            return $data['profile'];
+        }
+        else if ($usertype == 'instructor') {
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT * FROM `instructor_tbl` WHERE `id` = ?");
+            $stmt->execute([$id]);
+            $data = $stmt->fetch();
+
+            return $data['profile'];
+        }
+        else {
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT * FROM `admin_tbl` WHERE `id` = ?");
+            $stmt->execute([$id]);
+            $data = $stmt->fetch();
+
+            return $data['profile'];
+        }
+        
+
     }
 
-    public function viewFullName($id) {
-        $connection = $this->openConnection();
-        $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `id` = ?");
-        $stmt->execute([$id]);
-        $data = $stmt->fetch();
+    public function viewFullName($id,$usertype) {
 
-        return $data['firstname']. " " .$data['lastname'];
+        if ($usertype == 'student') {
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `id` = ?");
+            $stmt->execute([$id]);
+            $data = $stmt->fetch();
+
+            return $data['firstname']. " " .$data['lastname'];
+        }
+        else if ($usertype == 'instructor') {
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT * FROM `instructor_tbl` WHERE `id` = ?");
+            $stmt->execute([$id]);
+            $data = $stmt->fetch();
+
+            return $data['firstname']. " " .$data['lastname'];
+        }
+        else {
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT * FROM `admin_tbl` WHERE `id` = ?");
+            $stmt->execute([$id]);
+            $data = $stmt->fetch();
+
+            return $data['firstname']. " " .$data['lastname'];
+        }
     }
 
     public function changePassword($userid) {

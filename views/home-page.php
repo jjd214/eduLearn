@@ -10,7 +10,7 @@ ob_start();
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-      <?php $fullname = viewFullName($_SESSION['userid']) ?>
+      <?php $fullname = viewFullName($_SESSION['student_data']['studentID'],$_SESSION['student_data']['userType']); ?>
         <h2>Let's Start Learning <?= $fullname; ?></h2>
       </div>
 

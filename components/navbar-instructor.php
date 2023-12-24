@@ -1,15 +1,15 @@
-<?php include('../partials/__header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/edulearn/partials/__header.php'); ?>
 <?php
 session_start();
 ob_start();
 
-if(isset($_SESSION['student_data'])) {
-  $userid = $_SESSION['student_data']['studentID'];
-  $usertype = $_SESSION['student_data']['userType'];
-  // echo "<script>alert('session set. UserID: $userid, UserType: $usertype');</script>";
+if(isset($_SESSION['user_data'])) {
+    $userid = $_SESSION['user_data']['instructorID'];
+    $usertype = $_SESSION['user_data']['userType'];
+    echo "<script>alert('session set. UserID: $userid, UserType: $usertype');</script>";
 }
 else {
-  echo "<script>alert('session not set');</script>";
+    echo "<script>alert('session not set');</script>";
 }
 
 ?>  
@@ -226,8 +226,8 @@ else {
               <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action">
                 <?php $profile = viewProfilePicture($userid,$usertype); ?>
                 <?php $defaultImage = 'default-user-male.svg'?>
-                <?php $fullname = viewFullName($userid,$usertype); ?>
-                
+                <?php $fullname = viewFullName($userid,$usertype) ?>
+
                 <img src="/eduLearn/uploads/<?= $profile ? $profile : $defaultImage ?>" class="avatar" alt="Avatar"> <?= $fullname ?> <b class="caret"></b>
               </a>
               <div class="dropdown-menu">
@@ -259,7 +259,7 @@ else {
             <a class="nav-link scrollto" href="#">Explore</a>
           </li>
           <li>
-            <a class="nav-link scrollto" href="#">My Learning</a>
+            <a class="nav-link scrollto" href="#">My Dashboard</a>
           </li>
           <li>
             <!-- Dropdown for profile-settings.php only -->
@@ -267,12 +267,14 @@ else {
               <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action">
               <?php $profile = viewProfilePicture($userid,$usertype); ?>
               <?php $defaultImage = 'default-user-male.svg'?>
-              <?php $fullname = viewFullName($userid,$usertype); ?>
-                <img src="/eduLearn/uploads/<?= $profile ? $profile : $defaultImage ?>" class="avatar" alt="Avatar"> <?= $fullname ?> <b class="caret"></b>
+              <?php $fullname = viewFullName($userid,$usertype) ?>
+
+                <img src="/eduLearn/uploads/<?= $profile ? $profile : $defaultImage ?>" class="avatar" alt="Avatar"> <?=  $fullname ?> <b class="caret"></b>
               </a>
               <div class="dropdown-menu">
                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
                 <a href="profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+                <a href="#" class="dropdown-item"><i class="fa fa-tachometer"></i>Dashboard</a>
                 <div class="divider dropdown-divider"></div>
                 <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
               </div>

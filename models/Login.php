@@ -16,8 +16,11 @@ class Login extends Config {
 
             if ($count == 1) {
                 $this->set_session($data);
-                $_SESSION['userid'] = $data['id'];
-                header("Location: home-page.php");
+                $_SESSION['student_data'] = [
+                    "studentID" => $data['id'],
+                    "userType" => $data['access']
+                ];
+                header("Location: /eduLearn/views/home-page.php");
                 exit();
             } else {
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -40,9 +43,14 @@ class Login extends Config {
             $data = $stmt->fetch();
             $count = $stmt->rowCount();
 
+            print_r($data);
             if ($count == 1) {
                 $this->set_session($data);
-                header("Location: /edulearn/views/instructor/index.php?id=".$data['id']);
+                $_SESSION['user_data'] = [
+                    "instructorID" => $data['id'],
+                    "userType" => $data['access']
+                ];
+                header("Location: /edulearn/views/instructor/index.php");
                 exit();
             } else {
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
