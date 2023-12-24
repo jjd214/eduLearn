@@ -54,13 +54,14 @@ if(isset($userid)) {
                                 unset($_SESSION['image']);
                             }
                             ?>
-                            <form method="post" enctype="multipart/form-data">
+                             <form method="post" enctype="multipart/form-data">
                                 <input type="hidden" class="form-control" name="id" value="<?= $userid ?>" required>
-                                <input type="file" name="my_image">
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" name="my_image" id="my_image">
+                                </div>
 
-                                <input type="submit" name="upload">
+                                <input type="submit" name="upload" class="btn btn-primary" value="Update Profile Picture">
                             </form>
-                           
                         </div>
                     </div>
                 </div>
