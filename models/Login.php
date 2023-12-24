@@ -1,4 +1,5 @@
 <?php
+
 class Login extends Config {
 
     public function studentLogin() {
@@ -15,13 +16,13 @@ class Login extends Config {
 
             if ($count == 1) {
                 $this->set_session($data);
-                header("Location: home-page.php");
+                header("Location: home-page.php?id=".$data['id']);
                 exit();
             } else {
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Incorrect email or password
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
+                    Incorrect email or password
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
             }
         }
     }
@@ -40,7 +41,7 @@ class Login extends Config {
 
             if ($count == 1) {
                 $this->set_session($data);
-                header("Location: /edulearn/views/instructor/index.php");
+                header("Location: /edulearn/views/instructor/index.php?id=".$data['id']);
                 exit();
             } else {
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -82,12 +83,18 @@ class Login extends Config {
             session_start();
         }
         $_SESSION['userdata'] = array (
+            "id" => $array['id'],
             "email" => $array['email'],
+            "firstname" => $array['firstname'],
+            "lastname" => $array['lastname'],
+            "biography" => $array['biography'],
+            "profile" => $array['profile'],
             "fullname" => $array['firstname']." ".$array['lastname'],
             "access" => $array['access']
         );
         return $_SESSION['userdata'];
     }
+
     public function get_session(){
 
         if (!isset($_SESSION)) {
@@ -99,6 +106,7 @@ class Login extends Config {
             return null;
         }
     }
+
     public function signout() {
         
         if (!isset($_SESSION)) {

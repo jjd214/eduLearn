@@ -46,7 +46,6 @@
 
                   <!-- Log in as -->
                   <div class="mb-3">
-                    <h3>Log in as</h3>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="student" required>
                       <label class="form-check-label" for="inlineRadio1">Student</label>

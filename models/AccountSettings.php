@@ -1,0 +1,136 @@
+<?php
+class AccountSettings extends Config {
+
+    public function profileSettings() {
+        if(isset($_POST['submit'])) {
+            
+            if($_POST['access'] == 'student') {
+                
+                $firstname = $_POST['firstname'];
+                $lastname = $_POST['lastname'];
+                $email = $_POST['email'];
+                $biography = $_POST['biography'];
+                $gender = $_POST['gender'];
+                $userid = $_POST['id'];
+
+                $connection = $this->openConnection();
+                $stmt = $connection->prepare("UPDATE `user_tbl`
+                                              SET `firstname` = ?,
+                                                  `lastname` = ?,
+                                                  `email` = ?,
+                                                  `biography` = ?,
+                                                  `gender` = ?
+                                                  
+                                            WHERE `id` = ?");
+                $stmt->execute([$firstname,$lastname,$email,$biography,$gender,$userid]);
+                $result = $stmt->rowCount();
+
+                if($result > 0) {
+                    
+                    $_SESSION['status'] = '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                        Profile updated successfully.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>';
+
+                      header("refresh:0;url=profile-settings.php?id=".$userid);
+                      exit();
+                    
+                }
+            }
+
+            else if ($_POST['access'] == 'instructor') {
+                echo '<script>alert("potangina");</script>';
+            }
+
+            else {
+
+            }
+
+        }
+    }
+
+    public function getData($id) {
+
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `id` = ?");
+        $stmt->execute([$id]);
+        $data = $stmt->fetch();
+
+        return $data;
+    }
+
+    public function uploadProfilePicture() {
+        if(isset($_POST['upload'])) {
+            $userid = $_POST['id'];
+            $img_name = $_FILES['my_image']['name'];
+            $img_size = $_FILES['my_image']['size'];
+            $tmp_name = $_FILES['my_image']['tmp_name'];
+            $error = $_FILES['my_image']['error'];
+    
+            if ($error === 0) {
+    
+                if ($img_size > 125000) {
+                    echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                            Your file is too large.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                } else {
+                    $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+                    $img_ex_lc = strtolower($img_ex);
+    
+                    $allowed_exs = array("jpg", "jpeg", "png");
+    
+                    if (in_array($img_ex_lc, $allowed_exs)) {
+                        $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+                        $img_upload_path = '/eduLearn/uploads/'.$new_img_name;
+                        move_uploaded_file($tmp_name, $_SERVER['DOCUMENT_ROOT'] . $img_upload_path);
+    
+                        $connection = $this->openConnection();
+                        $stmt = $connection->prepare("UPDATE `user_tbl` SET `profile` = ? WHERE `id` = ?");
+                        $stmt->execute([$new_img_name,$userid]);
+                        $result = $stmt->rowCount();
+    
+                        if($result > 0) {
+                            $_SESSION['image'] = '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                                                    Profile updated successfully.
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                </div>';
+
+                            header("refresh:0;url=profile-settings.php?id=".$userid);
+                            exit();
+                        } else {
+                            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Failed to update profile.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>';
+                        }
+    
+                    } else {
+                        echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                                You can\'t upload this type of file.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                    }
+                }
+            } else {
+                echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                            Unknown error occurred.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+            }
+        }
+    }
+    
+    public function viewProfilePicture($id) {
+
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `id` = ?");
+        $stmt->execute([$id]);
+        $data = $stmt->fetch();
+
+        return $data['profile'];
+    }
+
+}
+
+?>

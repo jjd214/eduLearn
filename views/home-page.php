@@ -1,6 +1,10 @@
 <?php
 /* include($_SERVER['DOCUMENT_ROOT'] . '/edulearn/partials/__header.php'); */
 include('../components/navbar-home-page.php');
+
+if (isset($_GET['id'])) {
+    $userId = $_GET['id'];
+}
 ?>
 <!-- Nilagay ko siya sa home folder para ma organize na nasa loob na siya -->
 

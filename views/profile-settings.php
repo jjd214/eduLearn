@@ -2,8 +2,15 @@
 /* include($_SERVER['DOCUMENT_ROOT'] . '/edulearn/partials/__header.php'); */
 include('../components/navbar-home-page.php');
 ?>
-<!-- Nilagay ko siya sa home folder para ma organize na nasa loob na siya -->
+<?php
+if(isset($_GET['id'])) {
 
+    $userid = $_GET['id'];
+
+    $fetch = new AccountSettings();
+    $userData = $fetch->getData($userid);
+}
+?>
 <main id="main">
     <!-- ======= Breadcrumbs Section ======= -->
     <section class="breadcrumbs">
@@ -21,10 +28,10 @@ include('../components/navbar-home-page.php');
         <div class="container">
             <!-- Profile and security -->
             <nav class="nav nav-borders">
-                <a class="nav-link ms-0" href="profile-settings.php">
+                <a class="nav-link ms-0" href="profile-settings.php?id=<?= $userData['id']; ?>">
                     Profile
                 </a>
-                <a class="nav-link" href="profile-settings-security.php">
+                <a class="nav-link" href="profile-settings-security.php?id=<?= $userData['id']; ?>">
                     Security
                 </a>
             </nav>
@@ -34,15 +41,26 @@ include('../components/navbar-home-page.php');
                     <div class="card mb-4 mb-xl-0">
                         <div class="card-header">Profile Picture</div>
                         <div class="card-body text-center">
-                            <img class="img-account-profile rounded-circle mb-2" height="200" width="200" src="../images/images-users/default-user-male.svg" alt />
+                        <?php $image_url = viewProfilePicture($userData['id']); ?>
+                            <img class="img-account-profile rounded-circle mb-2" height="200" width="200" src="/eduLearn/uploads/<?= $image_url; ?>" alt />
 
                             <div class="small font-italic text-muted mb-4">
                                 JPG or PNG no larger than 5 MB
                             </div>
+                            <?= uploadProfilePicture(); ?>
+                            <?php
+                            if(isset($_SESSION['image'])) {
+                                echo $_SESSION['image'];
+                                unset($_SESSION['image']);
+                            }
+                            ?>
+                            <form method="post" enctype="multipart/form-data">
+                                <input type="hidden" class="form-control" name="id" value="<?= $userData['id']; ?>" required>
+                                <input type="file" name="my_image">
 
-                            <button class="btn btn-primary" type="button">
-                                Upload new image
-                            </button>
+                                <input type="submit" name="upload">
+                            </form>
+                           
                         </div>
                     </div>
                 </div>
@@ -50,19 +68,26 @@ include('../components/navbar-home-page.php');
                     <div class="card mb-4">
                         <div class="card-header">Account Details</div>
                         <div class="card-body">
+                            <?= profileSettings(); ?>
+                            <?php
+                            if(isset($_SESSION['status'])) {
+                                echo $_SESSION['status'];
+                                unset($_SESSION['status']);
+                            }
+                            ?>
                             <form method="post">
                                 <div class="row">
                                     <!-- First Name -->
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" name="firstname" id="floatingInput" placeholder="fname" required>
+                                            <input type="text" class="form-control" name="firstname" id="floatingInput" placeholder="fname" value="<?= $userData['firstname']; ?>" required>
                                             <label for="floatingInput">First Name</label>
                                         </div>
                                     </div>
                                     <!-- Last Name -->
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" name="lastname" id="floatingInput" placeholder="lname" required>
+                                            <input type="text" class="form-control" name="lastname" id="floatingInput" placeholder="lname" value="<?= $userData['lastname']; ?>" required>
                                             <label for="floatingInput">Last Name</label>
                                         </div>
                                     </div>
@@ -70,15 +95,18 @@ include('../components/navbar-home-page.php');
 
                                 <!-- Biography pa add ng biography sa user table -->
                                 <div class="form-floating mb-3">
-                                    <textarea class="form-control" placeholder="bio" id="floatingTextarea" style="height: 100px; resize: none;"></textarea>
+                                    <textarea class="form-control" name="biography" placeholder="bio" id="floatingTextarea" style="height: 100px; resize: none;"><?= $userData['biography']; ?></textarea>
                                     <label for="floatingTextarea">Your Biography</label>
                                 </div>
 
                                 <!-- Email -->
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com" required>
+                                    <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com" value="<?= $userData['email']; ?>" required>
                                     <label for="floatingInput">Email address</label>
                                 </div>
+
+                                <input type="hidden" class="form-control" name="access" value="<?= $userData['access']; ?>" required>
+                                <input type="hidden" class="form-control" name="id" value="<?= $userData['id']; ?>" required>
 
                                 <!-- Gender -->
                                 <div>

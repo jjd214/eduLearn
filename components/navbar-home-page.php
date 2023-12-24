@@ -1,5 +1,17 @@
 <?php include('../partials/__header.php'); ?>
+<?php
+$login = new Login();
+$data = $login->get_session();
 
+if(isset($_GET['id'])) {
+
+    $userid = $_GET['id'];
+
+    $fetch = new AccountSettings();
+    $userData = $fetch->getData($userid);
+}
+
+?>  
 <style>
   .search-box {
     position: relative;
@@ -211,11 +223,12 @@
             <!-- Dropdown for profile-settings.php only -->
             <div class="nav-item dropdown">
               <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action">
-                <img src="../images/images-users/default-user-male.svg" class="avatar" alt="Avatar"> Juan Dela Cruz <b class="caret"></b>
+                <?php $profile = viewProfilePicture($userData['id']); ?>
+                <img src="/eduLearn/uploads/<?= $profile ?>" class="avatar" alt="Avatar"> <?= $data['fullname']; ?> <b class="caret"></b>
               </a>
               <div class="dropdown-menu">
                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
-                <a href="profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+                <a href="profile-settings.php?id=<?= $data['id']; ?>"  class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
                 <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
               </div>
@@ -248,11 +261,12 @@
             <!-- Dropdown for profile-settings.php only -->
             <div class="nav-item dropdown">
               <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action">
-                <img src="../images/images-users/default-user-male.svg" class="avatar" alt="Avatar"> Juan Dela Cruz <b class="caret"></b>
+              <?php $profile = viewProfilePicture($userData['id']); ?>
+                <img src="/eduLearn/uploads/<?= $profile ?>" class="avatar" alt="Avatar"> <?= $data['fullname']; ?> <b class="caret"></b>
               </a>
               <div class="dropdown-menu">
                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
-                <a href="profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+                <a href="profile-settings.php?id=<?= $data['id']; ?>" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
                 <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
               </div>

@@ -14,6 +14,7 @@
 
 //     // Perform any additional logic here...
 // }
+
 $id = $_POST['id'];
 $accept = new InstructorRegistration();
 $accept->acceptApplication($id);

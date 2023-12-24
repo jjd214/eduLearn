@@ -20,6 +20,7 @@ function login() {
         }
     }
 }
+
 function access() {
     $login = new Login();
     $access = $login->get_session();
@@ -94,5 +95,22 @@ function sendApplication() {
 function applicants() {
     $applicants = new View();
     $applicants->applicants();
+}
+
+function profileSettings() {
+    $profile = new AccountSettings();
+    $profile->profileSettings();
+}
+
+function uploadProfilePicture() {
+    $profile = new AccountSettings();
+    $profile->uploadProfilePicture();
+}
+
+function viewProfilePicture($userid) {
+    $profile = new AccountSettings();
+    $image_url = $profile->viewProfilePicture($userid);
+
+    return $image_url;
 }
 ?>
