@@ -1,7 +1,7 @@
 <?php
+ob_start();
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/eduLearn/vendor/autoload.php';
-ob_start();
 
 class InstructorRegistration extends Config {
 
@@ -20,6 +20,13 @@ class InstructorRegistration extends Config {
             $verifyToken = md5(rand()); 
             
             if($this->emailExistsApplication($email) > 0) {
+
+                echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                        Email already exists.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+
+            } else if($this->emailExistsStudentTable($email) > 0) {
 
                 echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
                         Email already exists.
@@ -85,6 +92,16 @@ class InstructorRegistration extends Config {
         return $result;
     }
 
+    public function emailExistsStudentTable($email) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `user_tbl` WHERE `email` = ?");
+        $stmt->execute([$email]);
+        $result = $stmt->fetch();
+
+        return $result;
+    }
+
+
     public function acceptApplication($id) {
 
         if(isset($_POST['submit'])) {
@@ -108,11 +125,12 @@ class InstructorRegistration extends Config {
             $this->sendMessageToMail($email);
             $this->changeTableLocation($firstname, $lastname, $gender, $email, $password, $verify_token, $age, $position);
             $this->deleteOldData($userid);
+
         }
     }
 
     public function sendMessageToMail($email) {
-        // Swift Mailer configuration
+
         $transport = new \Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'); 
         $transport->setUsername('edulearn.smtp@gmail.com');
         $transport->setPassword('lyiw zlem zfdx vper');
@@ -120,7 +138,6 @@ class InstructorRegistration extends Config {
         
         $mailer = new \Swift_Mailer($transport);
     
-        // Compose the email message
         $subject = 'Welcome to EduLearn!';
         $body = "
             <h2>Congratulations!</h2>
