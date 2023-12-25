@@ -5,12 +5,16 @@
     zoom: 80%;
     -moz-transform: scale(0.8);
   }
+
 </style>
 
 <?php 
-if (isset($_SESSION['status'])) {
-    echo $_SESSION['status'];
-    unset($_SESSION['status']);
+ob_start();
+session_start();
+
+if (isset($_SESSION['accept_status'])) {
+    echo $_SESSION['accept_status'];
+    unset($_SESSION['accept_status']);
 }
 ?>
 <?php applicants(); ?>

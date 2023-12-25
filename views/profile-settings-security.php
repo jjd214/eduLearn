@@ -93,10 +93,16 @@ ob_start();
                                             Deleting your account will remove all your information from our database. This cannot be undone.
                                             <br>
                                             <b>To confirm this, type "DELETE"</b>
+                                            <?= deleteAccount(); ?>
                                         </div>
                                         <div class="modal-footer">
-                                            <input type="text" class="col-md-6" name="typedelete" placeholder="type here" required>
-                                            <input type="submit" value="Delete my account" name="deleteaccount" class="btn btn-block btn-danger ">
+
+                                            <form method="post">
+                                                <input type="hidden" name="id" value="<?= $userid ?>">
+                                                <input type="text" class="col-md-6" name="typeDelete" placeholder="type here" required>
+                                                <input type="submit" value="Delete my account" name="deleteAccount" class="btn btn-block btn-danger ">
+                                            </form>
+                                            
                                         </div>
                                     </div>
                                 </div>

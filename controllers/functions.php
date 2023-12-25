@@ -125,4 +125,9 @@ function profileSettingsSecurity($userid) {
     $profile = new AccountSettings();
     $profile->changePassword($userid);
 }
+
+function deleteAccount() {
+    $profile = new AccountSettings();
+    $profile->deleteAccount();
+}
 ?>

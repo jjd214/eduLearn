@@ -155,7 +155,7 @@ class InstructorRegistration extends Config {
             $result = $mailer->send($message);
     
             if ($result) {
-                $_SESSION['status'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                $_SESSION['accept_status'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Applicant accepted.
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>';

@@ -253,6 +253,36 @@ class AccountSettings extends Config {
 
     }
 
+    public function deleteAccount() {
+
+        if (isset($_POST['deleteAccount'])) {
+
+            $id = $_POST['id'];
+            $typeDelete = $_POST['typeDelete'];
+
+            if ($typeDelete == 'DELETE') {
+
+                $connection = $this->openConnection();
+                $stmt = $connection->prepare("DELETE FROM `user_tbl` WHERE `id` = ?");
+                $stmt->execute([$id]);
+                $result = $stmt->rowCount();
+
+                if ($result > 0) {
+                    header("Location: login.php");
+                    exit();
+                }
+            } 
+            
+            else {
+                echo '<div class="alert alert-info alert-dismissible fade show mt-3" role="alert">
+                        TYPE<strong>" DELETE "</strong>ALL CAPS
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            }
+        }
+        
+    }
+
 }
 
 ?>
