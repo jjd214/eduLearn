@@ -20,7 +20,7 @@ class Login extends Config {
                     "studentID" => $data['id'],
                     "userType" => $data['access']
                 ];
-                header("Location: /eduLearn/views/home-page.php");
+                header("Location: /eduLearn/views/student/home-page.php");
                 exit();
             } else {
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -46,11 +46,11 @@ class Login extends Config {
             print_r($data);
             if ($count == 1) {
                 $this->set_session($data);
-                $_SESSION['user_data'] = [
+                $_SESSION['instructor_data'] = [
                     "instructorID" => $data['id'],
                     "userType" => $data['access']
                 ];
-                header("Location: /edulearn/views/instructor/index.php");
+                header("Location: /edulearn/views/instructor/home-page.php");
                 exit();
             } else {
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">

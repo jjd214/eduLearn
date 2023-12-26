@@ -3,10 +3,10 @@
 session_start();
 ob_start();
 
-if(isset($_SESSION['user_data'])) {
-    $userid = $_SESSION['user_data']['instructorID'];
-    $usertype = $_SESSION['user_data']['userType'];
-    echo "<script>alert('session set. UserID: $userid, UserType: $usertype');</script>";
+if(isset($_SESSION['instructor_data'])) {
+    $userid = $_SESSION['instructor_data']['instructorID'];
+    $usertype = $_SESSION['instructor_data']['userType'];
+    /* echo "<script>alert('session set. UserID: $userid, UserType: $usertype');</script>"; */
 }
 else {
     echo "<script>alert('session not set');</script>";
@@ -218,7 +218,7 @@ else {
         <?php
         // Check if the current page is profile-settings.php
         $currentPage = basename($_SERVER['PHP_SELF']);
-        if ($currentPage == 'profile-settings.php') {
+        if ($currentPage == 'profile-settings.php' || $currentPage == 'profile-settings-security.php') {
         ?>
           <li>
             <!-- Dropdown for profile-settings.php only -->
@@ -228,7 +228,7 @@ else {
                 <?php $defaultImage = 'default-user-male.svg'?>
                 <?php $fullname = viewFullName($userid,$usertype) ?>
 
-                <img src="/eduLearn/uploads/<?= $profile ? $profile : $defaultImage ?>" class="avatar" alt="Avatar"> <?= $fullname ?> <b class="caret"></b>
+                <img src="/eduLearn/uploads/<?= $profile ? $profile : $defaultImage ?>" class="avatar object-fit-cover" alt="Avatar"> <?= $fullname ?> <b class="caret"></b>
               </a>
               <div class="dropdown-menu">
                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
@@ -259,7 +259,7 @@ else {
             <a class="nav-link scrollto" href="#">Explore</a>
           </li>
           <li>
-            <a class="nav-link scrollto" href="#">My Dashboard</a>
+            <a class="nav-link scrollto" href="dashboard/instructor-dashboard.php">My Dashboard</a>
           </li>
           <li>
             <!-- Dropdown for profile-settings.php only -->
@@ -269,12 +269,12 @@ else {
               <?php $defaultImage = 'default-user-male.svg'?>
               <?php $fullname = viewFullName($userid,$usertype) ?>
 
-                <img src="/eduLearn/uploads/<?= $profile ? $profile : $defaultImage ?>" class="avatar" alt="Avatar"> <?=  $fullname ?> <b class="caret"></b>
+                <img src="/eduLearn/uploads/<?= $profile ? $profile : $defaultImage ?>" class="avatar object-fit-cover" alt="Avatar"> <?=  $fullname ?> <b class="caret"></b>
               </a>
               <div class="dropdown-menu">
                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
                 <a href="profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
-                <a href="#" class="dropdown-item"><i class="fa fa-tachometer"></i>Dashboard</a>
+                <a href="dashboard/instructor-dashboard.php" class="dropdown-item"><i class="fa fa-tachometer"></i>Dashboard</a>
                 <div class="divider dropdown-divider"></div>
                 <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
               </div>

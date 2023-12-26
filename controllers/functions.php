@@ -102,9 +102,9 @@ function profileSettings() {
     $profile->profileSettings();
 }
 
-function uploadProfilePicture() {
+function uploadProfilePicture($usertype) {
     $profile = new AccountSettings();
-    $profile->uploadProfilePicture();
+    $profile->uploadProfilePicture($usertype);
 }
 
 function viewProfilePicture($userid,$usertype) {
@@ -126,8 +126,8 @@ function profileSettingsSecurity($userid) {
     $profile->changePassword($userid);
 }
 
-function deleteAccount() {
+function deleteAccount($usertype) {
     $profile = new AccountSettings();
-    $profile->deleteAccount();
+    $profile->deleteAccount($usertype);
 }
 ?>
