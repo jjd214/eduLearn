@@ -14,16 +14,16 @@
           <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
               <i class="mdi mdi-format-list-bulleted "></i>
-            </span> Courses
+            </span> Course List
           </h3>
         </div>
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <button type="button" class="btn btn-primary btn-rounded btn-fw">
-                <i class="mdi mdi-plus"></i>  
-                Upload Course
-              </button>
+              <a href="create-course.php" class="btn btn-primary btn-rounded btn-fw">
+                <i class="mdi mdi-plus"></i>
+                Create Course
+              </a>
               <table class="mt-3 table table-bordered table-striped table-hover">
                 <!-- Test Data -->
                 <thead>
@@ -45,7 +45,7 @@
                     <td>Dec-26-2023</td>
                     <td class="text-center">
                       <button type="button" class="btn btn-primary btn-rounded">
-                        Edit
+                        Manage
                       </button>
                     </td>
                   </tr>

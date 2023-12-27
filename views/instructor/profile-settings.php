@@ -58,11 +58,11 @@ if (isset($userid)) {
                             <form method="post" enctype="multipart/form-data">
                                 <input type="hidden" class="form-control" name="id" value="<?= $userid ?>" required>
                                 <div class="mb-3">
-                                    <input class="form-control" type="file" name="my_image" id="my_image">
+                                    <input class="form-control" type="file" name="my_image" id="my_image" accept="image/jpeg, image/jpg, image/png">
                                 </div>
-
                                 <input type="submit" name="upload" class="btn btn-primary" value="Update Profile Picture">
                             </form>
+
                         </div>
                     </div>
                 </div>

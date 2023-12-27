@@ -23,12 +23,27 @@
         <i class="mdi mdi-view-dashboard  menu-icon"></i>
       </a>
     </li>
+
     <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
+        <span class="menu-title">Course List</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+      </a>
+      <div class="collapse" id="general-pages">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="create-course.php"> Create Course </a></li>
+          <li class="nav-item"> <a class="nav-link" href="course-list.php"> Course List </a></li>
+        </ul>
+      </div>  
+    </li>
+
+    <!-- <li class="nav-item">
       <a class="nav-link" href="courses.php">
         <span class="menu-title">Courses</span>
         <i class="mdi mdi-format-list-bulleted menu-icon"></i>
       </a>
-    </li>
+    </li> -->
     <li class="nav-item">
       <a class="nav-link" href="pages/charts/chartjs.html">
         <span class="menu-title">Students</span>
