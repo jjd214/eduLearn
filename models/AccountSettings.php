@@ -41,7 +41,7 @@ class AccountSettings extends Config
                 $firstname = $_POST['firstname'];
                 $lastname = $_POST['lastname'];
                 $email = $_POST['email'];
-                /* $biography = $_POST['biography']; */
+                $biography = $_POST['biography']; 
                 $gender = $_POST['gender'];
                 $userid = $_POST['id'];
 
@@ -50,11 +50,11 @@ class AccountSettings extends Config
                                               SET `firstname` = ?,
                                                   `lastname` = ?,
                                                   `email` = ?,
-                                                 /*  `biography` = ?, */
+                                                  `biography` = ?, 
                                                   `gender` = ?
                                                   
                                             WHERE `id` = ?");
-                $stmt->execute([$firstname, $lastname, $email, /* $biography, */ $gender, $userid]);
+                $stmt->execute([$firstname, $lastname, $email, $biography, $gender, $userid]);
                 $result = $stmt->rowCount();
 
                 if ($result > 0) {

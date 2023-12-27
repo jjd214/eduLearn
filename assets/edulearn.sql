@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2023 at 05:15 AM
+-- Generation Time: Dec 27, 2023 at 05:35 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -65,6 +65,7 @@ CREATE TABLE `instructor_tbl` (
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `gender` varchar(255) DEFAULT NULL,
+  `biography` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `verify_token` varchar(255) NOT NULL,
@@ -78,9 +79,8 @@ CREATE TABLE `instructor_tbl` (
 -- Dumping data for table `instructor_tbl`
 --
 
-INSERT INTO `instructor_tbl` (`id`, `firstname`, `lastname`, `gender`, `email`, `password`, `verify_token`, `age`, `position`, `profile`, `access`) VALUES
-(4, 'John Jacob', 'Dimaya', 'male', 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'ce5304001e36e1ef768aa1895d2e78bb', '20', 'backend', NULL, 'instructor'),
-(5, 'John Jacob', 'Dimaya', 'male', 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'e3541a22912bf8afafe017a28ef5a29e', '21', 'fullstack', NULL, 'instructor');
+INSERT INTO `instructor_tbl` (`id`, `firstname`, `lastname`, `gender`, `biography`, `email`, `password`, `verify_token`, `age`, `position`, `profile`, `access`) VALUES
+(8, 'John Jacob', 'Dimaya', 'male', 'asdsaczxczxc', 'johnjacobdimaya2021@gmail.com', '065307ce8014f2f29c4e2ee84f2bb819', '9a8f24bfe9bdf3ce950455f39ec71848e69b76c9b006a0005188d02d1f00f7fb', '20', 'fullstack', 'IMG-8-2023-12-27-11-56-33-AM.jpg', 'instructor');
 
 -- --------------------------------------------------------
 
@@ -106,7 +106,7 @@ CREATE TABLE `user_tbl` (
 --
 
 INSERT INTO `user_tbl` (`id`, `firstname`, `lastname`, `gender`, `biography`, `email`, `password`, `verify_token`, `profile`, `access`) VALUES
-(6, 'John Jacob', 'Dimaya', 'male', 'qwerty', 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', '2320b73c03c84615de1b1b492ce7dad09dfef02325fd30259ed1acff7821fe86', 'IMG-6587982a436230.81107798.jpg', 'student');
+(6, 'John Jacob', 'Ruiz', 'male', 'qwerty', 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'b7bff1d8891886ee403d18fce1896db74002d6af8d819411c8f63dffb0a46723', 'IMG-6587982a436230.81107798.jpg', 'student');
 
 --
 -- Indexes for dumped tables
@@ -150,13 +150,13 @@ ALTER TABLE `admin_tbl`
 -- AUTO_INCREMENT for table `application-form_tbl`
 --
 ALTER TABLE `application-form_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `instructor_tbl`
 --
 ALTER TABLE `instructor_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_tbl`

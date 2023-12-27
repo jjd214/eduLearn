@@ -96,10 +96,10 @@ if (isset($userid)) {
                                 </div>
 
                                 <!-- Biography pa add ng biography sa instructor table -->
-                                <!-- <div class="form-floating mb-3">
-                                    <textarea class="form-control" name="biography" placeholder="bio" id="floatingTextarea" style="height: 100px; resize: none;"></textarea>
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" name="biography" placeholder="bio" id="floatingTextarea" style="height: 100px; resize: none;"><?= $userData['biography']; ?></textarea>
                                     <label for="floatingTextarea">Your Biography</label>
-                                </div> -->
+                                </div>
 
                                 <!-- Email -->
                                 <div class="form-floating mb-3">
