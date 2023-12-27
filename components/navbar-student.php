@@ -9,7 +9,8 @@ if (isset($_SESSION['student_data'])) {
   $usertype = $_SESSION['student_data']['userType'];
   // echo "<script>alert('session set. UserID: $userid, UserType: $usertype');</script>";
 } else {
-  echo "<script>alert('session not set');</script>";
+  // echo "<script>alert('session not set');</script>";
+  header("Location: /eduLearn/views/index.php");
 }
 
 ?>
@@ -247,7 +248,7 @@ if (isset($userid)) {
                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
                 <a href="profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
-                <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+                <a href="logout.php" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
               </div>
             </div>
           </li>
@@ -286,7 +287,7 @@ if (isset($userid)) {
                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
                 <a href="profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
-                <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+                <a href="logout.php" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
               </div>
             </div>
           </li>

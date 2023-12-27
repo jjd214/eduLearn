@@ -13,6 +13,8 @@ if (isset($userid)) {
 
     $fetch = new AccountSettings();
     $userData = $fetch->getData($userid, $usertype);
+} else {
+    header("Location: /eduLearn/views/index.php");
 }
 
 ?>
