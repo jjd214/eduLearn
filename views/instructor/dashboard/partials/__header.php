@@ -7,7 +7,8 @@ ob_start();
 if (isset($_SESSION['instructor_data'])) {
   $userid = $_SESSION['instructor_data']['instructorID'];
   $usertype = $_SESSION['instructor_data']['userType'];
-  /* echo "<script>alert('session set. UserID: $userid, UserType: $usertype');</script>"; */
+  $position = $_SESSION['instructor_data']['position'];
+  //  echo "<script>alert('session set. UserID: $userid, UserType: $usertype, Position: $position');</script>"; 
 } else {
   echo "<script>alert('session not set');</script>";
 }

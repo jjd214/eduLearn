@@ -130,4 +130,24 @@ function deleteAccount($usertype) {
     $profile = new AccountSettings();
     $profile->deleteAccount($usertype);
 }
+
+function createCourse() {
+    $course = new CourseEntity();
+    $course->createCourse();
+}
+
+function updateTitle() {
+    $course = new CourseEntity();
+    $course->updateTitle();
+}
+
+function updateDifficulty() {
+    $course = new CourseEntity();
+    $course->updateDifficulty();
+}
+
+function updateDescription() {
+    $course = new CourseEntity();
+    $course->updateDescription();
+}
 ?>

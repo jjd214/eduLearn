@@ -1,4 +1,11 @@
 <?php include('./partials/__header.php'); ?>
+<?php
+
+if(isset($userid)) {
+  // echo '<script> alert("POTANGINA");</script>';
+}
+
+?>
 <div class="container-scroller">
   <!-- partial:../../partials/_navbar.html -->
   <?php include('./components/navbar.php'); ?>
@@ -32,10 +39,12 @@
             <div class="card mb-3">
               <div class="card-body">
                 <h4 class="card-title">Course Title</h4>
+                <?= updateTitle(); ?>
                 <!-- Form -->
                 <form method="post">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-sm border-primary" placeholder="e.g. 'Advanced Front-end Development'" required>
+                    <input type="hidden" name="instructorID" value="<?= $userid ?>">
+                    <input type="text" class="form-control form-control-sm border-primary" name="title" placeholder="e.g. 'Advanced Front-end Development'" required>
                     <input type="submit" name="course-title" class="btn btn-primary mt-3" value="Edit">
                   </div>
                 </form>
@@ -45,14 +54,16 @@
             <div class="card mb-3">
               <div class="card-body">
                 <h4 class="card-title">Course Difficulty</h4>
+                <?= updateDifficulty(); ?>
                 <!-- Form -->
                 <form method="post">
                   <div class="form-group">
-                    <select class="form-select border-primary" id="position" name="position" required>
+                    <select class="form-select border-primary" id="position" name="difficulty" required>
                       <option value="beginner" selected>Beginner</option>
                       <option value="intermediate">Intermediate</option>
                       <option value="advanced">Advanced</option>
                     </select>
+                    <input type="hidden" name="instructorID" value="<?= $userid ?>">
                     <input type="submit" name="course-difficulty" class="btn btn-primary mt-3" value="Edit">
                   </div>
                 </form>
@@ -62,10 +73,12 @@
             <div class="card mb-3">
               <div class="card-body">
                 <h4 class="card-title">Course Description</h4>
+                <?= updateDescription(); ?>
                 <!-- Form -->
                 <form method="post">
                   <div class="form-group">
-                    <textarea class="form-control border-primary" name="" id="" rows="5"></textarea>
+                    <textarea class="form-control border-primary" name="description" id="" rows="5"></textarea>
+                    <input type="hidden" name="instructorID" value="<?= $userid ?>">
                     <input type="submit" name="course-description" class="btn btn-primary mt-3" value="Submit">
                   </div>
                 </form>

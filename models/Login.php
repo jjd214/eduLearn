@@ -48,7 +48,8 @@ class Login extends Config {
                 $this->set_session($data);
                 $_SESSION['instructor_data'] = [
                     "instructorID" => $data['id'],
-                    "userType" => $data['access']
+                    "userType" => $data['access'],
+                    "position" => $data['position']
                 ];
                 header("Location: /edulearn/views/instructor/home-page.php");
                 exit();
