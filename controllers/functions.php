@@ -151,6 +151,10 @@ function updateDescription() {
     $course->updateDescription();
 }
 
+function updateThumbnail() {
+    $thumbnail = new CourseEntity();
+    $thumbnail->updateThumbnail();
+}
 
 
 function viewCourseList() {

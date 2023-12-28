@@ -128,6 +128,7 @@ class View extends Config {
             <thead>
                 <tr>
                     <th>Course ID</th>
+                    <th>Thumbnail</th>
                     <th>Roadmap</th>
                     <th>Course Title</th>
                     <th>Enrolled Students</th>
@@ -139,6 +140,7 @@ class View extends Config {
             <?php foreach ($data as $row): ?>
                 <tr>
                     <td><?php echo $row['id']; ?></td>
+                    <td><img src='/eduLearn/views/instructor/dashboard/uploads/<?php echo $row['thumbnail']; ?>' style='width: 50px; height: 50px;'></td>
                     <td><?php echo $row['roadmap']; ?></td>
                     <td><?php echo $row['title']; ?></td>
                     <td><?php echo $row['instructor_id']; ?></td>
@@ -148,7 +150,7 @@ class View extends Config {
                             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                             <input type="hidden" name="instructorId" value="<?php echo $row['instructor_id']; ?>">
                             <button type="submit" class="btn btn-primary btn-rounded">
-                                Manage
+                                Edit
                             </button>
                         </form>
                     </td>

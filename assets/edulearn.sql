@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2023 at 03:19 PM
+-- Generation Time: Dec 28, 2023 at 04:17 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -72,13 +72,6 @@ CREATE TABLE `course_tbl` (
   `status` varchar(255) NOT NULL DEFAULT 'private',
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `course_tbl`
---
-
-INSERT INTO `course_tbl` (`id`, `instructor_id`, `title`, `roadmap`, `difficulty`, `thumbnail`, `description`, `students_enrolled`, `status`, `created_at`) VALUES
-(5, 8, 'DFA', 'fullstack', 'Intermediate', NULL, NULL, NULL, 'private', '2023-12-27 22:18:07');
 
 -- --------------------------------------------------------
 
@@ -189,7 +182,7 @@ ALTER TABLE `application-form_tbl`
 -- AUTO_INCREMENT for table `course_tbl`
 --
 ALTER TABLE `course_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `instructor_tbl`

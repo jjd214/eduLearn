@@ -120,14 +120,24 @@ if(isset($_SESSION['lastInsertedCourseId'])) {
                                 <img class="form-control object-fit-cover border-0" height="300"
                                     src="/eduLearn/uploads/placeholder.PNG" alt />
                                 <!-- Form -->
-                                <form method="post">
+                                <?= updateThumbnail(); ?>
+                                <?php
+                                if (isset($_SESSION['thumbnail'])) {
+                                    echo $_SESSION['thumbnail'];
+                                    unset($_SESSION['thumbnail']);
+                                }
+                                ?>
+                                <form method="post" enctype="multipart/form-data">
                                     <div class="mb-3">
                                         <input class="form-control" type="file" name="course-image"
-                                            id="course-image" accept="image/jpeg, image/jpg, image/png">
+                                            id="course-image" />
+                                        <input type="hidden" name="courseID" value="<?= isset($_SESSION['courseid']) ? $_SESSION['courseid'] : $_SESSION['lastInsertedCourseId'] ?>">
+                                        <input type="hidden" name="instructorID" value="<?= $userid ?>">
                                     </div>
                                     <input type="submit" name="upload-course-image" class="btn btn-primary"
                                         value="Save Image">
                                 </form>
+                                
                             </div>
                         </div>
                     </div>
