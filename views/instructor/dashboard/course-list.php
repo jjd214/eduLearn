@@ -24,33 +24,7 @@
                 <i class="mdi mdi-plus"></i>
                 Create Course
               </a>
-              <table class="mt-3 table table-bordered table-striped table-hover">
-                <!-- Test Data -->
-                <thead>
-                  <tr>
-                    <th> Course ID</th>
-                    <th> Roadmap </th>
-                    <th> Course Title </th>
-                    <th> Enrolled Students </th>
-                    <th> Created </th>
-                    <th> Action </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>8</td>
-                    <td> Front-end </td>
-                    <td> HTML/CSS Course </td>
-                    <td>15</td>
-                    <td>Dec-26-2023</td>
-                    <td class="text-center">
-                      <button type="button" class="btn btn-primary btn-rounded">
-                        Manage
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <?= viewCourseList(); ?>
             </div>
           </div>
         </div>

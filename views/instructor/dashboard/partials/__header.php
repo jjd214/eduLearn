@@ -8,6 +8,10 @@ if (isset($_SESSION['instructor_data'])) {
   $userid = $_SESSION['instructor_data']['instructorID'];
   $usertype = $_SESSION['instructor_data']['userType'];
   $position = $_SESSION['instructor_data']['position'];
+
+  // $fetch = new View();
+  // $coureid = $fetch->getCourseId($userid);
+
   //  echo "<script>alert('session set. UserID: $userid, UserType: $usertype, Position: $position');</script>"; 
 } else {
   echo "<script>alert('session not set');</script>";

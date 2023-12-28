@@ -150,4 +150,11 @@ function updateDescription() {
     $course = new CourseEntity();
     $course->updateDescription();
 }
+
+
+
+function viewCourseList() {
+    $view = new View();
+    $view->viewCourseList();
+}
 ?>
