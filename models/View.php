@@ -142,11 +142,11 @@ class View extends Config {
             <?php foreach ($data as $row): ?>
                 <tr>
                     <td><?php echo $row['id']; ?></td>
-                    <td>
+                    <td style="text-align: center;">
                         <?php
                             $thumbnail = is_null($row['thumbnail']) ? $defaultImage : $row['thumbnail'];
                         ?>
-                        <img src='/eduLearn/views/instructor/dashboard/uploads/<?php echo $thumbnail; ?>' style='width: 50px; height: 50px;'>
+                        <img src='/eduLearn/views/instructor/dashboard/uploads/<?php echo $thumbnail; ?>' style='width: 50px; height: 50px; border-radius: 0;'>
                     </td>
                     <td><?php echo $row['roadmap']; ?></td>
                     <td><?php echo $row['title']; ?></td>
