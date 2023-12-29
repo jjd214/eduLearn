@@ -127,7 +127,6 @@ if (isset($userid)) {
                                     </div>
                                 </div>
 
-
                                 <input type="submit" value="Save Changes" name="submit" class="mt-4 btn btn-block btn-primary col-md-12">
 
                             </form>

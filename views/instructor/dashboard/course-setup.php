@@ -19,7 +19,13 @@ if (isset($_POST['id'])) {
 
 if(isset($_SESSION['lastInsertedCourseId'])) {
     echo '<script> alert("POTANGINA");</script>';
+}
 
+    $fetch = new CourseEntity();
+    $userData = $fetch->getData($_SESSION['courseid']);
+
+if(empty($userData)) {
+    echo "walang laman.";
 }
 
 ?>
@@ -58,6 +64,12 @@ if(isset($_SESSION['lastInsertedCourseId'])) {
                             <div class="card-body">
                                 <h4 class="card-title">Course Title</h4>
                                 <?= updateTitle(); ?>
+                                <?php
+                                if (isset($_SESSION['title'])) {
+                                    echo $_SESSION['title'];
+                                    unset($_SESSION['title']);
+                                }
+                                ?>
                                 <!-- Form -->
                                 <form method="post">
                                     <div class="form-group">
@@ -65,7 +77,7 @@ if(isset($_SESSION['lastInsertedCourseId'])) {
                                         <input type="hidden" name="instructorID" value="<?= $userid ?>">
                                         <input type="text"
                                             class="form-control form-control-sm border-primary" name="title"
-                                            placeholder="e.g. 'Advanced Front-end Development'" required>
+                                            placeholder="e.g. 'Advanced Front-end Development'" value="<?= $userData['title']; ?>" required>
                                         <input type="submit" name="course-title" class="btn btn-primary mt-3"
                                             value="Edit">
                                     </div>
@@ -77,21 +89,26 @@ if(isset($_SESSION['lastInsertedCourseId'])) {
                             <div class="card-body">
                                 <h4 class="card-title">Course Difficulty</h4>
                                 <?= updateDifficulty(); ?>
+                                <?php
+                                if (isset($_SESSION['difficulty'])) {
+                                    echo $_SESSION['difficulty'];
+                                    unset($_SESSION['difficulty']);
+                                }
+                                ?>
                                 <!-- Form -->
                                 <form method="post">
                                     <div class="form-group">
-                                        <select class="form-select border-primary" id="position" name="difficulty"
-                                            required>
-                                            <option value="Beginner" selected>Beginner</option>
-                                            <option value="Intermediate">Intermediate</option>
-                                            <option value="Advanced">Advanced</option>
+                                        <select class="form-select border-primary" id="position" name="difficulty" required>
+                                            <option value="Beginner" <?= ($userData['difficulty'] == 'Beginner') ? 'selected' : '' ?>>Beginner</option>
+                                            <option value="Intermediate" <?= ($userData['difficulty'] == 'Intermediate') ? 'selected' : '' ?>>Intermediate</option>
+                                            <option value="Advanced" <?= ($userData['difficulty'] == 'Advanced') ? 'selected' : '' ?>>Advanced</option>
                                         </select>
                                         <input type="hidden" name="courseID" value="<?= isset($_SESSION['courseid']) ? $_SESSION['courseid'] : $_SESSION['lastInsertedCourseId'] ?>">
                                         <input type="hidden" name="instructorID" value="<?= $userid ?>">
-                                        <input type="submit" name="course-difficulty" class="btn btn-primary mt-3"
-                                            value="Edit">
+                                        <input type="submit" name="course-difficulty" class="btn btn-primary mt-3" value="Edit">
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                         <!-- Course Description -->
@@ -99,11 +116,17 @@ if(isset($_SESSION['lastInsertedCourseId'])) {
                             <div class="card-body">
                                 <h4 class="card-title">Course Description</h4>
                                 <?= updateDescription(); ?>
+                                <?php
+                                if (isset($_SESSION['description'])) {
+                                    echo $_SESSION['description'];
+                                    unset($_SESSION['description']);
+                                }
+                                ?>
                                 <!-- Form -->
                                 <form method="post">
                                     <div class="form-group">
                                         <textarea class="form-control border-primary" name="description" id=""
-                                            rows="5"></textarea>
+                                            rows="5"><?= $userData['description']; ?>"</textarea>
                                         <input type="hidden" name="courseID" value="<?= isset($_SESSION['courseid']) ? $_SESSION['courseid'] : $_SESSION['lastInsertedCourseId'] ?>">
 
                                         <input type="hidden" name="instructorID" value="<?= $userid ?>">
@@ -117,8 +140,10 @@ if(isset($_SESSION['lastInsertedCourseId'])) {
                         <div class="card mb-3">
                             <div class="card-body">
                                 <h4 class="card-title">Course Image</h4>
+                                <?php $defaultImage = 'placeholder.PNG'; ?>
+
                                 <img class="form-control object-fit-cover border-0" height="300"
-                                    src="/eduLearn/uploads/placeholder.PNG" alt />
+                                src="/eduLearn/views/instructor/dashboard/uploads/<?= $userData['thumbnail'] ? $userData['thumbnail'] : $defaultImage ?>" alt />
                                 <!-- Form -->
                                 <?= updateThumbnail(); ?>
                                 <?php

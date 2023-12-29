@@ -55,10 +55,13 @@ class CourseEntity extends Config {
             $result = $stmt->rowCount();
 
             if($result > 0) {
-                    echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                $_SESSION['title'] = '<div class="alert alert-info alert-dismissible fade show" role="alert">
                             Title Updated.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>';
+
+                header("refresh:0;url=course-setup.php");
+                exit();
             } 
 
             echo '<script> alert(' . json_encode([$courseid, $instructorID, $title]) . '); </script>';
@@ -80,10 +83,12 @@ class CourseEntity extends Config {
             $result = $stmt->rowCount();
 
             if($result > 0) {
-                    echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                $_SESSION['difficulty'] = '<div class="alert alert-info alert-dismissible fade show" role="alert">
                             Difficulty Updated.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>';
+                header("refresh:0;url=course-setup.php");
+                exit();
             } 
 
             echo '<script> alert(' . json_encode([$courseid, $instructorID, $difficulty]) . '); </script>';
@@ -107,10 +112,13 @@ class CourseEntity extends Config {
             $result = $stmt->rowCount();
 
             if ($result > 0) {
-                echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                $_SESSION['description'] = '<div class="alert alert-info alert-dismissible fade show" role="alert">
                         Description updated.
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
+
+                header("refresh:0;url=course-setup.php");
+                exit();
             } 
             // else {
             //     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -199,6 +207,17 @@ class CourseEntity extends Config {
         }
         // echo '<script> alert(' . json_encode([$courseid, $instructorID, $img_name]) . '); </script>';
     }
+
+    public function getData($courseid) {
+
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `course_tbl` WHERE `id` = ?");
+        $stmt->execute([$courseid]);
+        $data = $stmt->fetch();
+
+        return $data;
+    }
+
 }
 
 
