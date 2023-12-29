@@ -1,6 +1,8 @@
 <?php 
+
 class View extends Config {
 
+    
     private function pagination($currentPage, $totalPages) {
         ?>
         <nav aria-label="Page navigation example">
@@ -133,6 +135,7 @@ class View extends Config {
                     <th>Course Title</th>
                     <th>Enrolled Students</th>
                     <th>Created</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -150,14 +153,24 @@ class View extends Config {
                     </td>
                     <td><?php echo $row['roadmap']; ?></td>
                     <td><?php echo $row['title']; ?></td>
-                    <td><?php echo $row['instructor_id']; ?></td>
+                    <td><?php echo is_null($row['students_enrolled']) ? 0 : $row['students_enrolled']; ?></td>
                     <td><?php echo $row['created_at']; ?></td>
-                    <td class="text-center">
+                    <td><?php echo $row['status']; ?></td>
+                    <link rel="stylesheet" href="/eduLearn/views/instructor/dashboard/assets/css/custom.css">
+                    <td class="text-center" style="display: flex; align-items: center;">
                         <form action="course-setup.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                             <input type="hidden" name="instructorId" value="<?php echo $row['instructor_id']; ?>">
-                            <button type="submit" class="btn btn-primary btn-rounded">
+                            <button type="submit" class="btn btn-primary btn-custom">
                                 Edit
+                            </button>
+                        </form>
+                        
+                        <form action="manage-course.php" method="post" style="margin-left: 5px;">
+                            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                            <input type="hidden" name="instructorId" value="<?php echo $row['instructor_id']; ?>">
+                            <button type="submit" class="btn btn-success btn-custom">
+                                Manage
                             </button>
                         </form>
                     </td>
