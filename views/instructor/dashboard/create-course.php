@@ -39,10 +39,6 @@
 
                 <!-- Continue btn -->
                 <input type="submit" value="Continue" name="submit" class="btn btn-gradient-primary mt-3 me-2">
-                <p class="mt-4">
-                  <i>Pakidelete kapag tapos na!</i><br>
-                  Pa route nalang 'to sa <b>course-setup.php</b> kapag nalagyan mo na 'to ng function sa continue button
-                </p>
               </form>
             </div>
           </div>

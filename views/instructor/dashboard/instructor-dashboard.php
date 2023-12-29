@@ -1,6 +1,12 @@
 <?php include('./partials/__header.php'); ?>
 
+<?php
 
+if(isset($userid)) {
+  echo '<script>alert("session set si instructor id");</script>';
+}
+
+?>
 <div class="container-scroller">
   <!-- components:components/navbar.php -->
   <?php include('./components/navbar.php'); ?>
@@ -24,8 +30,8 @@
                 <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">Your Total Students <i class="mdi mdi-account-multiple-plus mdi-24px float-right"></i>
                 </h4>
-                <h2 class="mb-5">30</h2>
-                <h6>Total students ni instructor sa kaniyang course</h6>
+                <h2 class="mb-5"><?= viewTotalStudents($userid); ?></h2>
+                <!-- <h6>Total students ni instructor sa kaniyang course</h6> -->
               </div>
             </div>
           </div>
@@ -33,10 +39,10 @@
             <div class="card bg-gradient-info card-img-holder text-white">
               <div class="card-body">
                 <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                <h4 class="font-weight-normal mb-3">Your Total Videos <i class="mdi mdi-video mdi-24px float-right"></i>
+                <h4 class="font-weight-normal mb-3">Your Total Course <i class="mdi mdi-video mdi-24px float-right"></i>
                 </h4>
-                <h2 class="mb-5">6</h2>
-                <h6 class="card-text">Total uploaded videos ni Instructor</h6>
+                <h2 class="mb-5"><?= viewTotalCourse($userid); ?></h2>
+                <!-- <h6 class="card-text">Total uploaded videos ni Instructor</h6> -->
               </div>
             </div>
           </div>

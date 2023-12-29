@@ -161,4 +161,14 @@ function viewCourseList() {
     $view = new View();
     $view->viewCourseList();
 }
+
+function viewTotalStudents($userid) {
+    $view = new View();
+    $view->getTotalStudents($userid);
+}
+
+function viewTotalCourse($userid) {
+    $view = new View();
+    $view->getTotalCourse($userid);
+}
 ?>

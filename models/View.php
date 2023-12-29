@@ -5,7 +5,7 @@ class View extends Config {
     
     private function pagination($currentPage, $totalPages) {
         ?>
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" style="margin-top: 20px;">
             <ul class="pagination justify-content-end">
                 <?php
                 // Previous page link
@@ -191,6 +191,34 @@ class View extends Config {
         $stmt = $connection->prepare();
         $stmt->execute();
     }
+
+    public function getTotalStudents($instructor_id) {
+        $connection = $this->openConnection();
+        
+        $stmt = $connection->prepare("SELECT SUM(`students_enrolled`) as total_students FROM `course_tbl` WHERE `instructor_id` = ?");
+        $stmt->execute([$instructor_id]);
+        
+        $result = $stmt->fetch();
+    
+        $total = $result['total_students'];
+        
+        echo $total;
+        
+    }    
+
+    public function getTotalCourse($instructor_id) {
+        $connection = $this->openConnection();
+        
+        $stmt = $connection->prepare("SELECT COUNT(*) as total FROM `course_tbl` WHERE `instructor_id` = ?");
+        $stmt->execute([$instructor_id]);
+        
+        $result = $stmt->fetch();
+    
+        $total = intval($result['total']);
+
+        echo $total;
+    }
+    
 
 }
 

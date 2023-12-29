@@ -220,6 +220,11 @@ class CourseEntity extends Config {
         return $data;
     }
 
+    public function deleteCourse() {
+
+        
+    }
+
 }
 
 ob_flush();
