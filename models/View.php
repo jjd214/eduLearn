@@ -137,10 +137,17 @@ class View extends Config {
                 </tr>
             </thead>
             <tbody>
+            <?php $defaultImage = 'placeholder.png'; ?>
+
             <?php foreach ($data as $row): ?>
                 <tr>
                     <td><?php echo $row['id']; ?></td>
-                    <td><img src='/eduLearn/views/instructor/dashboard/uploads/<?php echo $row['thumbnail']; ?>' style='width: 50px; height: 50px;'></td>
+                    <td>
+                        <?php
+                            $thumbnail = is_null($row['thumbnail']) ? $defaultImage : $row['thumbnail'];
+                        ?>
+                        <img src='/eduLearn/views/instructor/dashboard/uploads/<?php echo $thumbnail; ?>' style='width: 50px; height: 50px;'>
+                    </td>
                     <td><?php echo $row['roadmap']; ?></td>
                     <td><?php echo $row['title']; ?></td>
                     <td><?php echo $row['instructor_id']; ?></td>
@@ -156,6 +163,7 @@ class View extends Config {
                     </td>
                 </tr>
             <?php endforeach; ?>
+
 
             </tbody>
         </table>
