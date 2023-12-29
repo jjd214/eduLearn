@@ -22,7 +22,7 @@ if(isset($_SESSION['lastInsertedCourseId'])) {
 }
 
     $fetch = new CourseEntity();
-    $userData = $fetch->getData($_SESSION['courseid']);
+    $userData = $fetch->getData($_SESSION['courseid'] ? $_SESSION['courseid'] : $_SESSION['lastInsertedCourseId']);
 
 if(empty($userData)) {
     echo "walang laman.";
@@ -126,7 +126,7 @@ if(empty($userData)) {
                                 <form method="post">
                                     <div class="form-group">
                                         <textarea class="form-control border-primary" name="description" id=""
-                                            rows="5"><?= $userData['description']; ?>"</textarea>
+                                            rows="5"><?= is_null($userData['description']) ? '' : $userData['description']; ?></textarea>
                                         <input type="hidden" name="courseID" value="<?= isset($_SESSION['courseid']) ? $_SESSION['courseid'] : $_SESSION['lastInsertedCourseId'] ?>">
 
                                         <input type="hidden" name="instructorID" value="<?= $userid ?>">
@@ -140,7 +140,7 @@ if(empty($userData)) {
                         <div class="card mb-3">
                             <div class="card-body">
                                 <h4 class="card-title">Course Image</h4>
-                                <?php $defaultImage = 'placeholder.PNG'; ?>
+                                <?php $defaultImage = 'placeholder.png'; ?>
 
                                 <img class="form-control object-fit-cover border-0" height="300"
                                 src="/eduLearn/views/instructor/dashboard/uploads/<?= $userData['thumbnail'] ? $userData['thumbnail'] : $defaultImage ?>" alt />
