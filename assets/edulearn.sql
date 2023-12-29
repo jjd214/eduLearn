@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2023 at 04:17 PM
+-- Generation Time: Dec 29, 2023 at 06:29 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -69,7 +69,7 @@ CREATE TABLE `course_tbl` (
   `thumbnail` text DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `students_enrolled` varchar(1000) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'private',
+  `status` varchar(255) NOT NULL DEFAULT 'Private',
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -125,7 +125,7 @@ CREATE TABLE `user_tbl` (
 --
 
 INSERT INTO `user_tbl` (`id`, `firstname`, `lastname`, `gender`, `biography`, `email`, `password`, `verify_token`, `profile`, `access`) VALUES
-(6, 'John Jacob', 'Ruizz', 'male', 'qwertys', 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'b7bff1d8891886ee403d18fce1896db74002d6af8d819411c8f63dffb0a46723', 'IMG-6-2023-12-27-08-39-23-PM.png', 'student');
+(6, 'John Jacob', 'Ruiz', 'male', 'qwertys', 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'b7bff1d8891886ee403d18fce1896db74002d6af8d819411c8f63dffb0a46723', 'IMG-6-2023-12-27-08-39-23-PM.png', 'student');
 
 --
 -- Indexes for dumped tables
@@ -182,7 +182,7 @@ ALTER TABLE `application-form_tbl`
 -- AUTO_INCREMENT for table `course_tbl`
 --
 ALTER TABLE `course_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `instructor_tbl`

@@ -6,6 +6,8 @@ class CourseEntity extends Config {
 
         if(isset($_POST['submit'])) {
 
+            unset($_SESSION['courseid']);
+
             $instructorID = $_POST['instructorID'];
             $title = $_POST['title'];
             $difficulty = $_POST['difficulty'];
@@ -220,5 +222,5 @@ class CourseEntity extends Config {
 
 }
 
-
+ob_flush();
 ?>

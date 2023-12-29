@@ -1,5 +1,6 @@
 <?php include('./partials/__header.php'); ?>
 <?php
+ob_start();
 
 if (isset($userid)) {
     // echo '<script> alert("POTANGINA");</script>';
