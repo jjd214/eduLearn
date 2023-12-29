@@ -200,7 +200,7 @@ class View extends Config {
         
         $result = $stmt->fetch();
     
-        $total = $result['total_students'];
+        $total = ($result['total_students'] !== null) ? $result['total_students'] : 0;
         
         echo $total;
         
