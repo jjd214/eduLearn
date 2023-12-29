@@ -136,10 +136,12 @@ if(empty($userData)) {
                                 </form>
                             </div>
                         </div>
-                        <!-- Course Image -->
-                        <div class="card mb-3">
+                    </div>
+                    <!-- Course Image -->
+                    <div class="col-md-6">
+                        <div class="card" style="height: 800px;">
                             <div class="card-body">
-                                <h4 class="card-title">Course Image</h4>
+                            <h4 class="card-title">Course Image</h4>
                                 <?php $defaultImage = 'placeholder.png'; ?>
 
                                 <img class="form-control object-fit-cover border-0" height="300"
@@ -162,11 +164,11 @@ if(empty($userData)) {
                                     <input type="submit" name="upload-course-image" class="btn btn-primary"
                                         value="Save Image">
                                 </form>
-                                
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+
+                    <!-- <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Create a new chapter</h4>
@@ -195,7 +197,7 @@ if(empty($userData)) {
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!-- content-wrapper ends -->
