@@ -76,9 +76,9 @@ include('../components/navbar.php');
                   <div class="form-floating mb-3">
                     <select class="form-select" id="position" name="position" required>
                       <option value="" selected disabled></option>
-                      <option value="frontend">Frontend</option>
-                      <option value="backend">Backend</option>
-                      <option value="fullstack">Full Stack</option>
+                      <option value="Frontend">Frontend</option>
+                      <option value="Backend">Backend</option>
+                      <option value="Fullstack">Full Stack</option>
                     </select>
                     <label for="position">Position Applying For</label>
                   </div>
