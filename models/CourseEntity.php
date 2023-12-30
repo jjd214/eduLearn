@@ -222,6 +222,19 @@ class CourseEntity extends Config {
 
     public function deleteCourse() {
 
+        if(isset($_POST['delete'])) {
+
+            $courseid = $_POST['id'];
+
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("DELETE FROM `course_tbl` WHERE `id` = ?");
+            $stmt->execute([$courseid]);
+            $result = $stmt->rowCount();
+
+            if($result > 0) {
+                header("Location: course-list.php");
+            }
+        }
         
     }
 

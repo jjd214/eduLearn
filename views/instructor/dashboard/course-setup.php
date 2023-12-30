@@ -51,10 +51,33 @@ if(empty($userData)) {
                             <!-- Dito yung form update ng visibility at delete -->
                             <div class="btn-group float-end" role="group">
                                 <button type="submit" name="publish" class="btn btn-primary">Publish</button>
-                                <button type="submit" name="delete" class="btn btn-primary"><i
-                                        class="mdi mdi-delete-forever"></i> Delete </button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+                                    <i class="mdi mdi-delete-forever"></i> Delete
+                                </button>
                             </div>
                         </form>
+                    </div>
+                </div>
+                <?= deleteCourse(); ?>
+                <!-- Delete Confirmation Modal -->
+                <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this course?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <form method="post">
+                            <input type="hidden" name="id" value="<?= isset($_SESSION['courseid']) ? $_SESSION['courseid'] : $_SESSION['lastInsertedCourseId'] ?>">
+                            <button type="submit" name="delete" class="btn btn-primary">Delete</button>
+                            </form>
+                        </div>
+                        </div>
                     </div>
                 </div>
 

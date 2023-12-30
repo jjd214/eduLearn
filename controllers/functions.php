@@ -156,6 +156,11 @@ function updateThumbnail() {
     $thumbnail->updateThumbnail();
 }
 
+function deleteCourse() {
+    $delete = new CourseEntity();
+    $delete->deleteCourse();
+}
+
 
 function viewCourseList() {
     $view = new View();
@@ -171,4 +176,6 @@ function viewTotalCourse($userid) {
     $view = new View();
     $view->getTotalCourse($userid);
 }
+
+
 ?>
