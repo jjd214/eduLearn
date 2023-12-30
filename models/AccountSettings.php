@@ -110,37 +110,55 @@ class AccountSettings extends Config
             $error = $_FILES['my_image']['error'];
 
             if ($error === 0) {
+                $connection = $this->openConnection();
 
-                if ($img_size > 5242880) { /* 5 MB = 5242880 Bytes (in binary) */
+                if ($usertype == 'student') {
+                    $stmt = $connection->prepare("SELECT profile FROM user_tbl WHERE id = ?");
+                } else if ($usertype == 'instructor') {
+                    $stmt = $connection->prepare("SELECT profile FROM instructor_tbl WHERE id = ?");
+                }
+                $stmt->execute([$userid]);
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                $previousProfilePicture = $row['profile'];
+
+                if (!empty($previousProfilePicture)) {
+                    $previousProfilePicturePath = $_SERVER['DOCUMENT_ROOT'] . '/eduLearn/uploads/' . $previousProfilePicture;
+                    if (file_exists($previousProfilePicturePath)) {
+                        unlink($previousProfilePicturePath);
+                    }
+                }
+
+                if ($img_size > 5242880) { 
                     echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
-                            Your file should not exceed to 5mb.
+                            Your file should not exceed 5mb.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>';
                 } else {
+
                     $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
                     $img_ex_lc = strtolower($img_ex);
 
                     $allowed_exs = array("jpg", "jpeg", "png");
 
                     if (in_array($img_ex_lc, $allowed_exs)) {
-                        // Generate filename based on the date and time format Year, Month, Day, Hour, mInute, Seconds
+                        // Generate filename based on the date and time format
                         date_default_timezone_set('Asia/Manila');
-                        $currentDateTime = date('Y-m-d h:i:s A'); // Using 'h' for 12-hour format and 'A' for AM/PM
+                        $currentDateTime = date('Y-m-d h:i:s A');
                         $formattedDateTime = date('Y-m-d-h-i-s-A', strtotime($currentDateTime));
                         $new_img_name = "IMG-" . $userid . "-" . $formattedDateTime . '.' . $img_ex_lc;
 
                         $img_upload_path = '/eduLearn/uploads/' . $new_img_name;
                         move_uploaded_file($tmp_name, $_SERVER['DOCUMENT_ROOT'] . $img_upload_path);
 
-                        $connection = $this->openConnection();
+                        // Update the database with the new profile picture
                         if ($usertype == 'student') {
-                            $sql = ("UPDATE `user_tbl` SET `profile` = ? WHERE `id` = ?");
+                            $stmt = $connection->prepare("UPDATE user_tbl SET profile = ? WHERE id = ?");
                         } else if ($usertype == 'instructor') {
-                            $sql = ("UPDATE `instructor_tbl` SET `profile` = ? WHERE `id` = ?");
+                            $stmt = $connection->prepare("UPDATE instructor_tbl SET profile = ? WHERE id = ?");
                         }
-                        $stmt = $connection->prepare($sql);
                         $stmt->execute([$new_img_name, $userid]);
                         $result = $stmt->rowCount();
+
                         if ($result > 0) {
                             $_SESSION['image'] = '<div class="alert alert-info alert-dismissible fade show" role="alert">
                                                     Profile updated successfully.

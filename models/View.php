@@ -157,7 +157,7 @@ class View extends Config {
                     <td><?php echo $row['created_at']; ?></td>
                     <td><?php echo $row['status']; ?></td>
                     <link rel="stylesheet" href="/eduLearn/views/instructor/dashboard/assets/css/custom.css">
-                    <td class="text-center" style="display: flex; align-items: center;">
+                    <td class="d-flex">
                         <form action="course-setup.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                             <input type="hidden" name="instructorId" value="<?php echo $row['instructor_id']; ?>">
@@ -166,7 +166,7 @@ class View extends Config {
                             </button>
                         </form>
                         
-                        <form action="manage-course.php" method="post" style="margin-left: 5px;">
+                        <form action="manage-course.php" method="post" class="ms-1">
                             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                             <input type="hidden" name="instructorId" value="<?php echo $row['instructor_id']; ?>">
                             <button type="submit" class="btn btn-success btn-custom">

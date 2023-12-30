@@ -19,7 +19,7 @@ if (isset($_POST['id'])) {
 }
 
 if(isset($_SESSION['lastInsertedCourseId'])) {
-    echo '<script> alert("POTANGINA");</script>';
+    /* echo '<script> alert("POTANGINA");</script>'; */
 }
 
     $fetch = new CourseEntity();
@@ -171,7 +171,7 @@ if(empty($userData)) {
                     </div>
                     <!-- Course Image -->
                     <div class="col-md-6">
-                        <div class="card" style="height: 800px;">
+                        <div class="card">
                             <div class="card-body">
                             <h4 class="card-title">Course Image</h4>
                                 <?php $defaultImage = 'placeholder.png'; ?>
@@ -199,37 +199,6 @@ if(empty($userData)) {
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Create a new chapter</h4>
-                                <form class="forms-sample">
-                                    <div class="form-group">
-                                        <label for="exampleInputUsername1">Video Title</label>
-                                        <input type="text" class="form-control border-primary"
-                                            id="exampleInputUsername1" placeholder="Username" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Video Description</label>
-                                        <textarea class="form-control border-primary" name="" id="" rows="5"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Chapter Video</label>
-                                        <input class="form-control" type="file" name="course-video"
-                                            id="course-video" accept="video/mp4" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Chapter Thumpnail</label>
-                                        <input class="form-control" type="file" name="course-image"
-                                            id="course-image" accept="image/jpeg, image/jpg, image/png" required>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
             <!-- content-wrapper ends -->
