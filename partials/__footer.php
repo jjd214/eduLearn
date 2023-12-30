@@ -5,6 +5,7 @@
 <script src="/eduLearn/vendor/swiper/swiper-bundle.min.js"></script>
 <script src="/eduLearn/vendor/php-email-form/validate.js"></script>
 
+
 <!-- Template Main JS File -->
 <script src="/eduLearn/javascript/main.js"></script>
 </body>
