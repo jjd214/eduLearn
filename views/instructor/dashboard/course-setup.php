@@ -45,17 +45,25 @@ if(empty($userData)) {
                         <h2>Course setup</h2>
                         <p class="page-description mt-2">Complete all fields</p>
                     </div>
+                    <?= publishCourse(); ?>
                     <!-- Publish btn -->
                     <div class="col-md-6">
                         <form method="post">
                             <!-- Dito yung form update ng visibility at delete -->
                             <div class="btn-group float-end" role="group">
-                                <button type="submit" name="publish" class="btn btn-primary">Publish</button>
+                                <input type="hidden" name="id" value="<?= isset($_SESSION['courseid']) ? $_SESSION['courseid'] : $_SESSION['lastInsertedCourseId'] ?>">
+                                <button type="submit" name="publish" class="btn btn-primary">
+                                    <?php
+                                    $status = getCourseStatus(isset($_SESSION['courseid']) ? $_SESSION['courseid'] : $_SESSION['lastInsertedCourseId']); 
+                                    echo ($status === 'Public') ? 'Unpublish' : 'Publish';
+                                    ?>
+                                </button>
+                            
+                        </form>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
                                     <i class="mdi mdi-delete-forever"></i> Delete
                                 </button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
                 <?= deleteCourse(); ?>

@@ -161,6 +161,17 @@ function deleteCourse() {
     $delete->deleteCourse();
 }
 
+function publishCourse() {
+    $publish = new CourseEntity();
+    $publish->publishCourse();
+}
+
+function getCourseStatus($courseid) {
+    $fetch = new CourseEntity();
+    $status = $fetch->getCourseStatus($courseid);
+
+    return $status;
+}
 
 function viewCourseList() {
     $view = new View();

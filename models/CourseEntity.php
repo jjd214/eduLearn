@@ -235,7 +235,33 @@ class CourseEntity extends Config {
                 header("Location: course-list.php");
             }
         }
-        
+    }
+
+    public function publishCourse() {
+
+        if(isset($_POST['publish'])) {
+
+            $courseid = $_POST['id'];
+
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("UPDATE `course_tbl` SET `status` = CASE WHEN `status` = 'Public' THEN 'Private' ELSE 'Public' END WHERE `id` = ?");
+            $stmt->execute([$courseid]);
+            $result = $stmt->rowCount();
+
+            if($result > 0) {
+                header("refresh:0;url=course-setup.php");
+            }
+        }
+    }
+
+    public function getCourseStatus($courseid) {
+
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT (`status`) FROM `course_tbl` WHERE `id` = ?");
+        $stmt->execute([$courseid]);
+        $data = $stmt->fetchColumn();
+
+        return $data;
     }
 
 }
