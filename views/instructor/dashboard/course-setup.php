@@ -171,12 +171,12 @@ if(empty($userData)) {
                     </div>
                     <!-- Course Image -->
                     <div class="col-md-6">
-                        <div class="card">
+                        <div class="card" style="height: 800px;">
                             <div class="card-body">
                             <h4 class="card-title">Course Image</h4>
                                 <?php $defaultImage = 'placeholder.png'; ?>
 
-                                <img class="form-control object-fit-cover border-0" height="300"
+                                <img class="form-control object-fit-cover border-0" height="300" 
                                 src="/eduLearn/views/instructor/dashboard/uploads/<?= $userData['thumbnail'] ? $userData['thumbnail'] : $defaultImage ?>" alt />
                                 <!-- Form -->
                                 <?= updateThumbnail(); ?>

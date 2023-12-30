@@ -230,21 +230,34 @@ class CourseEntity extends Config
 
     public function deleteCourse()
     {
-
         if (isset($_POST['delete'])) {
-
             $courseid = $_POST['id'];
 
+            // Get the thumbnail filename from the database
             $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT `thumbnail` FROM `course_tbl` WHERE `id` = ?");
+            $stmt->execute([$courseid]);
+            $thumbnail = $stmt->fetchColumn();
+
+            // Delete the course record from the database
             $stmt = $connection->prepare("DELETE FROM `course_tbl` WHERE `id` = ?");
             $stmt->execute([$courseid]);
             $result = $stmt->rowCount();
 
             if ($result > 0) {
+                // Delete the associated thumbnail file from the uploads folder
+                if (!empty($thumbnail)) {
+                    $thumbnailPath = $_SERVER['DOCUMENT_ROOT'] . '/eduLearn/views/instructor/dashboard/uploads/' . $thumbnail;
+                    if (file_exists($thumbnailPath)) {
+                        unlink($thumbnailPath);
+                    }
+                }
+
                 header("Location: course-list.php");
             }
         }
     }
+
 
     public function publishCourse()
     {
