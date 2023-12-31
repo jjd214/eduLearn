@@ -188,5 +188,19 @@ function viewTotalCourse($userid) {
     $view->getTotalCourse($userid);
 }
 
+function viewChapterList($courseid,$instructorid) {
+    $view = new View();
+    $view->viewChapters($courseid,$instructorid);
+}
+function uploadVideo() {
+    $video = new CourseEntity();
+    $video->uploadVideo();
+}
+
+function deleteChapter() {
+    $delete = new CourseEntity();
+    $delete->deleteChapter();
+}
+
 
 ?>

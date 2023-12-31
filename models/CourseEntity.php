@@ -287,6 +287,140 @@ class CourseEntity extends Config
 
         return $data;
     }
+
+    public function uploadVideo() {
+        if (isset($_POST['submit'])) {
+            $img_name = $_FILES['course-image']['name'];
+            $img_size = $_FILES['course-image']['size'];
+            $tmp_name = $_FILES['course-image']['tmp_name'];
+            $error = $_FILES['course-image']['error'];
+    
+            $video_name = $_FILES['course-video']['name'];
+            $video_tmp_name = $_FILES['course-video']['tmp_name'];
+            $video_error = $_FILES['course-video']['error'];
+    
+            $instructorID = $_POST['instructorID'];
+            $courseid = $_POST['courseID'];
+            $video_title = $_POST['title'];
+            $description = $_POST['description'];
+    
+            if ($error === 0) {
+                $connection = $this->openConnection();
+    
+                if ($img_size > 5242880) {
+                    echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                            Your image file should not exceed 5mb.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                } else {
+                    $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+                    $img_ex_lc = strtolower($img_ex);
+    
+                    $allowed_exs = array("jpg", "jpeg", "png");
+    
+                    if (in_array($img_ex_lc, $allowed_exs)) {
+                        date_default_timezone_set('Asia/Manila');
+                        $currentDateTime = date('Y-m-d h:i:s A');
+                        $formattedDateTime = date('Y-m-d-h-i-s-A', strtotime($currentDateTime));
+                        $new_img_name = "IMG-" . $instructorID . "-" . $formattedDateTime . '.' . $img_ex_lc;
+    
+                        $img_upload_path = '/eduLearn/views/instructor/dashboard/videos/thumbnails/' . $new_img_name;
+                        move_uploaded_file($tmp_name, $_SERVER['DOCUMENT_ROOT'] . $img_upload_path);
+    
+                        // Handle video file
+                        $video_ex = pathinfo($video_name, PATHINFO_EXTENSION);
+                        $video_ex_lc = strtolower($video_ex);
+    
+                        $allowed_video_exs = array("mp4", "avi", "mov");
+    
+                        if (in_array($video_ex_lc, $allowed_video_exs)) {
+                            $new_video_name = "VIDEO-" . $instructorID . "-" . $formattedDateTime . '.' . $video_ex_lc;
+    
+                            $video_upload_path = '/eduLearn/views/instructor/dashboard/videos/' . $new_video_name;
+                            move_uploaded_file($video_tmp_name, $_SERVER['DOCUMENT_ROOT'] . $video_upload_path);
+    
+                            // Corrected the SQL query
+                            $stmt = $connection->prepare("INSERT INTO `video_tbl` (`course_id`,`instructor_id`,`video_title`, `description`, `thumbnail`,`video`) VALUES(?,?,?,?,?,?)");
+                            $stmt->execute([$courseid, $instructorID, $video_title, $description, $new_img_name, $new_video_name]);
+                            $result = $stmt->rowCount();
+    
+                            if ($result > 0) {
+                                $_SESSION['video'] = '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                                                        Video added successfully.
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                    </div>';
+    
+                                header("refresh:0;url=manage-course.php");
+                                exit();
+                            } else {
+                                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        Failed to add video.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>';
+                            }
+                        } else {
+                            echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                                    You can\'t upload this type of video file.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>';
+                        }
+                    } else {
+                        echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                                You can\'t upload this type of image file.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                    }
+                }
+            } else {
+                echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                        Unknown error occurred.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            }
+        }
+    }
+
+    public function deleteChapter()
+    {
+        if (isset($_POST['delete'])) {
+
+            $video_id = $_POST['video_id'];
+
+            // Get the file names from the database
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("SELECT `thumbnail`, `video` FROM `video_tbl` WHERE `id` = ?");
+            $stmt->execute([$video_id]);
+            $fileInfo = $stmt->fetch();
+
+            $thumbnail = $fileInfo['thumbnail'];
+            $videoFile = $fileInfo['video'];
+
+            // Delete the video record from the database
+            $stmt = $connection->prepare("DELETE FROM `video_tbl` WHERE `id` = ?");
+            $stmt->execute([$video_id]);
+            $result = $stmt->rowCount();
+
+            if ($result > 0) {
+                // Delete the associated thumbnail file from the thumbnails folder
+                if (!empty($thumbnail)) {
+                    $thumbnailPath = $_SERVER['DOCUMENT_ROOT'] . '/eduLearn/views/instructor/dashboard/videos/thumbnails/' . $thumbnail;
+                    if (file_exists($thumbnailPath)) {
+                        unlink($thumbnailPath);
+                    }
+                }
+
+                // Delete the associated video file from the videos folder
+                if (!empty($videoFile)) {
+                    $videoPath = $_SERVER['DOCUMENT_ROOT'] . '/eduLearn/views/instructor/dashboard/videos/' . $videoFile;
+                    if (file_exists($videoPath)) {
+                        unlink($videoPath);
+                    }
+                }
+            }
+        }
+    }
+    
+    
 }
 
 ob_flush();
