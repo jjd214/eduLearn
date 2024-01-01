@@ -11,7 +11,7 @@ ob_start();
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-            <?php $fullname = viewFullName($_SESSION['instructor_data']['instructorID'],$_SESSION['instructor_data']['userType']); ?>
+                <?php $fullname = viewFullName($_SESSION['instructor_data']['instructorID'], $_SESSION['instructor_data']['userType']); ?>
                 <h2>Let's Start Teaching <?= $fullname; ?></h2>
             </div>
 
@@ -29,4 +29,7 @@ ob_start();
 </main>
 <!-- End #main -->
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/edulearn/partials/__footer.php'); ?>
+<?php 
+/* include($_SERVER['DOCUMENT_ROOT'] . '/edulearn/partials/__footer.php'); */
+include('../../components/footer.php');
+  ?>

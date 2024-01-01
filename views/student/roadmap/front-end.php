@@ -2,7 +2,7 @@
 // session_start();
 ob_start();
 ?>
-<?php include('../../components/navbar-student.php'); ?>
+<?php include('../../../components/navbar-student.php'); ?>
 <!-- style -->
 <style>
   .card {
@@ -56,8 +56,7 @@ ob_start();
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <?php $fullname = viewFullName($_SESSION['student_data']['studentID'], $_SESSION['student_data']['userType']); ?>
-        <h2>Let's Start Learning <?= $fullname; ?></h2>
+        <h2><b>Front-End Development</b> Courses</h2>
       </div>
 
     </div>
@@ -69,36 +68,37 @@ ob_start();
       <!-- Boxes -->
       <div class="row">
         <div class="col-md-4 stretch-card grid-margin">
-          <a href="./roadmap/front-end.php">
-            <div class="card bg-success card-img-holder text-white">
+          <a href="#">
+            <div class="card bg-secondary card-img-holder text-white">
               <div class="card-body">
-                <h4 class="font-weight-normal mb-5 card-title">front-end development
+                <h4 class="font-weight-normal mb-5 card-title">Course 1
                 </h4>
-                <img src="../../images/front-end.svg" class="card-img-absolute" />
-                <!-- <h6>Total students ni instructor sa kaniyang course</h6> -->
+                <h6>Ipapakita sa card dito from course_tbl ay thumbnail, title, difficulty, description </h6>
+                <h6>Ofc papalitan ko pa ang shape nito </h6>
               </div>
             </div>
           </a>
         </div>
         <div class="col-md-4 stretch-card grid-margin">
-          <a href="./roadmap/back-end.php">
+          <a href="#">
+            <div class="card bg-danger card-img-holder text-white">
+              <div class="card-body">
+                <h4 class="font-weight-normal mb-5 card-title">Course 2
+                </h4>
+                <h6>Ipapakita sa card dito from course_tbl ay thumbnail, title, difficulty, description </h6>
+                <h6>Ofc papalitan ko pa ang shape nito </h6>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4 stretch-card grid-margin">
+          <a href="#">
             <div class="card bg-info card-img-holder text-white">
               <div class="card-body">
-                <h4 class="font-weight-normal mb-5 card-title">back-end development
+                <h4 class="font-weight-normal mb-5 card-title">Course 3
                 </h4>
-                <img src="../../images/back-end.svg" class="card-img-absolute" />
-                <!-- <h6 class="card-text">Total uploaded videos ni Instructor</h6> -->
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-4 stretch-card grid-margin">
-          <a href="./roadmap/full-stack.php">
-            <div class="card bg-warning card-img-holder text-white">
-              <div class="card-body">
-                <h4 class="font-weight-normal mb-5 card-title">full-stack development
-                </h4>
-                <img src="../../images/full-stack.svg" class="card-img-absolute" alt="circle-image" />
+                <h6>Ipapakita sa card dito from course_tbl ay thumbnail, title, difficulty, description </h6>
+                <h6>Ofc papalitan ko pa ang shape nito </h6>
               </div>
             </div>
           </a>
@@ -108,4 +108,4 @@ ob_start();
   </section>
 </main>
 <!-- End #main -->
-<?php include('../../components/footer.php'); ?>
+<?php include('../../../components/footer.php'); ?>
