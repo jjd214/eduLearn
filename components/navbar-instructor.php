@@ -257,9 +257,6 @@ else {
             </a>
           </li>
           <li>
-            <a class="nav-link scrollto" href="#">Explore</a>
-          </li>
-          <li>
             <a class="nav-link scrollto" href="dashboard/instructor-dashboard.php">My Dashboard</a>
           </li>
           <li>

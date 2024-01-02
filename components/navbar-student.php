@@ -265,12 +265,9 @@ if (isset($userid)) {
             </form>
           </li>
           <li>
-            <a class="nav-link scrollto <?php echo (basename($_SERVER['PHP_SELF']) == 'home-page.php') ? 'active' : ''; ?>" href="home-page.php">
+            <a class="nav-link scrollto" href="/eduLearn/views/student/home-page.php">
               Home
             </a>
-          </li>
-          <li>
-            <a class="nav-link scrollto" href="#">Explore</a>
           </li>
           <li>
             <a class="nav-link scrollto" href="#">My Learning</a>
