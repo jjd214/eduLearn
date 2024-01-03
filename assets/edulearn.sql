@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2023 at 06:29 AM
+-- Generation Time: Jan 03, 2024 at 01:08 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -68,7 +68,7 @@ CREATE TABLE `course_tbl` (
   `difficulty` varchar(100) DEFAULT NULL,
   `thumbnail` text DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `students_enrolled` varchar(1000) DEFAULT NULL,
+  `students_enrolled` bigint(20) DEFAULT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'Private',
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -99,7 +99,7 @@ CREATE TABLE `instructor_tbl` (
 --
 
 INSERT INTO `instructor_tbl` (`id`, `firstname`, `lastname`, `gender`, `biography`, `email`, `password`, `verify_token`, `age`, `position`, `profile`, `access`) VALUES
-(8, 'John Jacob', 'Dimaya', 'male', 'zxcxzcqweqeq', 'johnjacobdimaya2021@gmail.com', '065307ce8014f2f29c4e2ee84f2bb819', '9a8f24bfe9bdf3ce950455f39ec71848e69b76c9b006a0005188d02d1f00f7fb', '20', 'fullstack', 'IMG-8-2023-12-27-11-56-33-AM.jpg', 'instructor');
+(8, 'John Jacob', 'Ruiz', 'male', 'zxcxzcqweqeq', 'johnjacobdimaya2021@gmail.com', '065307ce8014f2f29c4e2ee84f2bb819', '9a8f24bfe9bdf3ce950455f39ec71848e69b76c9b006a0005188d02d1f00f7fb', '20', 'fullstack', 'IMG-8-2023-12-30-10-28-48-PM.jpg', 'instructor');
 
 -- --------------------------------------------------------
 
@@ -126,6 +126,23 @@ CREATE TABLE `user_tbl` (
 
 INSERT INTO `user_tbl` (`id`, `firstname`, `lastname`, `gender`, `biography`, `email`, `password`, `verify_token`, `profile`, `access`) VALUES
 (6, 'John Jacob', 'Ruiz', 'male', 'qwertys', 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'b7bff1d8891886ee403d18fce1896db74002d6af8d819411c8f63dffb0a46723', 'IMG-6-2023-12-27-08-39-23-PM.png', 'student');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video_tbl`
+--
+
+CREATE TABLE `video_tbl` (
+  `id` int(11) NOT NULL,
+  `course_id` int(11) DEFAULT NULL,
+  `instructor_id` int(11) DEFAULT NULL,
+  `video_title` varchar(100) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `thumbnail` text DEFAULT NULL,
+  `video` text DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -163,6 +180,14 @@ ALTER TABLE `user_tbl`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `video_tbl`
+--
+ALTER TABLE `video_tbl`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `course_id` (`course_id`),
+  ADD KEY `instructor_id` (`instructor_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -182,7 +207,7 @@ ALTER TABLE `application-form_tbl`
 -- AUTO_INCREMENT for table `course_tbl`
 --
 ALTER TABLE `course_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `instructor_tbl`
@@ -197,6 +222,12 @@ ALTER TABLE `user_tbl`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `video_tbl`
+--
+ALTER TABLE `video_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -205,6 +236,13 @@ ALTER TABLE `user_tbl`
 --
 ALTER TABLE `course_tbl`
   ADD CONSTRAINT `course_tbl_ibfk_1` FOREIGN KEY (`instructor_id`) REFERENCES `instructor_tbl` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `video_tbl`
+--
+ALTER TABLE `video_tbl`
+  ADD CONSTRAINT `video_tbl_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course_tbl` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `video_tbl_ibfk_2` FOREIGN KEY (`instructor_id`) REFERENCES `course_tbl` (`instructor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
