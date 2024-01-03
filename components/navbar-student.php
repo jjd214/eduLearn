@@ -248,7 +248,7 @@ if (isset($userid)) {
                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
                 <a href="profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
-                <a href="logout.php" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+                <a href="/eduLearn/views/logout.php" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
               </div>
             </div>
           </li>
@@ -284,7 +284,7 @@ if (isset($userid)) {
                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
                 <a href="profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
-                <a href="logout.php" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+                <a href="/eduLearn/views/logout.php" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
               </div>
             </div>
           </li>

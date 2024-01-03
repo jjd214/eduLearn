@@ -29,7 +29,9 @@
                   <p class="mb-4">We have sent a password recovery instructions to your email.</p>
                   <!-- Log in btn -->
                   <form action="https://mail.google.com/mail/" method="get" target="_blank">
-                    <button class=" btn btn-block btn-primary col-md-12"><i class="fa-solid fa-envelope"></i>&nbsp;Open your mail</button>
+                    <button class=" btn btn-block btn-primary col-md-12">
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                      &nbsp;Open your mail</button>
                   </form>
                   <!-- Password -->
                   <p class="mt-5">Did not receive the email? Check your spam filter.<!-- <br> or <a href="forgot-password.php" class="">try another email address</a> --></p>
