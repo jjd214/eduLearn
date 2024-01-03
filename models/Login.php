@@ -55,7 +55,7 @@ class Login extends Config {
                 exit();
             } else {
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Incorrect email or password instructor
+                        Incorrect email, password or role
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>';
             }
