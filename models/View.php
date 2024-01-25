@@ -39,6 +39,7 @@ class View extends Config {
     }
 
     public function applicants() {
+
         $connection = $this->openConnection();
         $stmt = $connection->prepare("SELECT * FROM `application-form_tbl`");
         $stmt->execute();
@@ -348,6 +349,45 @@ class View extends Config {
     
         <?php
 
+    }
+
+    public function view_fullstack_course() {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `course_tbl` WHERE `roadmap` = 'fullstack' AND `status` = 'Public'");
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+
+        return $data;
+
+    }
+
+    public function view_frontend_course() {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `course_tbl` WHERE `roadmap` = 'frontend' AND `status` = 'Public'");
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+
+        return $data;
+
+    }
+
+    public function view_backend_course() {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `course_tbl` WHERE `roadmap` = 'backend' AND `status` = 'Public'");
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+
+        return $data;
+
+    }
+
+    public function view_course_details($course_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `video_tbl` WHERE `course_id` = ?");
+        $stmt->execute([$course_id]);
+        $data = $stmt->fetchAll();
+
+        return $data;
     }
 
     

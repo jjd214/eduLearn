@@ -202,5 +202,23 @@ function deleteChapter() {
     $delete->deleteChapter();
 }
 
+function view_fullstack_course() {
+    $view = new View();
+    return $view->view_fullstack_course();
+}
 
+function view_frontend_course() {
+    $view = new View();
+    return $view->view_frontend_course();
+}
+
+function view_backend_course() {
+    $view = new View();
+    return $view->view_backend_course();
+}
+
+function  view_course_details($course_id) {
+    $view = new View();
+    return $view->view_course_details($course_id);
+}
 ?>

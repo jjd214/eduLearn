@@ -3,6 +3,7 @@
 ob_start();
 ?>
 <?php include('../../../components/navbar-student.php'); ?>
+<?php $courses = view_backend_course(); ?>
 <!-- style -->
 <style>
   .card {
@@ -67,42 +68,26 @@ ob_start();
     <div class="container">
       <!-- Boxes -->
       <div class="row">
-        <div class="col-md-4 stretch-card grid-margin">
-          <a href="#">
-            <div class="card bg-secondary card-img-holder text-white">
-              <div class="card-body">
-                <h4 class="font-weight-normal mb-5 card-title">Course 1
-                </h4>
-                <h6>Ipapakita sa card dito from course_tbl ay thumbnail, title, difficulty, description </h6>
-                <h6>Ofc papalitan ko pa ang shape nito </h6>
-              </div>
+      <?php foreach($courses as $course) : ?>
+      <div class="col-md-4 stretch-card grid-margin">
+      <a href="../course_details.php">
+              <?php
+              // Set the course ID in the session
+              $_SESSION['course_id'] = $course['id'];
+              ?>
+          <div class="card bg-secondary card-img-holder text-white">
+            <div class="card-body">
+              <h4 class="font-weight-normal mb-5 card-title">
+                <?= $course['title'] ?>
+              </h4>
+              <img src="/eduLearn/views/instructor/dashboard/uploads/<?= $course['thumbnail'] ?>" alt="Course image" height="250" width="100%">
+              <h6>Difficulty : <?= $course['difficulty'] ?></h6>
+              <h6>Course Description <?= $course['description'] ?></h6>
             </div>
-          </a>
-        </div>
-        <div class="col-md-4 stretch-card grid-margin">
-          <a href="#">
-            <div class="card bg-danger card-img-holder text-white">
-              <div class="card-body">
-                <h4 class="font-weight-normal mb-5 card-title">Course 2
-                </h4>
-                <h6>Ipapakita sa card dito from course_tbl ay thumbnail, title, difficulty, description </h6>
-                <h6>Ofc papalitan ko pa ang shape nito </h6>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-4 stretch-card grid-margin">
-          <a href="#">
-            <div class="card bg-info card-img-holder text-white">
-              <div class="card-body">
-                <h4 class="font-weight-normal mb-5 card-title">Course 3
-                </h4>
-                <h6>Ipapakita sa card dito from course_tbl ay thumbnail, title, difficulty, description </h6>
-                <h6>Ofc papalitan ko pa ang shape nito </h6>
-              </div>
-            </div>
-          </a>
-        </div>
+          </div>
+        </a>
+      </div>
+    <?php endforeach; ?>
       </div>
     </div>
   </section>
