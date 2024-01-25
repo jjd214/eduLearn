@@ -6,13 +6,7 @@ ob_start();
 ?>
 <?php include('../../components/navbar-student.php'); ?>
 
-<?php 
-if(isset($_SESSION['course_id'])) {
-    $details = view_course_details($_SESSION['course_id']);
-} else {
-    echo '<script>alert("note set")</script>';
-}
-?>
+<?php $details = view_course_details($_GET['course'])?>
 
 <?php foreach($details as $course) : ?>
 

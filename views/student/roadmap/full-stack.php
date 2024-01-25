@@ -71,11 +71,7 @@ ob_start();
 
       <?php foreach($courses as $course) : ?>
       <div class="col-md-4 stretch-card grid-margin">
-        <a href="../course_details.php">
-              <?php
-              // Set the course ID in the session
-              $_SESSION['course_id'] = $course['id'];
-              ?>
+        <a href="../course_details.php?course=<?= $course['id'] ?>">
           <div class="card bg-secondary card-img-holder text-white">
             <div class="card-body">
               <h4 class="font-weight-normal mb-5 card-title">
