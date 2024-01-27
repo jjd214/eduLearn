@@ -12,7 +12,7 @@ ob_start();
   }
 
   .card .card-body {
-    padding: 2.5rem 2.5rem;
+    padding: 1rem 1rem;
   }
 
   .card .card-body+.card-body {
@@ -44,6 +44,10 @@ ob_start();
     height: 100%;
   }
 
+  .bg-primary {
+    background-color: var(--chelsea-200) !important;
+  }
+
   @media (max-width: 767px) {
     .stretch-card {
       margin-bottom: 20px;
@@ -57,7 +61,7 @@ ob_start();
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2><b>Full-Stack Development</b> Courses</h2>
+        <span><a href="/eduLearn/views/student/home-page.php">Homepage</a>&nbsp;/<a>&nbsp;Full-Stack Development</a></span>
       </div>
 
     </div>
@@ -69,22 +73,22 @@ ob_start();
       <!-- Boxes -->
       <div class="row">
 
-      <?php foreach($courses as $course) : ?>
-      <div class="col-md-4 stretch-card grid-margin">
-        <a href="../course_details.php?course=<?= $course['id'] ?>">
-          <div class="card bg-secondary card-img-holder text-white">
-            <div class="card-body">
-              <h4 class="font-weight-normal mb-5 card-title">
-                <?= $course['title'] ?>
-              </h4>
-              <img src="/eduLearn/views/instructor/dashboard/uploads/<?= $course['thumbnail'] ?>" alt="Course image" height="250" width="100%">
-              <h6>Difficulty : <?= $course['difficulty'] ?></h6>
-              <h6>Course Description <?= $course['description'] ?></h6>
-            </div>
+        <?php foreach ($courses as $course) : ?>
+          <div class="col-md-4 stretch-card grid-margin">
+            <a href="../course_details.php?course=<?= $course['id'] ?>">
+              <div class="card bg-primary card-img-holder text-white">
+                <div class="card-body text-dark">
+                  <img src="/eduLearn/views/instructor/dashboard/uploads/<?= $course['thumbnail'] ?>" alt="Course image" height="250" width="100%">
+                  <h4 class="font-weight-normal fw-bold card-title ">
+                    <?= $course['title'] ?>
+                  </h4>
+                  <h6>Difficulty : <?= $course['difficulty'] ?></h6>
+                  <!-- <h6>Course Description <?php /* $course['description'] */ ?></h6> -->
+                </div>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
 
 
       </div>

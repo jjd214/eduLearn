@@ -48,6 +48,11 @@
 .nav-link:hover{
   color: var(--chelsea-300) !important;
 }
+
+.bg-primary{
+  background-color: var(--chelsea-300) !important;
+}
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/

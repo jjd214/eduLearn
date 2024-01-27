@@ -307,7 +307,7 @@ class CourseEntity extends Config
             if ($error === 0) {
                 $connection = $this->openConnection();
     
-                if ($img_size > 5242880) {
+                if ($img_size > 105000000) {
                     echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
                             Your image file should not exceed 5mb.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

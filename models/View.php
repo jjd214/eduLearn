@@ -2,7 +2,6 @@
 ob_start();
 
 class View extends Config {
-
     
     private function pagination($currentPage, $totalPages) {
         ?>

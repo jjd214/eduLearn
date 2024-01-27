@@ -57,7 +57,7 @@ ob_start();
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2><b>Front-End Development</b> Courses</h2>
+        <span><a href="/eduLearn/views/student/home-page.php">Homepage</a>&nbsp;/<a>&nbsp;Front-End Development</a></span>
       </div>
 
     </div>

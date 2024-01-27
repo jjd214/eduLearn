@@ -67,7 +67,7 @@
                   <!-- Log in btn -->
                   <input type="submit" name="submit" value="Log In" class="mt-4 btn btn-block btn-primary col-md-12">
                   <!-- Sign Up -->
-                  <p class="mt-5">Don't have an account? <a href="register-student.php" class="">Sign Up here</a></p>
+                  <p class="mt-5">Don't have an account? <a href="registration-student.php" class="">Sign Up here</a></p>
 
                 </form>
               </div>
