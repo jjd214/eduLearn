@@ -91,7 +91,7 @@ foreach ($details as $course) : */ ?>
                 </div>
                 <div class="col-md-4">
                     <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" class="h-80 w-100 p-2">
-                    <a class="btn btn-primary mt-2 w-100" href="#">Go to course</a>
+                    <a class="btn btn-primary mt-2 w-100" href="courses/course.php">Go to course</a>
                 </div>
 
 
