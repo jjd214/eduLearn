@@ -45,7 +45,7 @@
       </a>
     </li> -->
     <li class="nav-item">
-      <a class="nav-link" href="pages/charts/chartjs.html">
+      <a class="nav-link" href="students.php">
         <span class="menu-title">Students</span>
         <i class="mdi mdi-account-multiple  menu-icon"></i>
       </a>

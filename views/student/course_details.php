@@ -27,7 +27,7 @@ $validate = validate_ifStudent_isEnrolled($_GET['course'],$student_id);
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <span><a href="/eduLearn/views/student/home-page.php">Homepage</a>&nbsp;/&nbsp;<a href="/eduLearn/views/student/roadmap/full-stack.php">Front, Back at, Full-Stack Development</a>&nbsp;/&nbsp; Course Name Dito</span>
+                <span><a href="/eduLearn/views/student/home-page.php">Homepage</a>&nbsp;/&nbsp;<a href="/eduLearn/views/student/roadmap/full-stack.php"><span class="text-capitalize"><?= $course['roadmap'] ?></span> Development</a>&nbsp;/&nbsp; <?= $course['title'] ?></span>
             </div>
 
         </div>
