@@ -49,7 +49,7 @@ $validate = validate_ifStudent_isEnrolled($_GET['course'],$student_id);
                         <span class="fw-bold bg-primary text-dark p-1"><?= $course['difficulty'] ?> Course</span>
                         <br>
                         <br>
-                        <h5 class="mt-2">Created by <a href="#" class="text-primary">Instructor <?= $instructor['firstname']. " ".$instructor['lastname'] ?></a></h5>
+                        <h5 class="mt-2">Created by <a href="/eduLearn/views/user/profile.php" class="text-primary"><?= $instructor['firstname']. " ".$instructor['lastname'] ?></a></h5>
                     </div>
                     <div class="card mt-4">
                         <div class="card-header">
