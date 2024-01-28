@@ -379,6 +379,84 @@ class CourseEntity extends Config
             }
         }
     }
+
+    public function update_chapter() {
+        if (isset($_POST['edit_chapter'])) {
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+            $id = $_POST['id'];
+    
+            $connection = $this->openConnection();
+    
+            // Get the current thumbnail and video file names from the database
+            $stmt = $connection->prepare("SELECT `thumbnail`, `video` FROM `video_tbl` WHERE `id` = ?");
+            $stmt->execute([$id]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            $current_thumbnail = $row['thumbnail'];
+            $current_video = $row['video'];
+    
+            // Check if either thumbnail or video files were selected for update
+            $thumbnail_name = $_FILES['course-image']['name'];
+            $thumbnail_tmp_name = $_FILES['course-image']['tmp_name'];
+            $thumbnail_error = $_FILES['course-image']['error'];
+    
+            $video_name = $_FILES['course-video']['name'];
+            $video_tmp_name = $_FILES['course-video']['tmp_name'];
+            $video_error = $_FILES['course-video']['error'];
+    
+            if (($thumbnail_error === 0 && !empty($thumbnail_name)) || ($video_error === 0 && !empty($video_name))) {
+                // Files were selected for update
+    
+                // Handle thumbnail file
+                if ($thumbnail_error === 0 && !empty($thumbnail_name)) {
+                    $thumbnail_ex = pathinfo($thumbnail_name, PATHINFO_EXTENSION);
+                    $allowed_thumbnail_exs = array("jpg", "jpeg", "png");
+    
+                    if (in_array(strtolower($thumbnail_ex), $allowed_thumbnail_exs)) {
+                        unlink($_SERVER['DOCUMENT_ROOT'] . '/eduLearn/views/instructor/dashboard/videos/thumbnails/' . $current_thumbnail);
+    
+                        $uniqueIdentifier = uniqid();
+                        $new_thumbnail_name = "IMG-" . $id . "-" . $uniqueIdentifier . '.' . $thumbnail_ex;
+    
+                        $thumbnail_upload_path = '/eduLearn/views/instructor/dashboard/videos/thumbnails/' . $new_thumbnail_name;
+                        move_uploaded_file($thumbnail_tmp_name, $_SERVER['DOCUMENT_ROOT'] . $thumbnail_upload_path);
+    
+                        $stmt = $connection->prepare("UPDATE `video_tbl` SET `thumbnail` = ? WHERE `id` = ?");
+                        $stmt->execute([$new_thumbnail_name, $id]);
+                    }
+                }
+    
+                // Handle video file
+                if ($video_error === 0 && !empty($video_name)) {
+                    $video_ex = pathinfo($video_name, PATHINFO_EXTENSION);
+                    $allowed_video_exs = array("mp4", "avi", "mov");
+    
+                    if (in_array(strtolower($video_ex), $allowed_video_exs)) {
+                        unlink($_SERVER['DOCUMENT_ROOT'] . '/eduLearn/views/instructor/dashboard/videos/' . $current_video);
+    
+                        $uniqueIdentifier = uniqid();
+                        $new_video_name = "VIDEO-" . $id . "-" . $uniqueIdentifier . '.' . $video_ex;
+    
+                        $video_upload_path = '/eduLearn/views/instructor/dashboard/videos/' . $new_video_name;
+                        move_uploaded_file($video_tmp_name, $_SERVER['DOCUMENT_ROOT'] . $video_upload_path);
+    
+                        $stmt = $connection->prepare("UPDATE `video_tbl` SET `video` = ? WHERE `id` = ?");
+                        $stmt->execute([$new_video_name, $id]);
+                    }
+                }
+            }
+    
+            // Update other fields in the database if needed
+            $stmt = $connection->prepare("UPDATE `video_tbl` SET `video_title` = ?, `description` = ? WHERE `id` = ?");
+            $stmt->execute([$title, $description, $id]);
+    
+            header("Location: /edulearn/views/instructor/dashboard/course-list.php");
+            exit();
+        }
+    }
+    
+    
     
 
     public function deleteChapter()

@@ -52,8 +52,9 @@ if (isset($_SESSION['lastInsertedCourseId'])) {
                             <div class="card" style="height: 575px;">
                                 <div class="card-body">
                                     <h4 class="card-title">Chapter List</h4>
-                                    <?= deleteChapter(); ?>
-                                    <?= viewChapterList($_SESSION['courseid'],$userid); ?>
+                                    <?php deleteChapter(); ?>
+                                    <?php update_chapter() ?>
+                                    <?php viewChapterList($_SESSION['courseid'],$userid); ?>
                                     
                                 </div>
                             </div>

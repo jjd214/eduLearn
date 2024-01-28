@@ -273,21 +273,21 @@ class View extends Config {
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="forms-sample">
+                                                <form class="forms-sample" method="post" enctype="multipart/form-data">>
                                                     <div class="row">
                                                         <!-- Left Column: Chapter Title and Video Description -->
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="exampleInputUsername1">Chapter Title</label>
-                                                                <input type="text" class="form-control border-primary" id="exampleInputUsername1" style="margin-top: 8px;" placeholder="Chapter Title" value="<?= $row['video_title'] ?>" required>
+                                                                <input type="text" class="form-control border-primary" name="title" id="exampleInputUsername1" style="margin-top: 8px;" placeholder="Chapter Title" value="<?= $row['video_title'] ?>" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Video Description</label>
-                                                                <textarea class="form-control border-primary" name="" id="" rows="5" style="height: 205px;"><?= $row['description'] ?></textarea>
+                                                                <textarea class="form-control border-primary" name="description" id="" rows="5" style="height: 205px;"><?= $row['description'] ?></textarea>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1">Chapter Video</label>
-                                                                <input class="form-control" type="file" name="course-video" id="course-video" accept="video/mp4" required>
+                                                                <input class="form-control" type="file" name="course-video" id="course-video" accept="video/mp4" >
                                                             </div>
                                                         </div>
                                                         <!-- Right Column: Chapter Video and Thumbnail -->
@@ -298,11 +298,12 @@ class View extends Config {
                                                                 <?php $defaultImage = 'placeholder.png'; ?>
                                                                     <img src="/eduLearn/views/instructor/dashboard/videos/thumbnails/<?= isset($row['thumbnail']) ? $row['thumbnail'] : $defaultImage ?>" style="width: 100% !important;" />
                                                                 </div>
-                                                                <input class="form-control" type="file" name="course-image" id="course-image" style="margin-top: 43px;" accept="image/jpeg, image/jpg, image/png" required>
+                                                                <input class="form-control" type="file" name="course-image" id="course-image" style="margin-top: 43px;" accept="image/jpeg, image/jpg, image/png" >
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button type="submit" class="btn btn-gradient-primary me-2">Edit Chapter</button>
+                                                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                                    <button type="submit" name="edit_chapter" class="btn btn-gradient-primary me-2">Edit Chapter</button>
                                                 </form>
                                             </div>
                                         </div>
