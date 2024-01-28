@@ -420,6 +420,10 @@ class CourseEntity extends Config
             }
         }
     }
+
+    public function enroll_course($student_id) {
+        echo '<script>alert("'.$student_id.'")</script>';
+    }
     
     
 }

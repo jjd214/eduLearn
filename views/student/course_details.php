@@ -4,6 +4,8 @@ ob_start();
 include('../../components/navbar-student.php');
 ?>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <style>
     .bg-primary {
         background-color: var(--chelsea-200) !important;
@@ -14,6 +16,9 @@ include('../../components/navbar-student.php');
 $course = getCourse($_GET['course']);
 $details = view_course_details($_GET['course']);
 $instructor = get_instructor($course['instructor_id']);
+$student_id = $userid;
+
+$validate = validate_ifStudent_isEnrolled($_GET['course'],$student_id);
 ?>
 
 <main id="main">
@@ -39,11 +44,14 @@ $instructor = get_instructor($course['instructor_id']);
                         <h1><?= $course['title'] ?></h1>
                         <h5><?= $course['description'] ?></h5>
                     </div>
+                    <br>
                     <div>
                         <span class="fw-bold bg-primary text-dark p-1"><?= $course['difficulty'] ?> Course</span>
+                        <br>
+                        <br>
                         <h5 class="mt-2">Created by <a href="#" class="text-primary">Instructor <?= $instructor['firstname']. " ".$instructor['lastname'] ?></a></h5>
                     </div>
-                    <div class="card mt-3">
+                    <div class="card mt-4">
                         <div class="card-header">
                             <span class="fs-4 fw-bold">Course content</span>
                         </div>
@@ -66,10 +74,8 @@ $instructor = get_instructor($course['instructor_id']);
                 </div>
                 <div class="col-md-4">
                     <img src="/eduLearn/views/instructor/dashboard/uploads/<?= $course['thumbnail'] ?>" class="h-80 w-100 p-2">
-                    <a class="btn btn-primary mt-2 w-100" href="courses/course.php?course=<?= $course['id'] ?>">Go to course</a>
+                    <a class="btn btn-primary mt-2 w-100" id="enrollButton">Enroll Now</a>
                 </div>
-
-
             </div>
         </div>
     </section>
@@ -77,3 +83,43 @@ $instructor = get_instructor($course['instructor_id']);
 <!-- End #main -->
 
 <?php include('../../components/footer.php'); ?>
+
+<script>
+    document.getElementById('enrollButton').addEventListener('click', function() {
+
+        if (document.getElementById('enrollButton').innerText === "Enroll Now") {
+            Swal.fire({
+                title: "Welcome!",
+                text: "You are now Enrolled!",
+                icon: "success",
+                confirmButtonText: "OK"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "/eduLearn/models/Enroll.php", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            // Redirect to the course page after successful enrollment
+                            window.location.href = "courses/course.php?course=<?= $course['id'] ?>";
+                        }
+                    };
+
+                    var courseId = <?= $course['id'] ?>;
+                    var courseName = '<?= $course['title'] ?>'; 
+                    xhr.send("student_id=<?= $student_id ?>&course_id=" + courseId + "&course_name=" + encodeURIComponent(courseName));
+                }
+            });
+        }
+    });
+
+    document.getElementById('enrollButton').addEventListener('click', function() {
+        if (document.getElementById('enrollButton').innerText === "Go to My Course") {
+            window.location.href = "courses/course.php?course=<?= $course['id'] ?>";
+        }
+    });
+
+    if (<?= $validate ?> === 1) {
+        document.getElementById('enrollButton').innerText = "Go to My Course";
+    }
+</script>

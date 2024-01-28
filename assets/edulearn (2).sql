@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2024 at 04:55 AM
+-- Generation Time: Jan 28, 2024 at 07:59 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -78,7 +78,7 @@ CREATE TABLE `course_tbl` (
 --
 
 INSERT INTO `course_tbl` (`id`, `instructor_id`, `title`, `roadmap`, `difficulty`, `thumbnail`, `description`, `students_enrolled`, `status`, `created_at`) VALUES
-(66, 8, 'Data Structure and Algorithms', 'fullstack', 'Advanced', 'IMG-8-65b5a881eeca3.png', 'In this course we will understand different data structures and how to use them effectively for solving problems. It is expected that the students have basic experience in any high-level programming language. Data structures and algorithms are a crucial p', NULL, 'Public', '2024-01-28 09:04:48');
+(66, 8, 'Data Structure and Algorithms', 'fullstack', 'Advanced', 'IMG-8-65b5a881eeca3.png', 'In this course we will understand different data structures and how to use them effectively for solving problems. It is expected that the students have basic experience in any high-level programming language. Data structures and algorithms are a crucial p', 2, 'Public', '2024-01-28 09:04:48');
 
 -- --------------------------------------------------------
 
@@ -112,6 +112,27 @@ INSERT INTO `instructor_tbl` (`id`, `firstname`, `lastname`, `gender`, `biograph
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `student_course_tbl`
+--
+
+CREATE TABLE `student_course_tbl` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) DEFAULT NULL,
+  `course_id` int(11) DEFAULT NULL,
+  `course` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `student_course_tbl`
+--
+
+INSERT INTO `student_course_tbl` (`id`, `student_id`, `course_id`, `course`) VALUES
+(1, 7, 66, 'Data Structure and Algorithms'),
+(2, 8, 66, 'Data Structure and Algorithms');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_tbl`
 --
 
@@ -133,7 +154,8 @@ CREATE TABLE `user_tbl` (
 --
 
 INSERT INTO `user_tbl` (`id`, `firstname`, `lastname`, `gender`, `biography`, `email`, `password`, `verify_token`, `profile`, `access`) VALUES
-(7, 'John Jacob', 'Dimaya', 'male', NULL, 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'ab00ab307114001fc5e1e5e3710831f2', 'IMG-7-2024-01-28-09-03-57-AM.jpg', 'student');
+(7, 'John Jacob', 'Dimaya', 'male', NULL, 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'ab00ab307114001fc5e1e5e3710831f2', 'IMG-7-2024-01-28-09-03-57-AM.jpg', 'student'),
+(8, 'Aaron Angelo', 'Eva', 'male', NULL, 'aaron.angelo565@gmail.com', '817b3ae38cbe924db0ba853912232d9b', '90c961b15df666be5319edac1791d81c', NULL, 'student');
 
 -- --------------------------------------------------------
 
@@ -190,6 +212,12 @@ ALTER TABLE `instructor_tbl`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `student_course_tbl`
+--
+ALTER TABLE `student_course_tbl`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_tbl`
 --
 ALTER TABLE `user_tbl`
@@ -232,10 +260,16 @@ ALTER TABLE `instructor_tbl`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `student_course_tbl`
+--
+ALTER TABLE `student_course_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `user_tbl`
 --
 ALTER TABLE `user_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `video_tbl`

@@ -443,6 +443,14 @@ class View extends Config {
         return $data;
     }   
     
+    public function validate_ifStudent_isEnrolled($course_id,$student_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `student_course_tbl` WHERE `course_id` = ? AND `student_id` = ?");
+        $stmt->execute([$course_id,$student_id]);
+        $result = $stmt->rowCount();
+
+        return $result;
+    }
 }
 
 ?>

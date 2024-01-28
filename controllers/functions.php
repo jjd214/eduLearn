@@ -251,4 +251,9 @@ function get_video_length($id) {
     $view = new View();
     return $view->get_video_length($id);
 }
+
+function validate_ifStudent_isEnrolled($course_id,$student_id) {
+    $view = new View();
+    return $view->validate_ifStudent_isEnrolled($course_id,$student_id);
+}
 ?>
