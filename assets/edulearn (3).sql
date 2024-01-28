@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2024 at 07:59 AM
+-- Generation Time: Jan 28, 2024 at 11:51 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -106,7 +106,7 @@ CREATE TABLE `instructor_tbl` (
 --
 
 INSERT INTO `instructor_tbl` (`id`, `firstname`, `lastname`, `gender`, `biography`, `email`, `password`, `verify_token`, `age`, `position`, `profile`, `access`) VALUES
-(8, 'John Jacob', 'Ruiz', 'male', 'zxcxzcqweqeq', 'johnjacobdimaya2021@gmail.com', '065307ce8014f2f29c4e2ee84f2bb819', '9a8f24bfe9bdf3ce950455f39ec71848e69b76c9b006a0005188d02d1f00f7fb', '20', 'fullstack', 'IMG-8-2024-01-25-10-35-19-AM.jpg', 'instructor'),
+(8, 'John Jacob', 'Ruiz', 'male', 'zxcxzcqweqeq', 'johnjacobdimaya2021@gmail.com', '065307ce8014f2f29c4e2ee84f2bb819', '9a8f24bfe9bdf3ce950455f39ec71848e69b76c9b006a0005188d02d1f00f7fb', '20', 'fullstack', 'IMG-8-2024-01-28-05-53-40-PM.jpg', 'instructor'),
 (9, 'Ana Bien', 'Salazar', 'female', NULL, 'anabien0314@gmail.com', '817b3ae38cbe924db0ba853912232d9b', '9df6863b779d51d666eaec40b4272437', '20', 'Fullstack', NULL, 'instructor');
 
 -- --------------------------------------------------------
@@ -179,7 +179,7 @@ CREATE TABLE `video_tbl` (
 --
 
 INSERT INTO `video_tbl` (`id`, `course_id`, `instructor_id`, `video_title`, `description`, `thumbnail`, `video`, `created_at`) VALUES
-(41, 66, 8, 'Introduction to Data Structures and Algorithm', 'Lorem ipsum', 'IMG-8-65b5a8fdbe1cb.png', 'VIDEO-8-65b5a8fdbe1cb.mp4', '2024-01-28 09:08:13'),
+(41, 66, 8, 'Introduction to Data Structures and Algorithm', 'Lorem ipsumS', 'IMG-41-65b628a6c2ab3.png', 'VIDEO-41-65b628a6c384b.mp4', '2024-01-28 09:08:13'),
 (42, 66, 8, 'Linear vs Non Linear', 'Let\'s talk about the difference of Linear and Non Linear Data Structures, we will see how they compare with each other and how some is more advantageous than the other. We will try to explain it as much as possible in layman\'s term.', 'IMG-8-65b5c26fe23b5.png', 'VIDEO-8-65b5c26fe23b5.mp4', '2024-01-28 10:56:47');
 
 --

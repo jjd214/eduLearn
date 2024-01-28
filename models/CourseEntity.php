@@ -405,6 +405,10 @@ class CourseEntity extends Config
             $video_tmp_name = $_FILES['course-video']['tmp_name'];
             $video_error = $_FILES['course-video']['error'];
     
+            // Bootstrap alert variables
+            $alertType = "success"; // You can change this to "danger" for an error alert
+            $alertMessage = "";
+    
             if (($thumbnail_error === 0 && !empty($thumbnail_name)) || ($video_error === 0 && !empty($video_name))) {
                 // Files were selected for update
     
@@ -420,10 +424,17 @@ class CourseEntity extends Config
                         $new_thumbnail_name = "IMG-" . $id . "-" . $uniqueIdentifier . '.' . $thumbnail_ex;
     
                         $thumbnail_upload_path = '/eduLearn/views/instructor/dashboard/videos/thumbnails/' . $new_thumbnail_name;
-                        move_uploaded_file($thumbnail_tmp_name, $_SERVER['DOCUMENT_ROOT'] . $thumbnail_upload_path);
-    
-                        $stmt = $connection->prepare("UPDATE `video_tbl` SET `thumbnail` = ? WHERE `id` = ?");
-                        $stmt->execute([$new_thumbnail_name, $id]);
+                        if (move_uploaded_file($thumbnail_tmp_name, $_SERVER['DOCUMENT_ROOT'] . $thumbnail_upload_path)) {
+                            $stmt = $connection->prepare("UPDATE `video_tbl` SET `thumbnail` = ? WHERE `id` = ?");
+                            $stmt->execute([$new_thumbnail_name, $id]);
+                            $alertMessage .= 'Thumbnail updated successfully. ';
+                        } else {
+                            $alertType = "danger";
+                            $alertMessage .= 'Failed to move thumbnail file to destination folder. ';
+                        }
+                    } else {
+                        $alertType = "danger";
+                        $alertMessage .= 'Invalid thumbnail file format. You can\'t upload this type of file. ';
                     }
                 }
     
@@ -439,25 +450,36 @@ class CourseEntity extends Config
                         $new_video_name = "VIDEO-" . $id . "-" . $uniqueIdentifier . '.' . $video_ex;
     
                         $video_upload_path = '/eduLearn/views/instructor/dashboard/videos/' . $new_video_name;
-                        move_uploaded_file($video_tmp_name, $_SERVER['DOCUMENT_ROOT'] . $video_upload_path);
-    
-                        $stmt = $connection->prepare("UPDATE `video_tbl` SET `video` = ? WHERE `id` = ?");
-                        $stmt->execute([$new_video_name, $id]);
+                        if (move_uploaded_file($video_tmp_name, $_SERVER['DOCUMENT_ROOT'] . $video_upload_path)) {
+                            $stmt = $connection->prepare("UPDATE `video_tbl` SET `video` = ? WHERE `id` = ?");
+                            $stmt->execute([$new_video_name, $id]);
+                            $alertMessage .= 'Video updated successfully.';
+                        } else {
+                            $alertType = "danger";
+                            $alertMessage .= 'Failed to move video file to destination folder.';
+                        }
+                    } else {
+                        $alertType = "danger";
+                        $alertMessage .= 'Invalid video file format. You can\'t upload this type of file.';
                     }
                 }
+            } else {
+                $alertType = "success";
+                $alertMessage = 'Updated Successfully.';
             }
     
-            // Update other fields in the database if needed
             $stmt = $connection->prepare("UPDATE `video_tbl` SET `video_title` = ?, `description` = ? WHERE `id` = ?");
             $stmt->execute([$title, $description, $id]);
+    
+            $_SESSION['alert'] = '<div class="alert alert-' . $alertType . ' alert-dismissible fade show" role="alert">
+                    ' . $alertMessage . '
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
     
             header("Location: /edulearn/views/instructor/dashboard/course-list.php");
             exit();
         }
     }
-    
-    
-    
 
     public function deleteChapter()
     {
