@@ -3,19 +3,13 @@
 <div class="container-scroller">
     <!-- components:components/navbar.php -->
     <?php include('./components/navbar.php'); ?>
+    <?php $students = student_list($userid); ?>
     <div class="container-fluid page-body-wrapper">
         <!-- components:components/sidebar.php -->
         <?php include('./components/sidebar.php'); ?>
         <!-- Main Panel -->
         <div class="main-panel">
             <div class="content-wrapper">
-                <?php
-                // Alert container outside the navbar
-                if (isset($_SESSION['alert'])) {
-                    echo '<div id="alertContainer" class="position-fixed top-0 end-0 p-3" style="margin-top: 80px;">' . $_SESSION['alert'] . '</div>';
-                    unset($_SESSION['alert']);
-                }
-                ?>
                 <div class="page-header">
                     <h3 class="page-title">
                         <span class="page-title-icon bg-gradient-primary text-white me-2">
@@ -29,19 +23,24 @@
                             <table class="mt-3 table table-bordered table-striped table-hover">
                                 <thead>
                                     <tr>
+                                        <th>User ID</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
+                                        <th>Email</th>
                                         <th>Enrolled Course Name</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php foreach ($students as $student) : ?>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-
+                                        <td><?= $student['id'] ?></td>
+                                        <td><?= $student['firstname'] ?></td>
+                                        <td><?= $student['lastname'] ?></td>
+                                        <td><?= $student['email'] ?></td>
+                                        <td><?= $student['course'] ?></td>
                                     </tr>
+                                <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

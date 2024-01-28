@@ -173,9 +173,9 @@ function getCourseStatus($courseid) {
     return $status;
 }
 
-function viewCourseList() {
+function viewCourseList($instructor_id) {
     $view = new View();
-    $view->viewCourseList();
+    $view->viewCourseList($instructor_id);
 }
 
 function viewTotalStudents($userid) {
@@ -260,5 +260,10 @@ function validate_ifStudent_isEnrolled($course_id,$student_id) {
 function update_chapter() {
     $update = new CourseEntity();
     $update->update_chapter();
+}
+
+function student_list($instructor_id) {
+    $view = new View();
+    return $view->student_list($instructor_id);
 }
 ?>

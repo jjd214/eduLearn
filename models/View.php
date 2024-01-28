@@ -106,11 +106,11 @@ class View extends Config {
         <?php
     }
 
-    public function viewCourseList() {
+    public function viewCourseList($instructor_id) {
         $connection = $this->openConnection();
 
-        $stmt = $connection->prepare("SELECT * FROM `course_tbl`");
-        $stmt->execute();
+        $stmt = $connection->prepare("SELECT * FROM `course_tbl` WHERE `instructor_id` = ?");
+        $stmt->execute([$instructor_id]);
         $datas = $stmt->fetchAll();
 
         $itemsPerPage = 10;
@@ -452,6 +452,21 @@ class View extends Config {
 
         return $result;
     }
+
+    public function student_list($instructor_id) {
+        $connection = $this->openConnection();  
+        $stmt = $connection->prepare("SELECT user_tbl.id, user_tbl.firstname, user_tbl.lastname, user_tbl.email, student_course_tbl.course_id, student_course_tbl.course
+            FROM user_tbl 
+            INNER JOIN student_course_tbl ON user_tbl.id = student_course_tbl.student_id
+            INNER JOIN course_tbl ON student_course_tbl.course_id = course_tbl.id
+            WHERE course_tbl.instructor_id = ?");
+        $stmt->execute([$instructor_id]);
+        $data = $stmt->fetchAll();
+
+        return $data;
+    }
+    
+    
 }
 
 ?>

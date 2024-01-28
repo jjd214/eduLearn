@@ -30,7 +30,7 @@
                                 <i class="mdi mdi-plus"></i>
                                 Create Course
                             </a>
-                            <?= viewCourseList(); ?>
+                            <?= viewCourseList($userid); ?>
                         </div>
                     </div>
                 </div>
