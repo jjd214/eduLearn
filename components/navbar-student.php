@@ -270,7 +270,7 @@ if (isset($userid)) {
             </a>
           </li>
           <li>
-            <a class="nav-link scrollto" href="#">My Learning</a>
+            <a class="nav-link scrollto" href="/eduLearn/views/student/my-courses/learning.php">My Learning</a>
           </li>
           <li>
             <!-- Dropdown User Profile -->
@@ -282,7 +282,7 @@ if (isset($userid)) {
               </a>
               <div class="dropdown-menu">
                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
-                <a href="profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+                <a href="/eduLearn/views/student/profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
                 <a href="/eduLearn/views/logout.php" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
               </div>

@@ -18,6 +18,8 @@ $length = get_video_length($_GET['course']);
         background-color: var(--chelsea-200) !important;
     }
 
+
+
     /* Bootstrap */
     ul {
         padding-left: 0rem !important;
@@ -113,13 +115,13 @@ $length = get_video_length($_GET['course']);
         align-items: center;
         list-style: none;
         cursor: pointer;
-        border: 1px solid transparent;
+
         padding: 15px 20px;
         border-radius: 5px;
     }
 
     .playlist li:hover {
-        border: 0.5px solid black;
+        border: 0.5px solid var(--chelsea-200);
     }
 
     .playlist li .row span {
@@ -161,31 +163,34 @@ $length = get_video_length($_GET['course']);
 
     .playlist li.playing {
         pointer-events: none;
-        background: lightgreen;
-        border: 0.5px solid lightgreen;
+        background: #1d3541;
+        border: 0.5px solid #1d3541;
     }
+
     .containers #main-Video {
         position: relative;
         width: 100%;
         height: 470px;
         overflow: hidden;
         outline: none;
-        margin: 0;  
-        padding: 0;  
+        margin: 0;
+        padding: 0;
     }
 
     .containers #video_player {
-        width: 100%;  
-        margin: 0;    
-        padding: 0;   
+        width: 100%;
+        margin: 0;
+        padding: 0;
+
     }
 
     #main-video {
-        width: 100%;  
-        height: 100%; 
+        width: 100%;
+        height: 100%;
+        border: 1px solid #E1E1E1;
     }
 
-/* ... Other styles ... */
+    /* ... Other styles ... */
 
 
     @media(max-width: 1092px) {
@@ -234,11 +239,12 @@ $length = get_video_length($_GET['course']);
             height: 250px !important;
         }
     }
+
     @media (max-width: 576px) {
-            .inner-page {
-                border-radius: 0;
-            }
+        .inner-page {
+            border-radius: 0;
         }
+    }
 </style>
 
 <main id="main">
@@ -251,10 +257,7 @@ $length = get_video_length($_GET['course']);
                 <section>
                     <div class="containers">
                         <div id="video_player">
-
-                        <video id="main-video" src="/eduLearn/views/instructor/dashboard/videos/<?= $play_first_video['video'] ?>" controls poster="/eduLearn/views/instructor/dashboard/videos/thumbnails/<?= $play_first_video['thumbnail'] ?>"></video>
-
-
+                            <video id="main-video" src="/eduLearn/views/instructor/dashboard/videos/<?= $play_first_video['video'] ?>" controls poster="/eduLearn/views/instructor/dashboard/videos/thumbnails/<?= $play_first_video['thumbnail'] ?>"></video>
                         </div>
                         <div class="playlistBx">
                             <div class="header">
@@ -262,14 +265,15 @@ $length = get_video_length($_GET['course']);
                                     <span class="AllLessons">Lessons <?= $length ?></span>
                                 </div>
                             </div>
-                            <ul class="playlist" id="playlist"> 
+                            <ul class="playlist" id="playlist">
                                 <?php $number = 0; ?>
-                                <?php foreach($videos as $playlist) : ?>
-                                <?php $number += 1; ?>
-                                <?php $video_data = get_video($playlist['id']); ?>
-                                <?php $description_data = get_video_description($playlist['id']) ?>
-                                <li>
-                                    <a data-id="<?= $playlist['id'] ?>" data-video="<?= $video_data['video'] ?>" data-description="<?= $description_data['description'] ?>" data-thumbnail="<?= $video_data['thumbnail'] ?>"><?php echo $number. ". " ?> <?= $playlist['video_title'] ?></a></li>
+                                <?php foreach ($videos as $playlist) : ?>
+                                    <?php $number += 1; ?>
+                                    <?php $video_data = get_video($playlist['id']); ?>
+                                    <?php $description_data = get_video_description($playlist['id']) ?>
+                                    <li>
+                                        <a data-id="<?= $playlist['id'] ?>" data-video="<?= $video_data['video'] ?>" data-description="<?= $description_data['description'] ?>" data-thumbnail="<?= $video_data['thumbnail'] ?>"><?php echo $number . ". " ?> <?= $playlist['video_title'] ?></a>
+                                    </li>
 
                                 <?php endforeach; ?>
                             </ul>
@@ -297,8 +301,7 @@ $length = get_video_length($_GET['course']);
                                 <div class="d-flex align-items-center">
                                     <img src="../../../uploads/<?= $instructor['profile'] ?>" style="height: 100px; width: 100px; border-radius: 50%;">
                                     <div class="ms-3 fs-4">
-                                        <span class="d-flex"><?= $instructor['firstname']. " ".$instructor['lastname'] ?></span>
-                                        <span>User Bio</span>
+                                        <span class="d-flex"><?= $instructor['firstname'] . " " . $instructor['lastname'] ?></span>
                                     </div>
                                 </div>
                                 <div class="mt-3"><?= $instructor['biography'] ?></div>
@@ -327,10 +330,10 @@ $length = get_video_length($_GET['course']);
             });
         });
 
-        function play_video(video_url, description_text, thumbnail_url) { 
+        function play_video(video_url, description_text, thumbnail_url) {
             document.getElementById("main-video").src = video_url;
-            document.getElementById("main-video").poster = thumbnail_url; 
-            document.querySelector(".desc").innerText = description_text; 
+            document.getElementById("main-video").poster = thumbnail_url;
+            document.querySelector(".desc").innerText = description_text;
         }
     });
 </script>
