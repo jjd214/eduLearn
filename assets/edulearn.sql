@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2024 at 05:37 AM
+-- Generation Time: Jan 28, 2024 at 04:55 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -78,8 +78,7 @@ CREATE TABLE `course_tbl` (
 --
 
 INSERT INTO `course_tbl` (`id`, `instructor_id`, `title`, `roadmap`, `difficulty`, `thumbnail`, `description`, `students_enrolled`, `status`, `created_at`) VALUES
-(64, 8, 'DSA', 'fullstack', 'Advanced', 'IMG-8-2024-01-25-11-27-27-AM.jpg', 'qwerty', NULL, 'Public', '2024-01-25 11:26:57'),
-(65, 8, 'Bootstrap Course', 'fullstack', 'Beginner', 'IMG-8-2024-01-25-12-14-01-PM.jpg', 'qwerty', NULL, 'Public', '2024-01-25 12:12:26');
+(66, 8, 'Data Structure and Algorithms', 'fullstack', 'Advanced', 'IMG-8-65b5a881eeca3.png', 'In this course we will understand different data structures and how to use them effectively for solving problems. It is expected that the students have basic experience in any high-level programming language. Data structures and algorithms are a crucial p', NULL, 'Public', '2024-01-28 09:04:48');
 
 -- --------------------------------------------------------
 
@@ -134,7 +133,7 @@ CREATE TABLE `user_tbl` (
 --
 
 INSERT INTO `user_tbl` (`id`, `firstname`, `lastname`, `gender`, `biography`, `email`, `password`, `verify_token`, `profile`, `access`) VALUES
-(7, 'John Jacob', 'Dimaya', 'male', NULL, 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'ab00ab307114001fc5e1e5e3710831f2', NULL, 'student');
+(7, 'John Jacob', 'Dimaya', 'male', NULL, 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'ab00ab307114001fc5e1e5e3710831f2', 'IMG-7-2024-01-28-09-03-57-AM.jpg', 'student');
 
 -- --------------------------------------------------------
 
@@ -158,8 +157,8 @@ CREATE TABLE `video_tbl` (
 --
 
 INSERT INTO `video_tbl` (`id`, `course_id`, `instructor_id`, `video_title`, `description`, `thumbnail`, `video`, `created_at`) VALUES
-(39, 64, 8, 'Introduction to DSA', 'introduction of Data Structures and why you should need to learn it.', 'IMG-8-2024-01-25-11-46-30-AM.jpg', 'VIDEO-8-2024-01-25-11-46-30-AM.mp4', '2024-01-25 11:46:30'),
-(40, 64, 8, 'Queues', 'lorem ipsum', 'IMG-8-2024-01-25-12-11-15-PM.jpg', 'VIDEO-8-2024-01-25-12-11-15-PM.mp4', '2024-01-25 12:11:15');
+(41, 66, 8, 'Introduction to Data Structures and Algorithm', 'Lorem ipsum', 'IMG-8-65b5a8fdbe1cb.png', 'VIDEO-8-65b5a8fdbe1cb.mp4', '2024-01-28 09:08:13'),
+(42, 66, 8, 'Linear vs Non Linear', 'Let\'s talk about the difference of Linear and Non Linear Data Structures, we will see how they compare with each other and how some is more advantageous than the other. We will try to explain it as much as possible in layman\'s term.', 'IMG-8-65b5c26fe23b5.png', 'VIDEO-8-65b5c26fe23b5.mp4', '2024-01-28 10:56:47');
 
 --
 -- Indexes for dumped tables
@@ -224,7 +223,7 @@ ALTER TABLE `application-form_tbl`
 -- AUTO_INCREMENT for table `course_tbl`
 --
 ALTER TABLE `course_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `instructor_tbl`
@@ -242,7 +241,7 @@ ALTER TABLE `user_tbl`
 -- AUTO_INCREMENT for table `video_tbl`
 --
 ALTER TABLE `video_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Constraints for dumped tables

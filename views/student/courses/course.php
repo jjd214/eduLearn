@@ -4,6 +4,15 @@ ob_start();
 include('../../../components/navbar-student.php');
 ?>
 
+<?php
+$course = getCourse($_GET['course']);
+$videos = view_course_details($_GET['course']);
+$instructor = get_instructor($course['instructor_id']);
+$play_first_video = get_first_video($_GET['course']);
+$length = get_video_length($_GET['course']);
+?>
+
+
 <style>
     .bg-primary {
         background-color: var(--chelsea-200) !important;
@@ -155,6 +164,29 @@ include('../../../components/navbar-student.php');
         background: lightgreen;
         border: 0.5px solid lightgreen;
     }
+    .containers #main-Video {
+        position: relative;
+        width: 100%;
+        height: 470px;
+        overflow: hidden;
+        outline: none;
+        margin: 0;  
+        padding: 0;  
+    }
+
+    .containers #video_player {
+        width: 100%;  
+        margin: 0;    
+        padding: 0;   
+    }
+
+    #main-video {
+        width: 100%;  
+        height: 100%; 
+    }
+
+/* ... Other styles ... */
+
 
     @media(max-width: 1092px) {
         section {
@@ -202,6 +234,11 @@ include('../../../components/navbar-student.php');
             height: 250px !important;
         }
     }
+    @media (max-width: 576px) {
+            .inner-page {
+                border-radius: 0;
+            }
+        }
 </style>
 
 <main id="main">
@@ -214,16 +251,27 @@ include('../../../components/navbar-student.php');
                 <section>
                     <div class="containers">
                         <div id="video_player">
-                            <iframe controls id="main-Video" src="" frameborder="0"></iframe>
+
+                        <video id="main-video" src="/eduLearn/views/instructor/dashboard/videos/<?= $play_first_video['video'] ?>" controls poster="/eduLearn/views/instructor/dashboard/videos/thumbnails/<?= $play_first_video['thumbnail'] ?>"></video>
+
 
                         </div>
                         <div class="playlistBx">
                             <div class="header">
                                 <div class="row">
-                                    <span class="AllLessons"></span>
+                                    <span class="AllLessons">Lessons <?= $length ?></span>
                                 </div>
                             </div>
-                            <ul class="playlist" id="playlist">
+                            <ul class="playlist" id="playlist"> 
+                                <?php $number = 0; ?>
+                                <?php foreach($videos as $playlist) : ?>
+                                <?php $number += 1; ?>
+                                <?php $video_data = get_video($playlist['id']); ?>
+                                <?php $description_data = get_video_description($playlist['id']) ?>
+                                <li>
+                                    <a data-id="<?= $playlist['id'] ?>" data-video="<?= $video_data['video'] ?>" data-description="<?= $description_data['description'] ?>" data-thumbnail="<?= $video_data['thumbnail'] ?>"><?php echo $number. ". " ?> <?= $playlist['video_title'] ?></a></li>
+
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                     </div>
@@ -232,14 +280,14 @@ include('../../../components/navbar-student.php');
                         <div class="row mt-3">
                             <div class="col-md-12 mb-3">
                                 <h2 class="fw-bold">About this course</h2>
-                                <span class="mt-3">Learn routing protocols from scratch and learn how to configure and use Open Shortest Path First (OSPF) effectively</span>
+                                <span class="mt-3"><?= $course['description'] ?></span>
                             </div>
                             <hr>
                             <div class="col-md-2 mb-3">
                                 <h4 class="fw-bold">Description</h4>
                             </div>
                             <div class="col-md-10">
-                                <span class="mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium delectus, ipsa quos tenetur non similique voluptatem officia quibusdam assumenda officiis, cumque, soluta possimus earum eum. Accusamus porro accusantium fuga. Possimus distinctio libero iste porro, veritatis laboriosam numquam ducimus corporis officiis dolores suscipit similique sed quidem molestiae a eum necessitatibus. Consequuntur alias eius vitae veritatis repellendus, corrupti sint enim saepe natus. Repellat maiores labore impedit temporibus cupiditate. Ea veniam magni quos est beatae esse voluptate molestiae, aliquid corrupti? Corrupti laborum molestiae magnam fuga ratione nihil a, dignissimos voluptatem totam necessitatibus eaque repudiandae delectus quae ipsa soluta vitae aut? Blanditiis, eaque adipisci!</span>
+                                <span class="desc mt-3"><?= $play_first_video['description'] ?></span>
                             </div>
                             <hr>
                             <div class="col-md-2 mb-3">
@@ -247,13 +295,13 @@ include('../../../components/navbar-student.php');
                             </div>
                             <div class="col-md-10">
                                 <div class="d-flex align-items-center">
-                                    <img src="../../../uploads/default-user-male.svg" style="height: 100px; width: 100px;">
+                                    <img src="../../../uploads/<?= $instructor['profile'] ?>" style="height: 100px; width: 100px; border-radius: 50%;">
                                     <div class="ms-3 fs-4">
-                                        <span class="d-flex">User Full Name</span>
+                                        <span class="d-flex"><?= $instructor['firstname']. " ".$instructor['lastname'] ?></span>
                                         <span>User Bio</span>
                                     </div>
                                 </div>
-                                <div class="mt-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo accusantium minima necessitatibus ea minus error perspiciatis nesciunt, veniam blanditiis magnam tempora ullam soluta suscipit id architecto vitae quis nihil voluptatem.</div>
+                                <div class="mt-3"><?= $instructor['biography'] ?></div>
                             </div>
                         </div>
                     </div>
@@ -264,7 +312,29 @@ include('../../../components/navbar-student.php');
 </main>
 <!-- End #main -->
 
-<?php include('../../../components/footer.php'); ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var playlistItems = document.querySelectorAll('.playlist a');
 
-<script src="./video-list.js"></script>
-<script src="./script.js"></script>
+        playlistItems.forEach(function(item) {
+            item.addEventListener('click', function(event) {
+                event.preventDefault();
+                var video_url = "/eduLearn/views/instructor/dashboard/videos/" + this.getAttribute('data-video');
+                var description_text = this.getAttribute('data-description');
+                var thumbnail_url = "/eduLearn/views/instructor/dashboard/videos/thumbnails/" + this.getAttribute('data-thumbnail');
+
+                play_video(video_url, description_text, thumbnail_url);
+            });
+        });
+
+        function play_video(video_url, description_text, thumbnail_url) { 
+            document.getElementById("main-video").src = video_url;
+            document.getElementById("main-video").poster = thumbnail_url; 
+            document.querySelector(".desc").innerText = description_text; 
+        }
+    });
+</script>
+
+
+
+<?php include('../../../components/footer.php'); ?>

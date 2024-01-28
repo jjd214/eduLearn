@@ -2,7 +2,6 @@
 class CourseEntity extends Config
 {
 
-
     public function createCourse()
     {
 
@@ -175,10 +174,9 @@ class CourseEntity extends Config
                     $allowed_exs = array("jpg", "jpeg", "png");
 
                     if (in_array($img_ex_lc, $allowed_exs)) {
-                        date_default_timezone_set('Asia/Manila');
-                        $currentDateTime = date('Y-m-d h:i:s A');
-                        $formattedDateTime = date('Y-m-d-h-i-s-A', strtotime($currentDateTime));
-                        $new_img_name = "IMG-" . $instructorID . "-" . $formattedDateTime . '.' . $img_ex_lc;
+                        // Use a unique identifier or hash for the image name
+                        $uniqueIdentifier = uniqid();
+                        $new_img_name = "IMG-" . $instructorID . "-" . $uniqueIdentifier . '.' . $img_ex_lc;
 
                         $img_upload_path = '/eduLearn/views/instructor/dashboard/uploads/' . $new_img_name;
                         move_uploaded_file($tmp_name, $_SERVER['DOCUMENT_ROOT'] . $img_upload_path);
@@ -216,6 +214,7 @@ class CourseEntity extends Config
             }
         }
     }
+
 
     public function getData($courseid)
     {
@@ -290,12 +289,13 @@ class CourseEntity extends Config
 
     public function uploadVideo() {
         if (isset($_POST['submit'])) {
-            $img_name = $_FILES['course-image']['name'];
-            $img_size = $_FILES['course-image']['size'];
-            $tmp_name = $_FILES['course-image']['tmp_name'];
-            $error = $_FILES['course-image']['error'];
+            $thumbnail_name = $_FILES['course-image']['name'];
+            $thumbnail_size = $_FILES['course-image']['size'];
+            $thumbnail_tmp_name = $_FILES['course-image']['tmp_name'];
+            $thumbnail_error = $_FILES['course-image']['error'];
     
             $video_name = $_FILES['course-video']['name'];
+            $video_size = $_FILES['course-video']['size'];
             $video_tmp_name = $_FILES['course-video']['tmp_name'];
             $video_error = $_FILES['course-video']['error'];
     
@@ -304,28 +304,27 @@ class CourseEntity extends Config
             $video_title = $_POST['title'];
             $description = $_POST['description'];
     
-            if ($error === 0) {
+            if ($thumbnail_error === 0 && $video_error === 0) {
                 $connection = $this->openConnection();
     
-                if ($img_size > 105000000) {
+                if ($thumbnail_size > 5242880) {
                     echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
                             Your image file should not exceed 5mb.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>';
                 } else {
-                    $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-                    $img_ex_lc = strtolower($img_ex);
+                    $thumbnail_ex = pathinfo($thumbnail_name, PATHINFO_EXTENSION);
+                    $thumbnail_ex_lc = strtolower($thumbnail_ex);
     
-                    $allowed_exs = array("jpg", "jpeg", "png");
+                    $allowed_thumbnail_exs = array("jpg", "jpeg", "png");
     
-                    if (in_array($img_ex_lc, $allowed_exs)) {
-                        date_default_timezone_set('Asia/Manila');
-                        $currentDateTime = date('Y-m-d h:i:s A');
-                        $formattedDateTime = date('Y-m-d-h-i-s-A', strtotime($currentDateTime));
-                        $new_img_name = "IMG-" . $instructorID . "-" . $formattedDateTime . '.' . $img_ex_lc;
+                    if (in_array($thumbnail_ex_lc, $allowed_thumbnail_exs)) {
+                        // Use a unique identifier for the image name
+                        $uniqueIdentifier = uniqid();
+                        $new_thumbnail_name = "IMG-" . $instructorID . "-" . $uniqueIdentifier . '.' . $thumbnail_ex_lc;
     
-                        $img_upload_path = '/eduLearn/views/instructor/dashboard/videos/thumbnails/' . $new_img_name;
-                        move_uploaded_file($tmp_name, $_SERVER['DOCUMENT_ROOT'] . $img_upload_path);
+                        $thumbnail_upload_path = '/eduLearn/views/instructor/dashboard/videos/thumbnails/' . $new_thumbnail_name;
+                        move_uploaded_file($thumbnail_tmp_name, $_SERVER['DOCUMENT_ROOT'] . $thumbnail_upload_path);
     
                         // Handle video file
                         $video_ex = pathinfo($video_name, PATHINFO_EXTENSION);
@@ -334,14 +333,15 @@ class CourseEntity extends Config
                         $allowed_video_exs = array("mp4", "avi", "mov");
     
                         if (in_array($video_ex_lc, $allowed_video_exs)) {
-                            $new_video_name = "VIDEO-" . $instructorID . "-" . $formattedDateTime . '.' . $video_ex_lc;
+                            // Use a unique identifier for the video name
+                            $new_video_name = "VIDEO-" . $instructorID . "-" . $uniqueIdentifier . '.' . $video_ex_lc;
     
                             $video_upload_path = '/eduLearn/views/instructor/dashboard/videos/' . $new_video_name;
                             move_uploaded_file($video_tmp_name, $_SERVER['DOCUMENT_ROOT'] . $video_upload_path);
     
                             // Corrected the SQL query
                             $stmt = $connection->prepare("INSERT INTO `video_tbl` (`course_id`,`instructor_id`,`video_title`, `description`, `thumbnail`,`video`) VALUES(?,?,?,?,?,?)");
-                            $stmt->execute([$courseid, $instructorID, $video_title, $description, $new_img_name, $new_video_name]);
+                            $stmt->execute([$courseid, $instructorID, $video_title, $description, $new_thumbnail_name, $new_video_name]);
                             $result = $stmt->rowCount();
     
                             if ($result > 0) {
@@ -379,6 +379,7 @@ class CourseEntity extends Config
             }
         }
     }
+    
 
     public function deleteChapter()
     {

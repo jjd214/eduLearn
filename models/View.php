@@ -382,13 +382,66 @@ class View extends Config {
 
     public function view_course_details($course_id) {
         $connection = $this->openConnection();
-        $stmt = $connection->prepare("SELECT * FROM `video_tbl` WHERE `course_id` = ?");
+        $stmt = $connection->prepare("SELECT * FROM `video_tbl` WHERE `course_id` = ? ORDER BY `id` ASC");
         $stmt->execute([$course_id]);
         $data = $stmt->fetchAll();
 
         return $data;
     }
 
+    public function getCourse($course_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `course_tbl` WHERE `id` = ?");
+        $stmt->execute([$course_id]);
+        $data = $stmt->fetch();
+
+        return $data;
+    }
+
+    public function get_instructor($instructor_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `instructor_tbl` WHERE `id` = ?");
+        $stmt->execute([$instructor_id]);
+        $data = $stmt->fetch();
+
+        return $data;
+    }
+
+    public function get_video($id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `video_tbl` WHERE `id` = ?");
+        $stmt->execute([$id]);
+        $data = $stmt->fetch();
+
+        return $data;
+    }
+
+    public function get_first_video($id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `video_tbl` WHERE `course_id` = ? ORDER BY `id` ASC");
+        $stmt->execute([$id]);
+        $data = $stmt->fetch();
+
+        return $data;
+    }
+
+    public function get_video_description($id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM `video_tbl` WHERE `id` = ?");
+        $stmt->execute([$id]);
+        $data = $stmt->fetch();
+
+        return $data;
+    }
+
+    public function get_video_length($id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT COUNT(*) AS `length` FROM `video_tbl` WHERE `course_id` = ?");
+        $stmt->execute([$id]);
+        $data = $stmt->fetchColumn();
+
+        return $data;
+    }   
     
 }
 

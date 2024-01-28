@@ -221,4 +221,34 @@ function  view_course_details($course_id) {
     $view = new View();
     return $view->view_course_details($course_id);
 }
+
+function getCourse($course_id) {
+    $view = new View();
+    return $view->getCourse($course_id);
+}
+
+function get_instructor($instructor_id) {
+    $view = new View();
+    return $view->get_instructor($instructor_id);
+}
+
+function get_video($id) {
+    $view = new View();
+    return $view->get_video($id);
+}
+
+function get_first_video($id) {
+    $view = new View();
+    return $view->get_first_video($id);
+}
+
+function get_video_description($id) {
+    $view = new View();
+    return $view->get_video_description($id);
+}
+
+function get_video_length($id) {
+    $view = new View();
+    return $view->get_video_length($id);
+}
 ?>
