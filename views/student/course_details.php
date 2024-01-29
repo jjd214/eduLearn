@@ -73,7 +73,7 @@ $validate = validate_ifStudent_isEnrolled($_GET['course'],$student_id);
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <img src="/eduLearn/views/instructor/dashboard/uploads/<?= $course['thumbnail'] ?>" class="h-80 w-100 p-2">
+                    <img src="/eduLearn/views/instructor/dashboard/uploads/<?= $course['thumbnail'] ?>" class="h-80 w-100 p-2" height="350" width="300">
                     <a class="btn btn-primary mt-2 w-100" id="enrollButton">Enroll Now</a>
                 </div>
             </div>

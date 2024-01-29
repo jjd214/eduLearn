@@ -299,10 +299,14 @@ $length = get_video_length($_GET['course']);
                             </div>
                             <div class="col-md-10">
                                 <div class="d-flex align-items-center">
-                                    <img src="../../../uploads/<?= $instructor['profile'] ?>" style="height: 100px; width: 100px; border-radius: 50%;">
-                                    <div class="ms-3 fs-4">
-                                        <span class="d-flex"><?= $instructor['firstname'] . " " . $instructor['lastname'] ?></span>
-                                    </div>
+                                <a href="/eduLearn/views/user/profile.php?name=<?= strtolower(str_replace(' ', '', $instructor['firstname'] . $instructor['lastname'])) ?>&id=<?= $instructor['id'] ?>">
+                                <img src="../../../uploads/<?= $instructor['profile'] ?>" style="height: 100px; width: 100px; border-radius: 50%;">
+                            </a>
+                            <div class="ms-3 fs-4">
+                                <a href="/eduLearn/views/user/profile.php?name=<?= strtolower(str_replace(' ', '', $instructor['firstname'].$instructor['lastname'])) ?>&id=<?= $instructor['id'] ?>">
+                                    <span class="d-flex"><?= $instructor['firstname'] . " " . $instructor['lastname'] ?></span>
+                                </a>
+                            </div>
                                 </div>
                                 <div class="mt-3"><?= $instructor['biography'] ?></div>
                             </div>

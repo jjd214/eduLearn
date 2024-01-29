@@ -266,4 +266,14 @@ function student_list($instructor_id) {
     $view = new View();
     return $view->student_list($instructor_id);
 }
+
+function view_student_course($student_id) {
+    $view = new View();
+    return $view->view_student_course($student_id);
+}
+
+function view_instructor_profile($instructor_id) {
+    $view = new View();
+    return $view->view_instructor_profile($instructor_id);
+}
 ?>

@@ -3,6 +3,7 @@
 ob_start();
 ?>
 <?php include('../../components/navbar-student.php'); ?>
+<?php $instructor = view_instructor_profile($_GET['id']); ?>
 <!-- style -->
 <style>
     .card {
@@ -63,24 +64,24 @@ ob_start();
                 <div class="col-md-8">
                     <div>
                         <div>
-                            <h1>User Full Name</h1>
+                            <h1><?= $instructor['firstname']. " ".$instructor['lastname'] ?></h1>
                         </div>
                         <!-- Itong row mt-3 na 'to lalabas lang kapag instructor profile -->
                         <div class="row mt-3">
                             <div class="col-md-6 ">
                                 <div class="fw-bold">Total Students</div>
-                                <div class="fs-3 fw-bolder">123</div>
+                                <div class="fs-3 fw-bolder"><?= $instructor['total_students_enrolled'] ?></div>
                             </div>
                         </div>
                         <hr>
                         <div>
                             <div class="fw-bolder fs-4 mb-2">About Me</div>
-                            <h5>User Biography. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid harum cumque illo quidem. Suscipit, esse.</h5>
+                            <h5><?= $instructor['biography'] ?></h5>
                         </div>
                     </div>
 
                     <div class="card mt-3">
-                        <span class="fs-4 fw-bold">My Courses/Learning (5 = number of courses ni instructor/user)</span>
+                        <span class="fs-4 fw-bold">My Courses/Learning (<?= $instructor['courses_count'] ?>)</span>
                         <hr>
                         <div class="card-body">
                             <!-- Boxes -->
@@ -88,11 +89,11 @@ ob_start();
                                 <a href="#">
                                     <div class="card bg-primary card-img-holder text-white">
                                         <div class="card-body text-dark">
-                                            <img src="/eduLearn/views/instructor/dashboard/uploads/" alt="Course image" height="250" width="100%">
-                                            <h4 class="font-weight-normal fw-bold card-title ">
-                                                Course Title
+                                            <img src="/eduLearn/views/instructor/dashboard/uploads/<?= $instructor['thumbnail'] ?>" alt="Course image" height="200" width="100%">
+                                            <h4 class="font-weight-normal fw-bold card-title mt-2" style="font-size: 15px;">
+                                                <?= $instructor['title'] ?>
                                             </h4>
-                                            <h6>Difficulty : </h6>
+                                            <h6>Difficulty : <?= $instructor['difficulty'] ?> </h6>
                                         </div>
                                     </div>
                                 </a>
@@ -101,7 +102,7 @@ ob_start();
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
-                    <img src="/eduLearn/uploads/default-user-male.svg" height="350" width="350"  alt="profile image">
+                    <img src="/eduLearn/uploads/<?= $instructor['profile'] ?>" height="350" width="350" style="border-radius: 50%"  alt="profile image">
 
                 </div>
             </div>

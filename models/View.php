@@ -465,6 +465,38 @@ class View extends Config {
 
         return $data;
     }
+
+    public function view_student_course($student_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT course_tbl.id, course_tbl.title, course_tbl.difficulty, course_tbl.thumbnail FROM course_tbl INNER JOIN student_course_tbl ON student_course_tbl.course_id = course_tbl.id WHERE student_course_tbl.student_id = ?");
+        $stmt->execute([$student_id]);
+        $data = $stmt->fetchAll();
+
+        return $data;
+    }
+    
+    public function view_instructor_profile($instructor_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT 
+            instructor_tbl.firstname, 
+            instructor_tbl.lastname, 
+            instructor_tbl.biography, 
+            instructor_tbl.profile,
+            course_tbl.thumbnail,
+            course_tbl.title,
+            course_tbl.difficulty,
+            COUNT(course_tbl.instructor_id) AS courses_count, 
+            SUM(course_tbl.students_enrolled) AS total_students_enrolled
+            FROM instructor_tbl
+            INNER JOIN course_tbl ON course_tbl.instructor_id = instructor_tbl.id
+            WHERE instructor_tbl.id = ? 
+            GROUP BY instructor_tbl.id");
+    
+        $stmt->execute([$instructor_id]);
+        $data = $stmt->fetch(); 
+    
+        return $data;
+    }
     
     
 }
