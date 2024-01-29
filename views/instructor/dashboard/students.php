@@ -13,7 +13,7 @@
                 <div class="page-header">
                     <h3 class="page-title">
                         <span class="page-title-icon bg-gradient-primary text-white me-2">
-                            <i class="mdi mdi-format-list-bulleted "></i>
+                            <i class="mdi mdi-account-multiple"></i>
                         </span> Enrolled Students
                     </h3>
                 </div>

@@ -2,7 +2,7 @@
 
 <?php
 
-if(isset($userid)) {
+if (isset($userid)) {
   echo '<script>alert("session set si instructor id");</script>';
 }
 
@@ -58,7 +58,7 @@ if(isset($userid)) {
             </div>
           </div>
         </div>
-        </div>
+      </div>
       <!-- content-wrapper ends -->
     </div>
     <!-- main-panel ends -->
