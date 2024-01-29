@@ -203,6 +203,20 @@ else {
   }
 </style>
 
+<?php
+$defaultImage = 'default-user-male.svg'; // Default image for male
+
+if (isset($userid)) {
+  $fetch = new AccountSettings();
+  $userData = $fetch->getData($userid, $usertype);
+
+  // Check if the user is female, then set the default image accordingly
+  if ($userData['gender'] == 'female') {
+    $defaultImage = 'default-user-female.svg'; // Default image for female
+  }
+}
+?>
+
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top header-transparent">
   <div class="container d-flex align-items-center justify-content-between">
@@ -226,7 +240,6 @@ else {
             <div class="nav-item dropdown">
               <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action">
                 <?php $profile = viewProfilePicture($userid,$usertype); ?>
-                <?php $defaultImage = 'default-user-male.svg'?>
                 <?php $fullname = viewFullName($userid,$usertype) ?>
 
                 <img src="/eduLearn/uploads/<?= $profile ? $profile : $defaultImage ?>" class="avatar object-fit-cover" alt="Avatar"> <?= $fullname ?> <b class="caret"></b>
@@ -264,7 +277,6 @@ else {
             <div class="nav-item dropdown">
               <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action">
               <?php $profile = viewProfilePicture($userid,$usertype); ?>
-              <?php $defaultImage = 'default-user-male.svg'?>
               <?php $fullname = viewFullName($userid,$usertype) ?>
 
                 <img src="/eduLearn/uploads/<?= $profile ? $profile : $defaultImage ?>" class="avatar object-fit-cover" alt="Avatar"> <?=  $fullname ?> <b class="caret"></b>

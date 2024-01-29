@@ -6,11 +6,11 @@
         <div class="col-lg-3 col-md-6 footer-contact">
           <h3>EduLearn</h3>
           <p>
-            A108 Adam Street <br />
-            New York, NY 535022<br />
-            United States <br /><br />
-            <strong>Phone:</strong> +1 5589 55488 55<br />
-            <strong>Email:</strong> info@example.com<br />
+            PHILJA Road <br />
+            Brgy. Silang Crossing East<br />
+            Tagaytay City <br /><br />
+            <strong>Phone:</strong> +639756526458<br />
+            <strong>Email:</strong> eduLearn@proton.mail<br />
           </p>
         </div>
 
@@ -35,28 +35,24 @@
         </div>
 
         <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Program</h4>
-            <ul>
-              <li>
-                <i class="bx bx-chevron-right"></i> <a href="#">Frontend Development</a>
-              </li>
-              <li>
-                <i class="bx bx-chevron-right"></i>
-                <a href="#">Backend Development</a>
-              </li>
-              <li>
-                <i class="bx bx-chevron-right"></i>
-                <a href="#">Mobile Development</a>
-              </li>
-              <li>
-                <i class="bx bx-chevron-right"></i> <a href="#">Java Swing</a>
-              </li>
-              <li>
-                <i class="bx bx-chevron-right"></i>
-                <a href="#">Python</a>
-              </li>
-            </ul>
-          </div>
+          <h4>Our Program</h4>
+          <ul>
+            <li>
+              <i class="bx bx-chevron-right"></i> <a href="#">Frontend Development</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i>
+              <a href="#">Backend Development</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i>
+              <a href="#">Mobile Development</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i> <a href="#">Data Structures & Algorithms</a>
+            </li>
+          </ul>
+        </div>
 
         <div class="col-lg-3 col-md-6 footer-links">
           <h4>Our Social Networks</h4>
