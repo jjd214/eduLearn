@@ -28,10 +28,10 @@ if(isset($userid)) {
             <div class="card bg-gradient-danger card-img-holder text-white">
               <div class="card-body">
                 <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                <h4 class="font-weight-normal mb-3">Your Total Students <i class="mdi mdi-account-multiple-plus mdi-24px float-right"></i>
+                <h4 class="font-weight-normal mb-3">Total Students <i class="mdi mdi-account-multiple-plus mdi-24px float-right"></i>
                 </h4>
                 <h2 class="mb-5"><?= viewTotalStudents($userid); ?></h2>
-                <!-- <h6>Total students ni instructor sa kaniyang course</h6> -->
+                <h6>Total students ni instructor sa kaniyang course</h6>
               </div>
             </div>
           </div>
@@ -39,10 +39,10 @@ if(isset($userid)) {
             <div class="card bg-gradient-info card-img-holder text-white">
               <div class="card-body">
                 <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                <h4 class="font-weight-normal mb-3">Your Total Course <i class="mdi mdi-video mdi-24px float-right"></i>
+                <h4 class="font-weight-normal mb-3">Total Course <i class="mdi mdi-book-open mdi-24px float-right"></i>
                 </h4>
                 <h2 class="mb-5"><?= viewTotalCourse($userid); ?></h2>
-                <!-- <h6 class="card-text">Total uploaded videos ni Instructor</h6> -->
+                <h6 class="card-text">Total courses ni Instructor</h6>
               </div>
             </div>
           </div>
@@ -50,38 +50,15 @@ if(isset($userid)) {
             <div class="card bg-gradient-success card-img-holder text-white">
               <div class="card-body">
                 <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                <h4 class="font-weight-normal mb-3">Visitors Online <i class="mdi mdi-diamond mdi-24px float-right"></i>
+                <h4 class="font-weight-normal mb-3">Total Videos <i class="mdi mdi-video mdi-24px float-right"></i>
                 </h4>
-                <h2 class="mb-5">95,5741</h2>
-                <h6 class="card-text">Increased by 5%</h6>
+                <h2 class="mb-5">0</h2>
+                <h6 class="card-text">Total uploaded videos ni Instructor</h6>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-7 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <div class="clearfix">
-                  <h4 class="card-title float-left">Visit And Sales Statistics</h4>
-                  <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-right"></div>
-                </div>
-                <canvas id="visit-sale-chart" class="mt-4"></canvas>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-5 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Traffic Sources</h4>
-                <canvas id="traffic-chart"></canvas>
-                <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
-              </div>
-            </div>
-          </div>
         </div>
-   
-      </div>
       <!-- content-wrapper ends -->
     </div>
     <!-- main-panel ends -->

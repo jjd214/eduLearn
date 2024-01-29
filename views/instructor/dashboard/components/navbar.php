@@ -1,3 +1,9 @@
+<style>
+  .dropdown .dropdown-menu .dropdown-item:hover {
+    color: #B66DFF !important;
+  }
+</style>
+
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
     <a class="navbar-brand brand-logo" href="instructor-dashboard.php"><img src="../../../images/logo-long.svg" alt="logo" /></a>
@@ -28,7 +34,19 @@
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
           <?php $profile = viewProfilePicture($userid, $usertype); ?>
-          <?php $defaultImage = 'default-user-male.svg' ?>
+          <?php
+          $defaultImage = 'default-user-male.svg'; // Default image for male
+
+          if (isset($userid)) {
+            $fetch = new AccountSettings();
+            $userData = $fetch->getData($userid, $usertype);
+
+            // Check if the user is female, then set the default image accordingly
+            if ($userData['gender'] == 'female') {
+              $defaultImage = 'default-user-female.svg'; // Default image for female
+            }
+          }
+          ?>
           <?php $fullname = viewFullName($userid, $usertype) ?>
           <div class="nav-profile-img">
             <img src="/eduLearn/uploads/<?= $profile ? $profile : $defaultImage ?>" class="avatar object-fit-cover" alt="Avatar">

@@ -4,7 +4,19 @@
     <li class="nav-item nav-profile">
       <a href="#" class="nav-link">
         <?php $profile = viewProfilePicture($userid, $usertype); ?>
-        <?php $defaultImage = 'default-user-male.svg' ?>
+        <?php
+        $defaultImage = 'default-user-male.svg'; // Default image for male
+
+        if (isset($userid)) {
+          $fetch = new AccountSettings();
+          $userData = $fetch->getData($userid, $usertype);
+
+          // Check if the user is female, then set the default image accordingly
+          if ($userData['gender'] == 'female') {
+            $defaultImage = 'default-user-female.svg'; // Default image for female
+          }
+        }
+        ?>
         <?php $fullname = viewFullName($userid, $usertype) ?>
         <div class="nav-profile-image">
           <img src="/eduLearn/uploads/<?= $profile ? $profile : $defaultImage ?>" class="avatar object-fit-cover" alt="Avatar">
@@ -35,7 +47,7 @@
           <li class="nav-item"> <a class="nav-link" href="create-course.php"> Create Course </a></li>
           <li class="nav-item"> <a class="nav-link" href="course-list.php"> Course List </a></li>
         </ul>
-      </div>  
+      </div>
     </li>
 
     <!-- <li class="nav-item">

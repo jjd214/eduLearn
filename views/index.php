@@ -64,22 +64,13 @@
                 </p>
               </div>
               <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
-                <i class="bx bxl-java"></i>
-                <h4>Java Swing</h4>
+                <i class="bx bx-sort-up"></i>
+                <h4>Data Structures & Algorithms</h4>
                 <p>
                   Expedita veritatis consequuntur nihil tempore laudantium
                   vitae denat pacta
                 </p>
               </div>
-              <div class="col-md-6 icon-box mx-auto" data-aos="fade-up" data-aos-delay="400">
-                <i class="bx bxl-python"></i>
-                <h4>Python</h4>
-                <p>
-                  Et fuga et deserunt et enim. Dolorem architecto ratione
-                  tensa raptor marte
-                </p>
-              </div>
-
             </div>
           </div>
         </div>
@@ -358,12 +349,12 @@
             <div class="col-lg-12 info">
               <i class="bx bx-phone"></i>
               <h4>Call Us</h4>
-              <p>+1 5589 55488 55<br />+1 5589 22548 64</p>
+              <p>+639756526458</p>
             </div>
             <div class="col-lg-12 info">
               <i class="bx bx-envelope"></i>
               <h4>Email Us</h4>
-              <p>contact@example.com<br />info@example.com</p>
+              <p>eduLearn@proton.mail</p>
             </div>
           </div>
         </div>

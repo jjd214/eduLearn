@@ -19560,7 +19560,7 @@ code {
 
 .dropdown .dropdown-menu .dropdown-item:hover {
   background-color: #f8f9fa;
-  color: #ffffff;
+  color: red;
 }
 
 /* Forms */
