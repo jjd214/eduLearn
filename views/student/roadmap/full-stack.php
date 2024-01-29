@@ -3,7 +3,7 @@
 ob_start();
 ?>
 <?php include('../../../components/navbar-student.php'); ?>
-<?php $courses = view_student_course($userid); ?>
+<?php $courses = view_fullstack_course(); ?>
 <!-- style -->
 <style>
     .card {
