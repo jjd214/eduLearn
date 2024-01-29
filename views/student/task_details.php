@@ -4,7 +4,7 @@ ob_start();
 ?>
 <?php include('../../components/navbar-student.php'); ?>
 <?php $tasks = view_task_details($_GET['task']); ?>
-
+<?php $file = get_file_submited($userid,$tasks['id']); ?>
 <main id="main">
 
     <!-- Breadcrumbs Section -->
@@ -27,6 +27,7 @@ ob_start();
             <div class="row">
                 <div class="col-md-8">
                     <h3 class="fw-bold">Due Date: <?= $tasks['deadline'] ?></h3>
+                    <h5>Date Submitted : <?= $file['submitted_at'] ?></h5><br><br>
                     <p class="lead"><?= $tasks['description'] ?></p>
                     
                     <?php if (isset($tasks['file'])) : ?>
@@ -39,8 +40,8 @@ ob_start();
                         <div class="card-body">
                             <form action="" method="post" enctype="multipart/form-data">
                                 <div class="mb-3">
-                                    <label for="file" class="form-label">Upload File:</label>
-                                    <input type="file" class="form-control" id="file" name="file" required>
+                                    <label for="file" class="form-label">Upload File: <?= $file['file'] ?></label><br>
+                                    <input type="file" class="form-control" id="file" name="file" value="/eduLearn/views/student/submitted/<?= $file['file'] ?>" required>
                                 </div>
                                 <input type="hidden" name="student_id" value="<?= $userid ?>">
                                 <input type="hidden" name="task_id" value="<?= $_GET['task_id']?>">

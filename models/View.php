@@ -538,7 +538,51 @@ class View extends Config {
 
         return $data;
     }
+
+    public function view_submited_task($student_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT task_tbl.id, task_tbl.title, task_tbl.course, task_tbl.description, task_tbl.file FROM task_tbl INNER JOIN student_task_tbl ON task_tbl.id = student_task_tbl.task_id WHERE student_task_tbl.student_id = ? AND student_task_tbl.status = 'Completed'");
+        $stmt->execute([$student_id]);
+        $data = $stmt->fetchAll();
     
+        return $data;
+    }
+    
+    public function get_file_submited($student_id,$task_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT `file`,`submitted_at` FROM student_task_tbl WHERE student_id = ? AND task_id = ?");
+        $stmt->execute([$student_id,$task_id]);
+        $data = $stmt->fetch();
+
+        return $data;
+    }
+    
+    public function view_instructor_course($instructor_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM course_tbl WHERE instructor_id = ?");
+        $stmt->execute([$instructor_id]);
+        $data = $stmt->fetchAll();
+
+        return $data;
+    }
+
+    public function view_course_task($instructor_id,$course_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM task_tbl WHERE instructor_id = ? and course_id = ?");
+        $stmt->execute([$instructor_id,$course_id]);
+        $data = $stmt->fetchAll();
+
+        return $data;
+    }
+
+    public function get_single_task_details($instructor_id,$course_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM task_tbl WHERE instructor_id = ? and course_id = ?");
+        $stmt->execute([$instructor_id,$course_id]);
+        $data = $stmt->fetch();
+
+        return $data;
+    }
 }
 
 ?>

@@ -91,7 +91,17 @@ class Task extends Config {
             // File handling
             $file_name = '';
     
+            // Check if a file is selected
             if ($_FILES['file']['name'] != '') {
+                // Get the previous file information
+                $previous_file = $this->get_file_submitted($student_id, $task_id);
+    
+                // Remove the previous file if it exists
+                if (!empty($previous_file) && file_exists($previous_file)) {
+                    unlink($_SERVER['DOCUMENT_ROOT'] .'/eduLearn/views/student/submitted/'.$previous_file);
+                }
+    
+                // Upload the new file
                 $file_name = uniqid() . '_' . basename($_FILES['file']['name']);
                 $file_path = 'submitted/' . $file_name;
     
@@ -125,6 +135,17 @@ class Task extends Config {
             $this->closeConnection($connection);
         }
     }
+
+    public function get_file_submitted($student_id, $task_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT `file` FROM student_task_tbl WHERE student_id = ? AND task_id = ?");
+        $stmt->execute([$student_id, $task_id]);
+        $file = $stmt->fetch(PDO::FETCH_ASSOC);
+        $this->closeConnection($connection);
+
+        return $file['file'];
+    }
+    
     
 }
 ?>

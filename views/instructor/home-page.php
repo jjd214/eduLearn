@@ -3,7 +3,63 @@ ob_start();
 ?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/eduLearn/components/navbar-instructor.php'); ?>
+<?php $courses = view_instructor_course($userid); ?>
 
+<style>
+    .card {
+        border: 0;
+        background: #fff;
+        transition: transform 0.3s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card .card-body {
+        padding: 1rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card .card-title {
+        text-transform: capitalize;
+        font-size: 17px;
+    }
+
+    .card .card-subtitle {
+        margin-top: 0.625rem;
+        margin-bottom: 0.625rem;
+    }
+
+    .card .card-description {
+        color: #76838f;
+        margin-bottom: 1.5rem;
+    }
+
+    .card.card-img-holder {
+        position: relative;
+    }
+
+    .card.card-img-holder .card-img-absolute {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+    }
+
+    .bg-primary {
+        background-color: var(--chelsea-200) !important;
+    }
+
+    @media (max-width: 767px) {
+        .stretch-card {
+            margin-bottom: 20px;
+        }
+    }
+</style>
 <!-- Your HTML content goes here -->
 <main id="main">
     <!-- ======= Breadcrumbs Section ======= -->
@@ -21,11 +77,31 @@ ob_start();
 
     <section class="inner-page">
         <div class="container">
-            <p>
-                Test
-            </p>
+        <div class="row">
+
+                <?php foreach ($courses as $index => $course) : ?>
+                    <div class="col-md-3 stretch-card grid-margin">
+                        <a href="/eduLearn/views/instructor/course_task.php?course_id=<?= $course['id'] ?>">
+                            <div class="card bg-primary card-img-holder text-white">
+                                <div class="card-body text-dark">
+                                    <img src="/eduLearn/views/instructor/dashboard/uploads/<?= $course['thumbnail'] ?>" alt="Course image" height="200" width="275">
+                                    <h4 class="font-weight-normal fw-bold card-title mt-2">
+                                        <?= $course['title'] ?>
+                                    </h4>
+                                    <h6 style="font-size: 15px;">Difficulty: <?= $course['difficulty'] ?></h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <?php if (($index + 1) % 4 == 0) : ?>
+                        </div><div class="row">
+                    <?php endif; ?>
+                <?php endforeach; ?>
+
+            </div>
         </div>
     </section>
+
 </main>
 <!-- End #main -->
 

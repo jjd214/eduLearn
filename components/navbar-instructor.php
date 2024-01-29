@@ -273,6 +273,9 @@ if (isset($userid)) {
             <a class="nav-link scrollto" href="/eduLearn/views/instructor/dashboard/create_task.php">Create Task</a>
           </li>
           <li>
+            <a class="nav-link scrollto" href="/eduLearn/views/instructor/submitted_tasks.php">Submitted Task</a>
+          </li>
+          <li>
             <a class="nav-link scrollto" href="/eduLearn/views/instructor/dashboard/instructor-dashboard.php">My Dashboard</a>
           </li>
           <li>

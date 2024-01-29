@@ -3,7 +3,9 @@
 <?php
 
 if(isset($userid)) {
-  echo '<script>alert("session set si instructor id");</script>';
+  
+} else {
+  header("Location: /eduLearn/views/index.php");
 }
 
 ?>

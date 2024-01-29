@@ -301,4 +301,29 @@ function submit_task() {
     $submit = new Task();
     $submit->submit_task();
 }
+
+function view_submited_task($student_id) {
+    $view = new View();
+    return $view->view_submited_task($student_id);
+}
+
+function get_file_submited($student_id,$task_id) {
+    $view = new View();
+    return $view->get_file_submited($student_id,$task_id);
+}
+
+function view_instructor_course($instructor_id) {
+    $view = new View();
+    return $view->view_instructor_course($instructor_id);
+}
+
+function view_course_task($instructor_id,$course_id) {
+    $view = new View();
+    return $view->view_course_task($instructor_id,$course_id);
+}
+
+function get_single_task_details($instructor_id,$course_id) {
+    $view = new View();
+    return $view->get_single_task_details($instructor_id,$course_id);
+}
 ?>

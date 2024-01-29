@@ -23,12 +23,12 @@ if(isset($_SESSION['lastInsertedCourseId'])) {
 }
 
     $fetch = new CourseEntity();
-    $userData = $fetch->getData($_SESSION['courseid'] ? $_SESSION['courseid'] : $_SESSION['lastInsertedCourseId']);
+    $courseData = $fetch->getData($_SESSION['courseid'] ? $_SESSION['courseid'] : $_SESSION['lastInsertedCourseId']);
 
-if(empty($userData)) {
+
+if(empty($courseData)) {
     echo "walang laman.";
 }
-
 ?>
 <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -109,7 +109,7 @@ if(empty($userData)) {
                                         <input type="hidden" name="instructorID" value="<?= $userid ?>">
                                         <input type="text"
                                             class="form-control form-control-sm border-primary" name="title"
-                                            placeholder="e.g. 'Advanced Front-end Development'" value="<?= $userData['title']; ?>" required>
+                                            placeholder="e.g. 'Advanced Front-end Development'" value="<?= $courseData['title']; ?>" required>
                                         <input type="submit" name="course-title" class="btn btn-primary mt-3"
                                             value="Edit">
                                     </div>
@@ -131,9 +131,9 @@ if(empty($userData)) {
                                 <form method="post">
                                     <div class="form-group">
                                         <select class="form-select border-primary" id="position" name="difficulty" required>
-                                            <option value="Beginner" <?= ($userData['difficulty'] == 'Beginner') ? 'selected' : '' ?>>Beginner</option>
-                                            <option value="Intermediate" <?= ($userData['difficulty'] == 'Intermediate') ? 'selected' : '' ?>>Intermediate</option>
-                                            <option value="Advanced" <?= ($userData['difficulty'] == 'Advanced') ? 'selected' : '' ?>>Advanced</option>
+                                            <option value="Beginner" <?= ($courseData['difficulty'] == 'Beginner') ? 'selected' : '' ?>>Beginner</option>
+                                            <option value="Intermediate" <?= ($courseData['difficulty'] == 'Intermediate') ? 'selected' : '' ?>>Intermediate</option>
+                                            <option value="Advanced" <?= ($courseData['difficulty'] == 'Advanced') ? 'selected' : '' ?>>Advanced</option>
                                         </select>
                                         <input type="hidden" name="courseID" value="<?= isset($_SESSION['courseid']) ? $_SESSION['courseid'] : $_SESSION['lastInsertedCourseId'] ?>">
                                         <input type="hidden" name="instructorID" value="<?= $userid ?>">
@@ -158,7 +158,7 @@ if(empty($userData)) {
                                 <form method="post">
                                     <div class="form-group">
                                         <textarea class="form-control border-primary" name="description" id=""
-                                            rows="5"><?= is_null($userData['description']) ? '' : $userData['description']; ?></textarea>
+                                            rows="5"><?= is_null($courseData['description']) ? '' : $courseData['description']; ?></textarea>
                                         <input type="hidden" name="courseID" value="<?= isset($_SESSION['courseid']) ? $_SESSION['courseid'] : $_SESSION['lastInsertedCourseId'] ?>">
 
                                         <input type="hidden" name="instructorID" value="<?= $userid ?>">
@@ -177,7 +177,7 @@ if(empty($userData)) {
                                 <?php $defaultImage = 'placeholder.png'; ?>
 
                                 <img class="form-control object-fit-cover border-0" height="300" 
-                                src="/eduLearn/views/instructor/dashboard/uploads/<?= $userData['thumbnail'] ? $userData['thumbnail'] : $defaultImage ?>" alt />
+                                src="/eduLearn/views/instructor/dashboard/uploads/<?= $courseData['thumbnail'] ? $courseData['thumbnail'] : $defaultImage ?>" alt />
                                 <!-- Form -->
                                 <?= updateThumbnail(); ?>
                                 <?php

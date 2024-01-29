@@ -45,6 +45,10 @@ $category = view_course_category($userid);
                                     </select>
                                 </div>
                                 <div class="mb-3">
+                                    <label for="score" class="form-label">Score / Points: </label>
+                                    <input type="number-local" class="form-control" id="score" name="score" required>
+                                </div>
+                                <div class="mb-3">
                                     <label for="description" class="form-label">Description:</label>
                                     <textarea class="form-control" id="description" name="description" rows="5" placeholder="Enter Description"></textarea>
                                 </div>
