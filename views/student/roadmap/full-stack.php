@@ -92,9 +92,10 @@ ob_start();
                         </a>
                     </div>
                     <?php if (($index + 1) % 4 == 0) : ?>
-                        </div><div class="row">
-                    <?php endif; ?>
-                <?php endforeach; ?>
+            </div>
+            <div class="row">
+            <?php endif; ?>
+        <?php endforeach; ?>
 
             </div>
         </div>

@@ -50,12 +50,20 @@
       </div>
     </li>
 
-    <!-- <li class="nav-item">
-      <a class="nav-link" href="courses.php">
-        <span class="menu-title">Courses</span>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#course-work" aria-expanded="false" aria-controls="course-work">
+        <span class="menu-title">Course Work</span>
+        <i class="menu-arrow"></i>
         <i class="mdi mdi-format-list-bulleted menu-icon"></i>
       </a>
-    </li> -->
+      <div class="collapse" id="course-work">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="create-task.php"> Create Task </a></li>
+          <li class="nav-item"> <a class="nav-link" href="task-list.php"> Task List </a></li>
+        </ul>
+      </div>
+    </li>
+
     <li class="nav-item">
       <a class="nav-link" href="students.php">
         <span class="menu-title">Students</span>
