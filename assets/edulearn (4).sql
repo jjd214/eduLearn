@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2024 at 11:51 AM
+-- Generation Time: Jan 29, 2024 at 10:09 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -78,7 +78,10 @@ CREATE TABLE `course_tbl` (
 --
 
 INSERT INTO `course_tbl` (`id`, `instructor_id`, `title`, `roadmap`, `difficulty`, `thumbnail`, `description`, `students_enrolled`, `status`, `created_at`) VALUES
-(66, 8, 'Data Structure and Algorithms', 'fullstack', 'Advanced', 'IMG-8-65b5a881eeca3.png', 'In this course we will understand different data structures and how to use them effectively for solving problems. It is expected that the students have basic experience in any high-level programming language. Data structures and algorithms are a crucial p', 2, 'Public', '2024-01-28 09:04:48');
+(66, 8, 'Data Structure and Algorithms', 'fullstack', 'Advanced', 'IMG-8-65b5a881eeca3.png', 'In this course we will understand different data structures and how to use them effectively for solving problems. It is expected that the students have basic experience in any high-level programming language. Data structures and algorithms are a crucial p', 2, 'Public', '2024-01-28 09:04:48'),
+(67, 8, 'Laravel Framework', 'fullstack', 'Beginner', 'IMG-8-65b6f7a4555e2.jpg', 'qweqwrqweqweqeqw', 1, 'Public', '2024-01-29 08:55:36'),
+(68, 8, 'Code Igniter Framework', 'fullstack', 'Beginner', 'IMG-8-65b6fbd192364.jpg', 'qweqwrqweqwe', 1, 'Public', '2024-01-29 09:13:31'),
+(69, 9, 'Html and Css', 'frontend', 'Beginner', 'IMG-9-65b7012d0271b.png', 'HTML basics: Learn the fundamentals of HTML, including tags, elements, attributes, and structure, to build a solid foundation. CSS basics: Explore the basics of CSS, including selectors, properties, and values, to style and design web pages effectively.', 2, 'Public', '2024-01-29 09:36:16');
 
 -- --------------------------------------------------------
 
@@ -107,7 +110,7 @@ CREATE TABLE `instructor_tbl` (
 
 INSERT INTO `instructor_tbl` (`id`, `firstname`, `lastname`, `gender`, `biography`, `email`, `password`, `verify_token`, `age`, `position`, `profile`, `access`) VALUES
 (8, 'John Jacob', 'Ruiz', 'male', 'zxcxzcqweqeq', 'johnjacobdimaya2021@gmail.com', '065307ce8014f2f29c4e2ee84f2bb819', '9a8f24bfe9bdf3ce950455f39ec71848e69b76c9b006a0005188d02d1f00f7fb', '20', 'fullstack', 'IMG-8-2024-01-28-05-53-40-PM.jpg', 'instructor'),
-(9, 'Ana Bien', 'Salazar', 'female', NULL, 'anabien0314@gmail.com', '817b3ae38cbe924db0ba853912232d9b', '9df6863b779d51d666eaec40b4272437', '20', 'Fullstack', NULL, 'instructor');
+(9, 'Ana Bien', 'Salazar', 'female', NULL, 'anabien0314@gmail.com', '817b3ae38cbe924db0ba853912232d9b', '9df6863b779d51d666eaec40b4272437', '20', 'frontend', NULL, 'instructor');
 
 -- --------------------------------------------------------
 
@@ -128,7 +131,45 @@ CREATE TABLE `student_course_tbl` (
 
 INSERT INTO `student_course_tbl` (`id`, `student_id`, `course_id`, `course`) VALUES
 (1, 7, 66, 'Data Structure and Algorithms'),
-(2, 8, 66, 'Data Structure and Algorithms');
+(2, 8, 66, 'Data Structure and Algorithms'),
+(3, 7, 67, 'Laravel Framework'),
+(4, 7, 68, 'Code Igniter Framework'),
+(6, 7, 69, 'Html and Css');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_task_tbl`
+--
+
+CREATE TABLE `student_task_tbl` (
+  `id` int(11) NOT NULL,
+  `task_id` int(11) DEFAULT NULL,
+  `student_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `course` varchar(255) DEFAULT NULL,
+  `file` text DEFAULT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'Incomplete',
+  `submitted_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `task_tbl`
+--
+
+CREATE TABLE `task_tbl` (
+  `id` int(11) NOT NULL,
+  `instructor_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `course` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `file` text DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `deadline` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -154,7 +195,7 @@ CREATE TABLE `user_tbl` (
 --
 
 INSERT INTO `user_tbl` (`id`, `firstname`, `lastname`, `gender`, `biography`, `email`, `password`, `verify_token`, `profile`, `access`) VALUES
-(7, 'John Jacob', 'Dimaya', 'male', NULL, 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'ab00ab307114001fc5e1e5e3710831f2', 'IMG-7-2024-01-28-09-03-57-AM.jpg', 'student'),
+(7, 'John Jacob', 'Dimaya', 'male', NULL, 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'ab00ab307114001fc5e1e5e3710831f2', 'IMG-7-2024-01-29-07-47-38-AM.jpg', 'student'),
 (8, 'Aaron Angelo', 'Eva', 'male', NULL, 'aaron.angelo565@gmail.com', '817b3ae38cbe924db0ba853912232d9b', '90c961b15df666be5319edac1791d81c', NULL, 'student');
 
 -- --------------------------------------------------------
@@ -218,6 +259,18 @@ ALTER TABLE `student_course_tbl`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `student_task_tbl`
+--
+ALTER TABLE `student_task_tbl`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `task_tbl`
+--
+ALTER TABLE `task_tbl`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_tbl`
 --
 ALTER TABLE `user_tbl`
@@ -251,7 +304,7 @@ ALTER TABLE `application-form_tbl`
 -- AUTO_INCREMENT for table `course_tbl`
 --
 ALTER TABLE `course_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `instructor_tbl`
@@ -263,7 +316,19 @@ ALTER TABLE `instructor_tbl`
 -- AUTO_INCREMENT for table `student_course_tbl`
 --
 ALTER TABLE `student_course_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `student_task_tbl`
+--
+ALTER TABLE `student_task_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `task_tbl`
+--
+ALTER TABLE `task_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_tbl`

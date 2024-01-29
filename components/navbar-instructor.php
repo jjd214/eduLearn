@@ -209,7 +209,7 @@ else {
     <div class="logo">
       <!-- <h1><a href="#">EduLearn</a></h1> -->
       <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="home-page.php"><img src="/eduLearn/images/LogoNormal.png" class="img-fluid"></a>
+      <a  href="/eduLearn/views/instructor/home-page.php"><img src="/eduLearn/images/LogoNormal.png" class="img-fluid"></a>
     </div>
 
     <nav id="navbar" class="navbar">
@@ -252,12 +252,15 @@ else {
             </form>
           </li>
           <li>
-            <a class="nav-link scrollto <?php echo (basename($_SERVER['PHP_SELF']) == 'home-page.php') ? 'active' : ''; ?>" href="home-page.php">
+            <a class="nav-link scrollto <?php echo (basename($_SERVER['PHP_SELF']) == 'home-page.php') ? 'active' : ''; ?>" href="/eduLearn/views/instructor/home-page.php">
               Home
             </a>
           </li>
           <li>
-            <a class="nav-link scrollto" href="dashboard/instructor-dashboard.php">My Dashboard</a>
+            <a class="nav-link scrollto" href="/eduLearn/views/instructor/dashboard/create_task.php">Create Task</a>
+          </li>
+          <li>
+            <a class="nav-link scrollto" href="/eduLearn/views/instructor/dashboard/instructor-dashboard.php">My Dashboard</a>
           </li>
           <li>
             <!-- Dropdown for profile-settings.php only -->
@@ -271,8 +274,8 @@ else {
               </a>
               <div class="dropdown-menu">
                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
-                <a href="profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
-                <a href="dashboard/instructor-dashboard.php" class="dropdown-item"><i class="fa fa-tachometer"></i>Dashboard</a>
+                <a href="/eduLearn/views/instructor/profile-settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+                <a href="/eduLearn/views/instructor/dashboard/instructor-dashboard.php" class="dropdown-item"><i class="fa fa-tachometer"></i>Dashboard</a>
                 <div class="divider dropdown-divider"></div>
                 <a href="/eduLearn/views/logout.php" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
               </div>

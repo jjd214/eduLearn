@@ -276,4 +276,29 @@ function view_instructor_profile($instructor_id) {
     $view = new View();
     return $view->view_instructor_profile($instructor_id);
 }
+
+function view_course_category($instructor_id) {
+    $view = new View();
+    return $view->view_course_category($instructor_id);
+}
+
+function create_task() {
+    $create = new Task();
+    $create->create_task();
+}
+
+function view_student_task($student_id) {
+    $view = new View();
+    return $view->view_student_task($student_id);
+}
+
+function view_task_details($task_id) {
+    $view = new View();
+    return $view->view_task_details($task_id);
+}
+
+function submit_task() {
+    $submit = new Task();
+    $submit->submit_task();
+}
 ?>

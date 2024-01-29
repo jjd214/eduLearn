@@ -497,7 +497,47 @@ class View extends Config {
     
         return $data;
     }
+
+    public function view_course_category($instructor_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT title,id FROM course_tbl WHERE `instructor_id` = ?");
+        $stmt->execute([$instructor_id]);
+        $data = $stmt->fetchAll();
+
+        return $data;
+    }
+
+    // public function view_student_task($student_id) {
+    //     $connection = $this->openConnection();
+    //     $stmt = $connection->prepare("SELECT task_tbl.id, task_tbl.title, task_tbl.course, task_tbl.created_at, task_tbl.file, task_tbl.deadline FROM task_tbl INNER JOIN `student_course_tbl` ON student_course_tbl.student_id = ? WHERE task_tbl.course_id = student_course_tbl.course_id");
+    //     $stmt->execute([$student_id]);
+    //     $data = $stmt->fetchAll();
+
+    //     return $data;
+    // }
+    public function view_student_task($student_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT task_tbl.id, task_tbl.title, task_tbl.course, task_tbl.created_at, task_tbl.file, task_tbl.deadline
+            FROM task_tbl
+            INNER JOIN student_course_tbl ON task_tbl.course_id = student_course_tbl.course_id
+            LEFT JOIN student_task_tbl ON task_tbl.id = student_task_tbl.task_id AND student_task_tbl.student_id = ?
+            WHERE student_course_tbl.student_id = ? AND (student_task_tbl.status IS NULL OR student_task_tbl.status = 'Incomplete')
+        ");
+        $stmt->execute([$student_id, $student_id]);
+        $data = $stmt->fetchAll();
     
+        return $data;
+    }
+    
+    
+    public function view_task_details($task_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT * FROM task_tbl WHERE `id` = ?");
+        $stmt->execute([$task_id]);
+        $data = $stmt->fetch();
+
+        return $data;
+    }
     
 }
 

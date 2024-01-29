@@ -270,6 +270,11 @@ if (isset($userid)) {
             </a>
           </li>
           <li>
+            <a class="nav-link scrollto" href="/eduLearn/views/student/my_task.php">
+              My Task
+            </a>
+          </li>
+          <li>
             <a class="nav-link scrollto" href="/eduLearn/views/student/my-courses/learning.php">My Learning</a>
           </li>
           <li>
