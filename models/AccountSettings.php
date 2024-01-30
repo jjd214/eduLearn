@@ -90,7 +90,7 @@ class AccountSettings extends Config
             $data = $stmt->fetch();
 
             return $data;
-        } else {
+        } else if($usertype == 'admin') {
             $connection = $this->openConnection();
             $stmt = $connection->prepare("SELECT * FROM `admin_tbl` WHERE `id` = ?");
             $stmt->execute([$id]);

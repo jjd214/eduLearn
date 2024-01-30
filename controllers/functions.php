@@ -14,7 +14,7 @@ function login() {
             $login = new Login();
             $login->instructorLogin();
         }
-        else {
+        else if($role == 'admin'){
             $login = new Login();
             $login->adminLogin();
         }
@@ -346,4 +346,40 @@ function get_instructor_total_video($instructor_id) {
     $view = new View();
     return $view->get_instructor_total_video($instructor_id);
 }
+
+function get_total_students() {
+    $view = new View();
+    return $view->get_total_students();
+}
+
+function get_total_instructor() {
+    $view = new View();
+    return $view->get_total_instructor();
+}
+
+function get_total_course() {
+    $view = new View();
+    return $view->get_total_course();
+}
+
+function get_total_video() {
+    $view = new View();
+    return $view->get_total_video();
+}
+
+function get_students() {
+    $view = new View();
+    return $view->get_students();
+}
+
+function get_instructor_details () {
+    $view = new View();
+    return $view->get_instructor_details();
+}
+
+function get_course_details() {
+    $view = new View();
+    return $view->get_course_details();
+}
+
 ?>

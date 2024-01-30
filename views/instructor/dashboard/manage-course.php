@@ -11,7 +11,7 @@ if (isset($_POST['id'])) {
     $courseid = $_SESSION['courseId'];
     $_SESSION['courseid'] = $courseid;
 
-    echo "<script>alert('napasa id'); </script>";
+/*     echo "<script>alert('napasa id'); </script>"; */
 } 
 if (isset($_SESSION['lastInsertedCourseId'])) {
     /* echo '<script> alert("POTANGINA");</script>'; */

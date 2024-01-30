@@ -76,7 +76,7 @@ class Login extends Config {
 
             if ($count == 1) {
                 $this->set_session($data);
-                header("Location: /edulearn/views/admin/index.php");
+                header("Location: /eduLearn/views/admin/dashboard/admin-dashboard.php");
                 exit();
             } else {
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
