@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2024 at 10:09 AM
+-- Generation Time: Jan 30, 2024 at 04:08 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -79,7 +79,7 @@ CREATE TABLE `course_tbl` (
 
 INSERT INTO `course_tbl` (`id`, `instructor_id`, `title`, `roadmap`, `difficulty`, `thumbnail`, `description`, `students_enrolled`, `status`, `created_at`) VALUES
 (66, 8, 'Data Structure and Algorithms', 'fullstack', 'Advanced', 'IMG-8-65b5a881eeca3.png', 'In this course we will understand different data structures and how to use them effectively for solving problems. It is expected that the students have basic experience in any high-level programming language. Data structures and algorithms are a crucial p', 2, 'Public', '2024-01-28 09:04:48'),
-(67, 8, 'Laravel Framework', 'fullstack', 'Beginner', 'IMG-8-65b6f7a4555e2.jpg', 'qweqwrqweqweqeqw', 1, 'Public', '2024-01-29 08:55:36'),
+(67, 8, 'Laravel Frameworks', 'fullstack', 'Beginner', 'IMG-8-65b6f7a4555e2.jpg', 'qweqwrqweqweqeqw', 1, 'Public', '2024-01-29 08:55:36'),
 (68, 8, 'Code Igniter Framework', 'fullstack', 'Beginner', 'IMG-8-65b6fbd192364.jpg', 'qweqwrqweqwe', 1, 'Public', '2024-01-29 09:13:31'),
 (69, 9, 'Html and Css', 'frontend', 'Beginner', 'IMG-9-65b7012d0271b.png', 'HTML basics: Learn the fundamentals of HTML, including tags, elements, attributes, and structure, to build a solid foundation. CSS basics: Explore the basics of CSS, including selectors, properties, and values, to style and design web pages effectively.', 2, 'Public', '2024-01-29 09:36:16');
 
@@ -150,8 +150,19 @@ CREATE TABLE `student_task_tbl` (
   `course` varchar(255) DEFAULT NULL,
   `file` text DEFAULT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'Incomplete',
+  `score` int(11) DEFAULT NULL,
   `submitted_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `student_task_tbl`
+--
+
+INSERT INTO `student_task_tbl` (`id`, `task_id`, `student_id`, `course_id`, `course`, `file`, `status`, `score`, `submitted_at`) VALUES
+(8, 9, 7, 66, 'Data Structure and Algorithms', '65b7b36acaac5_65b7a64232622_65b74da7d0980_chapter-2.docx', 'Completed', 50, '2024-01-29 21:21:06'),
+(9, 9, 8, 66, 'Data Structure and Algorithms', NULL, 'Incomplete', NULL, '2024-01-29 21:21:06'),
+(10, 10, 7, 69, 'Html and Css', NULL, 'Incomplete', NULL, '2024-01-30 10:32:47'),
+(11, 11, 7, 67, 'Laravel Frameworks', NULL, 'Incomplete', NULL, '2024-01-30 10:45:12');
 
 -- --------------------------------------------------------
 
@@ -167,9 +178,19 @@ CREATE TABLE `task_tbl` (
   `course` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `file` text DEFAULT NULL,
+  `score` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `deadline` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `task_tbl`
+--
+
+INSERT INTO `task_tbl` (`id`, `instructor_id`, `course_id`, `title`, `course`, `description`, `file`, `score`, `created_at`, `deadline`) VALUES
+(9, 8, 66, 'Task 1', 'Data Structure and Algorithms', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '65b7a64232622_65b74da7d0980_chapter-2.docx', 100, '2024-01-29 21:21:06', '2024-01-30 21:20:00'),
+(10, 9, 69, 'Excercise - 1', 'Html and Css', 'THis files is for the submissions of your QUIZ# 3 &4  with 50 items...\r\nYOU HaVE the other Link to open to take your QUIZ\r\n\r\nthis file is empty... your can only turned in the picture of the Quiz #3& 4 taken for recording purpose.\r\nthank you.', '65b85fcfdfb9a_yourname.jpg', 50, '2024-01-30 10:32:47', '2024-01-31 10:32:00'),
+(11, 8, 67, 'Programming Excersie 1', 'Laravel Frameworks', 'Print Hello World', '65b862b88572a_5 Centimeters Per Second_banner.jpg', 100, '2024-01-30 10:45:12', '2024-01-31 10:45:00');
 
 -- --------------------------------------------------------
 
@@ -322,13 +343,13 @@ ALTER TABLE `student_course_tbl`
 -- AUTO_INCREMENT for table `student_task_tbl`
 --
 ALTER TABLE `student_task_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `task_tbl`
 --
 ALTER TABLE `task_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_tbl`
