@@ -272,42 +272,49 @@ class View extends Config
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal_<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-xl">
-                                    <div class="modal-content" style="background-color: white;">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit the Chapter</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form class="forms-sample" method="post" enctype="multipart/form-data">
-                                                <div class="row">
-                                                    <!-- Left Column: Chapter Title and Video Description -->
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputUsername1">Chapter Title</label>
-                                                            <input type="text" readonly class="form-control border-primary" name="title" id="exampleInputUsername1" style="margin-top: 8px;" placeholder="Chapter Title" value="<?= $row['video_title'] ?>" required>
+                                    <div class="modal-dialog modal-xl">
+                                        <div class="modal-content" style="background-color: white;">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit the Chapter</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="forms-sample" method="post" enctype="multipart/form-data">>
+                                                    <div class="row">
+                                                        <!-- Left Column: Chapter Title and Video Description -->
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputUsername1">Chapter Title</label>
+                                                                <input type="text" class="form-control border-primary" name="title" id="exampleInputUsername1" style="margin-top: 8px;" placeholder="Chapter Title" value="<?= $row['video_title'] ?>" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Video Description</label>
+                                                                <textarea class="form-control border-primary" name="description" id="" rows="5" style="height: 205px;"><?= $row['description'] ?></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Chapter Video</label>
+                                                                <input class="form-control" type="file" name="course-video" id="course-video" accept="video/mp4" >
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label>Video Description</label>
-                                                            <textarea readonly class="form-control border-primary" name="description" id="" rows="5" style="height: 205px;"><?= $row['description'] ?></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Right Column: Chapter Video and Thumbnail -->
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Chapter Thumbnail</label>
-                                                            <div class="mt-2 mb-2" style="width: 100% !important;">
+                                                        <!-- Right Column: Chapter Video and Thumbnail -->
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Chapter Thumbnail</label>
+                                                                <div class="mt-2 mb-2" style="width: 100% !important;">
                                                                 <?php $defaultImage = 'placeholder.png'; ?>
-                                                                <img src="/eduLearn/views/instructor/dashboard/videos/thumbnails/<?= isset($row['thumbnail']) ? $row['thumbnail'] : $defaultImage ?>" style="width: 100% !important;" />
+                                                                    <img src="/eduLearn/views/instructor/dashboard/videos/thumbnails/<?= isset($row['thumbnail']) ? $row['thumbnail'] : $defaultImage ?>" style="width: 100% !important;" />
+                                                                </div>
+                                                                <input class="form-control" type="file" name="course-image" id="course-image" style="margin-top: 43px;" accept="image/jpeg, image/jpg, image/png" >
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                                    <button type="submit" name="edit_chapter" class="btn btn-gradient-primary me-2">Edit Chapter</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>
