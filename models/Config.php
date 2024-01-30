@@ -16,6 +16,7 @@ class Config {
         catch (PDOException $e) {
             die($e->getMessage());
         }
+        
     }
 
     public function closeConnection()

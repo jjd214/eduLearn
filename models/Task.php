@@ -6,6 +6,7 @@ class Task extends Config {
             $instructor_id = $_POST['instructor_id'];
             $course_id = $_POST['course_id'];
             $title = $_POST['title'];
+            $score = $_POST['score'];
             $course = $_POST['course_category'];
             $description = $_POST['description'];
             $deadline = $_POST['deadline'];
@@ -35,7 +36,7 @@ class Task extends Config {
             $students = $stmt->fetchAll(PDO::FETCH_COLUMN);
     
             // Prepare the SQL statement for task_tbl insertion
-            $stmtTask = $connection->prepare("INSERT INTO task_tbl (instructor_id, course_id, title, course, description, file, deadline) VALUES (:instructor_id, :course_id, :title, :course, :description, :file, :deadline)");
+            $stmtTask = $connection->prepare("INSERT INTO task_tbl (instructor_id, course_id, title, course, description, file, score, deadline) VALUES (:instructor_id, :course_id, :title, :course, :description, :file, :score, :deadline)");
     
             // Bind parameters for task_tbl insertion
             $stmtTask->bindParam(':instructor_id', $instructor_id, PDO::PARAM_INT);
@@ -44,6 +45,7 @@ class Task extends Config {
             $stmtTask->bindParam(':course', $course, PDO::PARAM_STR);
             $stmtTask->bindParam(':description', $description, PDO::PARAM_STR);
             $stmtTask->bindParam(':file', $file_name, PDO::PARAM_STR);
+            $stmtTask->bindParam(':score', $score, PDO::PARAM_STR);
             $stmtTask->bindParam(':deadline', $deadline, PDO::PARAM_STR);
     
             // Prepare the SQL statement for student_task_tbl insertion
@@ -145,6 +147,28 @@ class Task extends Config {
 
         return $file['file'];
     }
+
+    public function update_score() {
+        if(isset($_POST['submit_score'])) {
+            
+            $score = $_POST['score'];
+            $student_id = $_POST['student_id'];
+            $task_id = $_POST['task_id'];
+    
+            $connection = $this->openConnection();
+            $stmt = $connection->prepare("UPDATE student_task_tbl SET score = ? WHERE student_id = ? AND task_id = ?");
+            $stmt->execute([$score, $student_id, $task_id]);
+            $result = $stmt->rowCount();
+    
+            if($result > 0) {
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Score Submitted.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            }
+        }
+    }
+    
     
     
 }

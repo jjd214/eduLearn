@@ -583,6 +583,42 @@ class View extends Config {
 
         return $data;
     }
+
+    public function view_student_submit($instructor_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT student_task_tbl.student_id, student_task_tbl.course_id, student_task_tbl.course, student_task_tbl.file, student_task_tbl.status, student_task_tbl.task_id, user_tbl.firstname, user_tbl.lastname, user_tbl.email, task_tbl.title
+                                     FROM student_task_tbl 
+                                     INNER JOIN user_tbl ON student_task_tbl.student_id = user_tbl.id
+                                     INNER JOIN task_tbl ON student_task_tbl.course_id = task_tbl.course_id 
+                                     WHERE task_tbl.instructor_id = ? AND student_task_tbl.status = 'Completed'");
+        $stmt->execute([$instructor_id]);
+        $data = $stmt->fetchAll();
+    
+        return $data;
+    }
+
+    public function view_student_submitted_task($task_id, $student_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT task_tbl.title, task_tbl.course, task_tbl.description, task_tbl.file, task_tbl.score, task_tbl.created_at, task_tbl.deadline, student_task_tbl.submitted_at, task_tbl.title, student_task_tbl.score AS student_score FROM task_tbl INNER JOIN student_task_tbl ON task_tbl.id = student_task_tbl.task_id WHERE task_tbl.id = ? AND student_task_tbl.student_id = ?");
+        $stmt->execute([$task_id, $student_id]);
+        $data = $stmt->fetch();
+    
+        return $data;
+    }
+
+    public function get_instructor_total_video($instructor_id) {
+        $connection = $this->openConnection();
+        $stmt = $connection->prepare("SELECT COUNT(*) FROM video_tbl WHERE instructor_id = ?");
+        $stmt->execute([$instructor_id]);
+        $data = $stmt->fetchColumn();  
+    
+        return $data;
+    }
+
+
+
+
+    
 }
 
 ?>

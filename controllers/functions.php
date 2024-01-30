@@ -326,4 +326,24 @@ function get_single_task_details($instructor_id,$course_id) {
     $view = new View();
     return $view->get_single_task_details($instructor_id,$course_id);
 }
+
+function view_student_submit($instructor_id) {
+    $view = new View();
+    return $view-> view_student_submit($instructor_id);
+}
+
+function view_student_submitted_task($task_id, $student_id) {
+    $view = new View();
+    return $view->view_student_submitted_task($task_id, $student_id);
+}
+
+function update_score() {
+    $submit = new Task();
+    $submit->update_score();
+}
+
+function get_instructor_total_video($instructor_id) {
+    $view = new View();
+    return $view->get_instructor_total_video($instructor_id);
+}
 ?>

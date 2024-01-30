@@ -21,6 +21,7 @@ ob_start();
         </div>
     </section>
     <!-- End Breadcrumbs Section -->
+    
     <?php submit_task(); ?>
     <section class="inner-page">
         <div class="container">
@@ -28,6 +29,7 @@ ob_start();
                 <div class="col-md-8">
                     <h3 class="fw-bold">Due Date: <?= $tasks['deadline'] ?></h3>
                     <h5>Date Submitted : <?= $file['submitted_at'] ?></h5><br><br>
+                    <h5>Score : <?= $tasks['score'] ?></h5><br><br>
                     <p class="lead"><?= $tasks['description'] ?></p>
                     
                     <?php if (isset($tasks['file'])) : ?>
