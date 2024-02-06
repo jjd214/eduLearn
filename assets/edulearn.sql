@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2024 at 04:08 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Feb 06, 2024 at 02:24 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,6 +34,13 @@ CREATE TABLE `admin_tbl` (
   `password` varchar(255) DEFAULT NULL,
   `access` varchar(255) DEFAULT 'admin'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin_tbl`
+--
+
+INSERT INTO `admin_tbl` (`id`, `username`, `email`, `password`, `access`) VALUES
+(1, 'admin', 'admin@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'admin');
 
 -- --------------------------------------------------------
 
@@ -78,10 +85,11 @@ CREATE TABLE `course_tbl` (
 --
 
 INSERT INTO `course_tbl` (`id`, `instructor_id`, `title`, `roadmap`, `difficulty`, `thumbnail`, `description`, `students_enrolled`, `status`, `created_at`) VALUES
-(66, 8, 'Data Structure and Algorithms', 'fullstack', 'Advanced', 'IMG-8-65b5a881eeca3.png', 'In this course we will understand different data structures and how to use them effectively for solving problems. It is expected that the students have basic experience in any high-level programming language. Data structures and algorithms are a crucial p', 2, 'Public', '2024-01-28 09:04:48'),
-(67, 8, 'Laravel Frameworks', 'fullstack', 'Beginner', 'IMG-8-65b6f7a4555e2.jpg', 'qweqwrqweqweqeqw', 1, 'Public', '2024-01-29 08:55:36'),
-(68, 8, 'Code Igniter Framework', 'fullstack', 'Beginner', 'IMG-8-65b6fbd192364.jpg', 'qweqwrqweqwe', 1, 'Public', '2024-01-29 09:13:31'),
-(69, 9, 'Html and Css', 'frontend', 'Beginner', 'IMG-9-65b7012d0271b.png', 'HTML basics: Learn the fundamentals of HTML, including tags, elements, attributes, and structure, to build a solid foundation. CSS basics: Explore the basics of CSS, including selectors, properties, and values, to style and design web pages effectively.', 2, 'Public', '2024-01-29 09:36:16');
+(66, 8, 'dsa', 'fullstack', 'Advanced', 'IMG-8-65b5a881eeca3.png', 'In this course we will understand different data structures and how to use them effectively for solving problems. It is expected that the students have basic experience in any high-level programming language. Data structures and algorithms are a crucial p', 4, 'Public', '2024-01-28 09:04:48'),
+(67, 8, 'Laravel Frameworks', 'fullstack', 'Beginner', 'IMG-8-65b880e822ae5.png', 'qweqwrqweqweqeqw', 1, 'Public', '2024-01-29 08:55:36'),
+(68, 8, 'Code Igniter Framework', 'fullstack', 'Beginner', 'IMG-8-65b88100e8971.png', 'qweqwrqweqwe', 1, 'Public', '2024-01-29 09:13:31'),
+(69, 9, 'Html and Css', 'frontend', 'Beginner', 'IMG-9-65b7012d0271b.png', 'HTML basics: Learn the fundamentals of HTML, including tags, elements, attributes, and structure, to build a solid foundation. CSS basics: Explore the basics of CSS, including selectors, properties, and values, to style and design web pages effectively.', 2, 'Public', '2024-01-29 09:36:16'),
+(70, 8, 'Djikstra Algo', 'fullstack', 'Beginner', 'IMG-8-65b899e0b8001.png', 'loremloremloremloremloremloremloremloremloremlorem', NULL, 'Public', '2024-01-30 15:40:05');
 
 -- --------------------------------------------------------
 
@@ -109,8 +117,9 @@ CREATE TABLE `instructor_tbl` (
 --
 
 INSERT INTO `instructor_tbl` (`id`, `firstname`, `lastname`, `gender`, `biography`, `email`, `password`, `verify_token`, `age`, `position`, `profile`, `access`) VALUES
-(8, 'John Jacob', 'Ruiz', 'male', 'zxcxzcqweqeq', 'johnjacobdimaya2021@gmail.com', '065307ce8014f2f29c4e2ee84f2bb819', '9a8f24bfe9bdf3ce950455f39ec71848e69b76c9b006a0005188d02d1f00f7fb', '20', 'fullstack', 'IMG-8-2024-01-28-05-53-40-PM.jpg', 'instructor'),
-(9, 'Ana Bien', 'Salazar', 'female', NULL, 'anabien0314@gmail.com', '817b3ae38cbe924db0ba853912232d9b', '9df6863b779d51d666eaec40b4272437', '20', 'frontend', NULL, 'instructor');
+(8, 'John Jacob', 'Ruiz', 'male', 'zxcxzcqweqeq', 'johnjacobdimaya2021@gmail.com', '817b3ae38cbe924db0ba853912232d9b', '9a8f24bfe9bdf3ce950455f39ec71848e69b76c9b006a0005188d02d1f00f7fb', '20', 'fullstack', 'IMG-8-2024-01-28-05-53-40-PM.jpg', 'instructor'),
+(9, 'Ana Bien', 'Salazar', 'female', NULL, 'anabien0314@gmail.com', '817b3ae38cbe924db0ba853912232d9b', '9df6863b779d51d666eaec40b4272437', '20', 'frontend', NULL, 'instructor'),
+(10, 'Nathaniel', 'Faiyaz', 'male', NULL, 'gtpndn@gmail.com', 'ffdc5e7af55a6ba90654109bc62ba811', '9fac50796fb8acfe4b54b0ff6806e83f', '20', 'Backend', NULL, 'instructor');
 
 -- --------------------------------------------------------
 
@@ -134,7 +143,9 @@ INSERT INTO `student_course_tbl` (`id`, `student_id`, `course_id`, `course`) VAL
 (2, 8, 66, 'Data Structure and Algorithms'),
 (3, 7, 67, 'Laravel Framework'),
 (4, 7, 68, 'Code Igniter Framework'),
-(6, 7, 69, 'Html and Css');
+(6, 7, 69, 'Html and Css'),
+(7, 9, 66, 'Data Structure and Algorithms'),
+(8, 10, 66, 'Data Structure and Algorithms');
 
 -- --------------------------------------------------------
 
@@ -217,7 +228,9 @@ CREATE TABLE `user_tbl` (
 
 INSERT INTO `user_tbl` (`id`, `firstname`, `lastname`, `gender`, `biography`, `email`, `password`, `verify_token`, `profile`, `access`) VALUES
 (7, 'John Jacob', 'Dimaya', 'male', NULL, 'johnjacobdimaya0@gmail.com', '817b3ae38cbe924db0ba853912232d9b', 'ab00ab307114001fc5e1e5e3710831f2', 'IMG-7-2024-01-29-07-47-38-AM.jpg', 'student'),
-(8, 'Aaron Angelo', 'Eva', 'male', NULL, 'aaron.angelo565@gmail.com', '817b3ae38cbe924db0ba853912232d9b', '90c961b15df666be5319edac1791d81c', NULL, 'student');
+(8, 'Aaron Angelo', 'Eva', 'male', NULL, 'aaron.angelo565@gmail.com', '817b3ae38cbe924db0ba853912232d9b', '90c961b15df666be5319edac1791d81c', NULL, 'student'),
+(9, 'Gessamae', 'Cadiz', 'female', NULL, 'tzuyutwiceyy@gmail.com', 'af28d60dd2cd21f553d634894df1a2c2', '57217b0884d611fb500a1f1c6b4c688c', NULL, 'student'),
+(10, 'richard123', 'Shimada', 'male', NULL, 'shimada.richardaries@gmail.com', 'ffdc5e7af55a6ba90654109bc62ba811', 'ae911ed0cf69ba9cbacb2a46419652d8', NULL, 'student');
 
 -- --------------------------------------------------------
 
@@ -241,8 +254,8 @@ CREATE TABLE `video_tbl` (
 --
 
 INSERT INTO `video_tbl` (`id`, `course_id`, `instructor_id`, `video_title`, `description`, `thumbnail`, `video`, `created_at`) VALUES
-(41, 66, 8, 'Introduction to Data Structures and Algorithm', 'Lorem ipsumS', 'IMG-41-65b628a6c2ab3.png', 'VIDEO-41-65b628a6c384b.mp4', '2024-01-28 09:08:13'),
-(42, 66, 8, 'Linear vs Non Linear', 'Let\'s talk about the difference of Linear and Non Linear Data Structures, we will see how they compare with each other and how some is more advantageous than the other. We will try to explain it as much as possible in layman\'s term.', 'IMG-8-65b5c26fe23b5.png', 'VIDEO-8-65b5c26fe23b5.mp4', '2024-01-28 10:56:47');
+(41, 66, 8, 'Introduction to Data Structures and Algorithm', 'Lorem ipsum', 'IMG-41-65b628a6c2ab3.png', 'VIDEO-41-65b88428697bb.mp4', '2024-01-28 09:08:13'),
+(42, 66, 8, 'Linear vs Non Linears', 'Let\'s talk about the difference of Linear and Non Linear Data Structures, we will see how they compare with each other and how some is more advantageous than the other. We will try to explain it as much as possible in layman\'s term.', 'IMG-8-65b5c26fe23b5.png', 'VIDEO-42-65b885fa35ce9.mp4', '2024-01-28 10:56:47');
 
 --
 -- Indexes for dumped tables
@@ -313,31 +326,31 @@ ALTER TABLE `video_tbl`
 -- AUTO_INCREMENT for table `admin_tbl`
 --
 ALTER TABLE `admin_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `application-form_tbl`
 --
 ALTER TABLE `application-form_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `course_tbl`
 --
 ALTER TABLE `course_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `instructor_tbl`
 --
 ALTER TABLE `instructor_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `student_course_tbl`
 --
 ALTER TABLE `student_course_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `student_task_tbl`
@@ -355,7 +368,7 @@ ALTER TABLE `task_tbl`
 -- AUTO_INCREMENT for table `user_tbl`
 --
 ALTER TABLE `user_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `video_tbl`
